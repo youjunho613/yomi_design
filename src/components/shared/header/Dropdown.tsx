@@ -1,12 +1,17 @@
+"use client";
+
 import Link from "next/link";
 import { MutableRefObject, useEffect, useState } from "react";
-import { TLinkRef } from "./Header";
 import { NAV_SUB_CONTENT } from "./Header.content";
 
 interface Props {
   isShowNav: boolean;
   currentNav: string;
   linkRef: MutableRefObject<TLinkRef>;
+}
+
+interface TLinkRef {
+  [key: string]: HTMLAnchorElement | null;
 }
 
 export default function Dropdown({ isShowNav, currentNav, linkRef }: Props) {

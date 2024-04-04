@@ -14,11 +14,11 @@ export type TSubCategory = Record<
 export type TSubSignType = TLogo | TSign | TPrint;
 export type TCategory = TLogoCategory | TSignCategory | TPrintCategory;
 
-type TLogo = "text" | "wordmark" | "symbol" | "emblem" | "character";
+export type TLogo = "text" | "wordmark" | "symbol" | "emblem" | "character";
 type TLogoCategory = "텍스트" | "워드마크형" | "심볼형" | "엠블럼형" | "캐릭터형";
-type TSign = "channel" | "galba" | "flex" | "scasi" | "acrylic" | "protruding" | "holding" | "neon" | "standing";
+export type TSign = "channel" | "galba" | "flex" | "scasi" | "acrylic" | "protruding" | "holding" | "neon" | "standing";
 type TSignCategory = "채널" | "갈바" | "후렉스(플렉스)" | "스카시" | "아크릴" | "돌출" | "지주" | "네온" | "입간판";
-type TPrint = "sheet" | "banner" | "business-card" | "sticker" | "poster" | "catalog" | "envelope";
+export type TPrint = "sheet" | "banner" | "business-card" | "sticker" | "poster" | "catalog" | "envelope";
 type TPrintCategory =
   | "시트지"
   | "현수막/배너"
