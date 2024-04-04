@@ -14,7 +14,7 @@
   --header-margin-top: 60px;
   --footer-height: 200px;
   --layout-width: 1000px;
-  --layout-margin-top: 48px;
+  --layout-margin-top: 72px;
   --layout-margin-bottom: 80px;
 }
 
@@ -37,8 +37,7 @@ main {
   width: 1000px;
   height: auto;
   min-height: calc(
-    100vh - var(--header-height) - var(--layout-margin-top) - var(--layout-margin-bottom) - var(--header-margin-top) -
-      var(--footer-height)
+    100vh- var(--header-margin-top)- var(--header-height)- var(--layout-margin-top)- var(--layout-margin-bottom)- var(--footer-height)
   );
 
   margin: var(--layout-margin-top) auto var(--layout-margin-bottom) auto;
@@ -46,6 +45,11 @@ main {
 
 footer {
   height: var(--footer-height);
+}
+
+footer > * {
+  width: var(--layout-width);
+  padding: 0 40px;
 }
 
 @layer components {
