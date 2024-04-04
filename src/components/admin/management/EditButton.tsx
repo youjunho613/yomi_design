@@ -1,5 +1,5 @@
-import { deletePost, editPost } from "@/app/api/post";
 import { Tables } from "@/../lib/supabase/schema";
+import { deletePost, editPost } from "@/app/api/post";
 import useIsOpen from "@/store/useIsOpen";
 import usePostEdit from "@/store/usePostEdit";
 

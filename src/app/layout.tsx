@@ -1,7 +1,7 @@
+import Footer from "@/components/shared/Footer";
+import Header from "@/components/shared/header/Header";
 import type { Metadata } from "next";
 import "./globals.css";
-import Header from "@/components/shared/header/Header";
-import Footer from "@/components/shared/Footer";
 
 // const inter = Inter({ subsets: ["latin"] });
 

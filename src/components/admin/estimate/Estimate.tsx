@@ -1,9 +1,9 @@
-import { STORAGE_URL } from "@/../lib/supabase/supabase";
 import { Tables } from "@/../lib/supabase/schema";
-import Image from "next/image";
-import Text from "../Text";
+import { STORAGE_URL } from "@/../lib/supabase/supabase";
 import { TEstimateStatus, deleteEstimate, editEstimate } from "@/app/api/estimate";
+import Image from "next/image";
 import { useState } from "react";
+import Text from "../Text";
 
 interface Props {
   estimate: Tables<"estimate", "Row">;

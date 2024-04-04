@@ -1,6 +1,5 @@
-import { MAIN_CATEGORY, SUB_CATEGORY, TMainSignType } from "@/app/category.constant";
+import { MAIN_CATEGORY } from "@/app/category.constant";
 import useSelect from "@/hook/useSelect";
-import { ChangeEvent } from "react";
 
 export default function CategorySelect() {
   const { signType, onChangeMain } = useSelect();
@@ -20,16 +19,8 @@ export default function CategorySelect() {
           </label>
         ))}
       </div>
-      <select name="subCategory" onChange={(event) => onChangeSelect(event)}>
-        {!!signType ? (
-          SUB_CATEGORY[signType].map((category) => (
-            <option key={category.id} value={category.id}>
-              {category.label}
-            </option>
-          ))
-        ) : (
-          <option value={undefined}>카테고리를 선택해주세요</option>
-        )}
+      <select name="subCategory" onChange={(event) => onChangeMain(event)}>
+        {<option value={undefined}>카테고리를 선택해주세요</option>}
       </select>
     </div>
   );

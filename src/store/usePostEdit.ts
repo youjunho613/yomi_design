@@ -1,5 +1,5 @@
-import { create } from "zustand";
 import { Tables } from "@/../lib/supabase/schema";
+import { create } from "zustand";
 
 interface IPostEdit {
   editBoard: Tables<"board", "Row">[] | null;

@@ -1,5 +1,3 @@
-import React from "react";
-
 const FOOTER_CONTENT = [
   { label: "상호", content: "요미디자인" },
   { label: "대표", content: "허지혜" },

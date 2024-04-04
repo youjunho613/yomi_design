@@ -1,9 +1,9 @@
-import PhotoEditButton from "./PhotoEditButton";
-import Image from "next/image";
-import { STORAGE_URL } from "@/../lib/supabase/supabase";
 import { Tables } from "@/../lib/supabase/schema";
+import { STORAGE_URL } from "@/../lib/supabase/supabase";
 import useIsOpen from "@/store/useIsOpen";
+import Image from "next/image";
 import { useState } from "react";
+import PhotoEditButton from "./PhotoEditButton";
 
 interface Props {
   post: Tables<"board", "Row">;

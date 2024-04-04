@@ -1,11 +1,11 @@
 import { getPostList } from "@/app/api/post";
-import { useEffect } from "react";
-import Text from "../Text";
-import EditText from "./EditText";
-import EditButton from "./EditButton";
-import PhotoList from "./PhotoList";
 import useIsOpen from "@/store/useIsOpen";
 import usePostEdit from "@/store/usePostEdit";
+import { useEffect } from "react";
+import Text from "../Text";
+import EditButton from "./EditButton";
+import EditText from "./EditText";
+import PhotoList from "./PhotoList";
 
 export default function Management() {
   const { postIsOpen, setInitialIsOpen, changeEditMode } = useIsOpen();

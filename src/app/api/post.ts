@@ -1,5 +1,5 @@
-import { supabase } from "@/../lib/supabase/supabase";
 import { Tables } from "@/../lib/supabase/schema";
+import { supabase } from "@/../lib/supabase/supabase";
 
 export const getPostList = async () => {
   const { data: board, error } = await supabase.from("board").select("*");

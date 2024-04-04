@@ -1,6 +1,6 @@
+import { Database } from "@/../lib/supabase/schema";
 import { supabase } from "@/../lib/supabase/supabase";
-import { Database, Tables } from "@/../lib/supabase/schema";
-import { Input } from "@/components/estimate/EstimateForm";
+import { EstimateInput } from "@/components/estimate/EstimateForm";
 import uuid from "react-uuid";
 
 export type TEstimateStatus = Database["public"]["Enums"]["estimateStatus"];
@@ -15,7 +15,7 @@ export const getEstimateList = async () => {
 
 export const getEstimate = async () => {};
 
-export const createEstimate = async (input: Input) => {
+export const createEstimate = async (input: EstimateInput) => {
   const { conceptFile, ...omitFileRequest } = input;
   const path = await uploadFile(uuid(), conceptFile[0]);
   const photoUrl = `estimate/${path}`;

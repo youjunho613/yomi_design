@@ -1,7 +1,7 @@
 import Link from "next/link";
-import React, { MutableRefObject, useEffect, useState } from "react";
-import { NAV_SUB_CONTENT } from "./Header.content";
+import { MutableRefObject, useEffect, useState } from "react";
 import { TLinkRef } from "./Header";
+import { NAV_SUB_CONTENT } from "./Header.content";
 
 interface Props {
   isShowNav: boolean;

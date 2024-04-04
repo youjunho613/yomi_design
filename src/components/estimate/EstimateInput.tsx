@@ -1,6 +1,6 @@
+import { HTMLInputTypeAttribute } from "react";
 import type { UseFormRegister } from "react-hook-form";
 import { EstimateInput } from "./EstimateForm";
-import { HTMLInputTypeAttribute } from "react";
 
 interface Props {
   id: keyof EstimateInput;
