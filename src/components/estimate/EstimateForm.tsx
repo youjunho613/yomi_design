@@ -31,8 +31,7 @@ export default function EstimateForm() {
       <EstimateInput register={register} id="address" label="현장주소" />
       <EstimateInput register={register} id="estimate" label="문의사항" type="textarea" />
       <EstimateInput register={register} id="conceptFile" label="원하는 간판 예시 사진" type="file" />
-
-      <input className="" type="submit" value="문의하기" />
+      <input className="cursor-pointer bg-sub px-4 py-3 rounded-lg text-main" type="submit" value="문의하기" />
     </form>
   );
 }
