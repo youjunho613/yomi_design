@@ -42,7 +42,8 @@ main {
   width: 1000px;
   height: auto;
   min-height: calc(
-    100vh- var(--header-margin-top)- var(--header-height)- var(--layout-margin-top)- var(--layout-margin-bottom)- var(--footer-height)
+    100vh - var(--header-margin-top) - var(--header-height) - var(--layout-margin-top) - var(--layout-margin-bottom) -
+      var(--footer-height)
   );
 
   margin: var(--layout-margin-top) auto var(--layout-margin-bottom) auto;
