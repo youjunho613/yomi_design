@@ -8,10 +8,10 @@ export default function SocialBox() {
         <Image width={17} height={13} src="/phone.svg" alt="전화문의" />
         전화문의
       </Link>
-      <button className="main-button">
+      <Link href={"http://pf.kakao.com/_xoxfvgxj"} target="_blank" className="main-button">
         <Image width={15} height={13} src="/kakao.svg" alt="카톡상담" />
         카톡상담
-      </button>
+      </Link>
       <Link href={"https://www.instagram.com/yomi_design_/"} target="_blank" className="main-button">
         <Image width={13} height={13} src="/insta.svg" alt="인스타그램" />
         인스타그램
