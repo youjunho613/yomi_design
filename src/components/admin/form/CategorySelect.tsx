@@ -1,14 +1,25 @@
-import { MAIN_CATEGORY } from "@/app/category.constant";
-import useSelect from "@/hook/useSelect";
+import type { TMainSignType, TSubSignType } from "@/app/category.constant";
+import { MAIN_CATEGORY, SUB_CATEGORY } from "@/app/category.constant";
+
+import useCategorySelect from "@/store/useCategorySelect";
+import { ChangeEvent } from "react";
 
 export default function CategorySelect() {
-  const { signType, onChangeMain } = useSelect();
+  const { mainCategory, setMainCategory, setSubCategory } = useCategorySelect();
+
+  const onChangeMain = ({ target: { value } }: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    setMainCategory(value as TMainSignType | undefined);
+  };
+
+  const onChangeSub = ({ target: { value } }: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    setSubCategory(value as TSubSignType | undefined);
+  };
+
   return (
     <div className="flex flex-col gap-4">
-      <div className="flex gap-4">
+      <div className="flex gap-10">
         {MAIN_CATEGORY.map((category) => (
-          <label htmlFor={category.id} key={category.id} className="flex items-center">
-            {category.label}
+          <label htmlFor={category.id} key={category.id} className="flex items-center gap-1">
             <input
               id={category.id}
               value={category.id}
@@ -16,11 +27,22 @@ export default function CategorySelect() {
               name="board"
               type="radio"
             />
+            {category.label}
           </label>
         ))}
       </div>
-      <select name="subCategory" onChange={(event) => onChangeMain(event)}>
-        {<option value={undefined}>카테고리를 선택해주세요</option>}
+      <select name="subCategory" onChange={(event) => onChangeSub(event)}>
+        {!mainCategory && <option value={undefined}>카테고리를 선택해주세요</option>}
+        {!!mainCategory && (
+          <>
+            <option value={undefined}>카테고리를 선택해주세요</option>
+            {SUB_CATEGORY[mainCategory].map((category) => (
+              <option key={category.id} value={category.id}>
+                {category.label}
+              </option>
+            ))}
+          </>
+        )}
       </select>
     </div>
   );

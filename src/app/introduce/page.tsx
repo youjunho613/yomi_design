@@ -1,12 +1,20 @@
 import Image from "next/image";
 import { content, docs } from "./content";
+import { myFont } from "../layout";
 
 function page() {
   return (
     <div className="flex justify-between mt-7 pl-10">
       <div className="flex flex-col align-baseline gap-7">
-        <Image src="/introduce_logo.svg" width={182} height={27} alt="요미디자인은?" />
-        <pre className="font-light leading-6">{content}</pre>
+        <Image
+          src="/introduce_logo.svg"
+          width={182}
+          height={27}
+          alt="요미디자인은?"
+        />
+        <pre className={`leading-6 ${myFont.className}`}>
+          {content}
+        </pre>
         <div className="flex gap-7 my-8">
           {docs.map((doc) => (
             <div key={doc.name} className="contents-center flex-col gap-2.5">
@@ -18,7 +26,13 @@ function page() {
         <Image src="/step_title.svg" width={97} height={25} alt="진행방법" />
         <Image src="/step.svg" width={573} height={230} alt="진행순서" />
       </div>
-      <Image src="line_art.svg" width={251} height={915} className="-translate-y-7" alt="deco" />
+      <Image
+        src="line_art.svg"
+        width={251}
+        height={915}
+        className="-translate-y-7"
+        alt="deco"
+      />
     </div>
   );
 }

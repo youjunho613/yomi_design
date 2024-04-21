@@ -1,61 +1,59 @@
 "use client";
 
-import { Tables } from "@/../lib/supabase/schema";
-import { SUPABASE_URL } from "@/../lib/supabase/supabase";
-import { getPostList } from "@/app/api/post";
+import { STORAGE_URL } from "@/supabase/supabase";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import usePost from "@/service/post/mutations";
+import { SUB_CATEGORY } from "@/app/category.constant";
+import type { TMainSignType, TSubCategory } from "@/app/category.constant";
 
-interface Props {
-  category: any;
+interface IProps {
+  category: {
+    mainCategory: TMainSignType | undefined;
+    subCategory: TSubCategory | undefined;
+  };
 }
 
-export default function PostList({ category }: Props) {
-  const [postList, setPostList] = useState<Tables<"board", "Row">[] | null>(null);
+export default function PostList({ category }: IProps) {
+  console.log("category :", category.subCategory);
+  const { fetchFilteredPosts } = usePost();
 
-  useEffect(() => {
-    const fetchPost = async () => {
-      const data = await getPostList();
-      setPostList(data);
-    };
+  const { data, isLoading, isError } = fetchFilteredPosts;
 
-    fetchPost();
-  }, []);
-
-  if (postList === null) return <p>업로드된 게시물이 없습니다.</p>;
-
-  const filteringData = postList.filter((data) => {
-    const words = data.path.split("/");
-    if (category.length === 1) return words[2] === category[0];
-    if (category.length === 2) return words[3] === category[1];
-  });
-  //
+  if (!data || data.length === 0) return <p>업로드된 게시물이 없습니다.</p>;
+  if (isLoading) return <p>로딩 중...</p>;
+  if (isError) return <p>에러가 발생했습니다.</p>;
 
   return (
     <ul className="flex gap-[26px] flex-wrap">
-      {filteringData.length === 0 ? (
-        <p>업로드된 게시물이 없습니다.</p>
-      ) : (
-        filteringData.map((data) => (
-          <Link key={data.id} href={`${data.path}/${data.id}`}>
+      {data.map((data) => {
+        const path = `/board/${data.mainCategory}/${data.subCategory}/${data.id}`;
+        const mainCategory = data.mainCategory as TMainSignType;
+        const subCategory = SUB_CATEGORY[mainCategory];
+        const currentCategory = subCategory.find(({ id }) => id === data.subCategory);
+        const categoryLabel = currentCategory?.label;
+
+        return (
+          <Link key={data.id} href={path}>
             <li className="bg-white border-[3px] border-black002 w-[230px]">
-              <div className="w-[224px] h-[224px] contents-center overflow-hidden object-cover">
+              <div className="contents-center relative w-[224px] h-[224px]">
                 <Image
-                  width={224}
-                  height={224}
-                  src={`${SUPABASE_URL}/storage/v1/object/public/estimate/${data.mainPhotoUrl}`}
+                  // width={224}
+                  // height={224}
+                  src={`${STORAGE_URL}/post/${data.mainPhotoUrl}`}
                   alt={`${data.title} 시공사진`}
+                  objectFit="cover"
+                  layout="fill"
                 />
               </div>
               <div className="border-t-[3px] border-black002 w-[224px] h-[60px] flex flex-col justify-center px-3">
-                <p className="font-bold text-[15px]">{data.title}</p>
-                <p className="font-medium text-[11px]">{data.category}</p>
+                <p className="font-bold text-base">{data.title}</p>
+                <p className="font-medium text-sm">{categoryLabel}</p>
               </div>
             </li>
           </Link>
-        ))
-      )}
+        );
+      })}
     </ul>
   );
 }
