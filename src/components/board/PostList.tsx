@@ -15,7 +15,6 @@ interface IProps {
 }
 
 export default function PostList({ category }: IProps) {
-  console.log("category :", category.subCategory);
   const { fetchFilteredPosts } = usePost();
 
   const { data, isLoading, isError } = fetchFilteredPosts;

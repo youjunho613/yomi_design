@@ -18,7 +18,6 @@ export default function PhotoList({ post }: Props) {
   const { TogglePhoto, photoArray, photoModifyIsOpen, TogglePhotoModify } = usePostPhotoModify();
   const { modifyPostMutation } = usePost();
   const [fileList, setFileList] = useState<FileList>();
-  console.log("fileList :", fileList);
   const [preview, setPreview] = useState<string[]>([]);
 
   const onChangeFile = ({ target: { files } }: ChangeEvent<HTMLInputElement>) => {

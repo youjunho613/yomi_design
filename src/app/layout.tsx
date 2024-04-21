@@ -13,17 +13,17 @@ export const metadata: Metadata = {
 export const myFont = localFont({
   src: [
     {
-      path: "./fonts/GmarketSansTTFLight.ttf",
+      path: "/fonts/GmarketSansTTFLight.ttf",
       weight: "100",
       style: "normal",
     },
     {
-      path: "./fonts/GmarketSansTTFMedium.ttf",
+      path: "/fonts/GmarketSansTTFMedium.ttf",
       weight: "400",
       style: "normal",
     },
     {
-      path: "./fonts/GmarketSansTTFBold.ttf",
+      path: "/fonts/GmarketSansTTFBold.ttf",
       weight: "600",
       style: "normal",
     },

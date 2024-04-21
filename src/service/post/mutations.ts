@@ -23,8 +23,6 @@ export default function usePost() {
   const currentCategory = !subcategory ? mainCategory : subcategory;
 
   const changCategory = !subcategory ? "mainCategory" : "subCategory";
-  console.log("currentCategory :", currentCategory);
-  console.log("changCategory :", changCategory);
 
   const queryKey = queryOptions.all().queryKeys;
 
