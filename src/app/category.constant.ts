@@ -8,25 +8,21 @@ interface IMainCategory {
 
 export type TSubCategory = Record<
   TMainSignType,
-  { id: TLogo | TSign | TPrint; label: string; href: `/board/${TMainSignType}/${TLogo | TSign | TPrint}` }[]
+  {
+    id: TSubSignType;
+    label: string;
+    href: `/board/${TMainSignType}/${TSubSignType}`;
+  }[]
 >;
 
 export type TSubSignType = TLogo | TSign | TPrint;
-export type TCategory = TLogoCategory | TSignCategory | TPrintCategory;
 
-type TLogo = "text" | "wordmark" | "symbol" | "emblem" | "character";
-type TLogoCategory = "텍스트" | "워드마크형" | "심볼형" | "엠블럼형" | "캐릭터형";
-type TSign = "channel" | "galba" | "flex" | "scasi" | "acrylic" | "protruding" | "holding" | "neon" | "standing";
-type TSignCategory = "채널" | "갈바" | "후렉스(플렉스)" | "스카시" | "아크릴" | "돌출" | "지주" | "네온" | "입간판";
-type TPrint = "sheet" | "banner" | "business-card" | "sticker" | "poster" | "catalog" | "envelope";
-type TPrintCategory =
-  | "시트지"
-  | "현수막/배너"
-  | "명함"
-  | "스티커"
-  | "포스터/전단지"
-  | "리플렛/팜플렛"
-  | "대봉투/소봉투";
+// type TLogoCategory = "텍스트" | "워드마크형" | "심볼형" | "엠블럼형" | "캐릭터형";
+// type TSignCategory = "채널" | "갈바" | "후렉스(플렉스)" | "스카시" | "아크릴" | "돌출" | "지주" | "네온" | "입간판";
+// type TPrintCategory ="시트지"| "현수막/배너"| "명함"| "스티커"| "포스터/전단지"| "리플렛/팜플렛"| "대봉투/소봉투";
+export type TLogo = "text" | "wordmark" | "symbol" | "emblem" | "character";
+export type TSign = "channel" | "galba" | "flex" | "scasi" | "acrylic" | "protruding" | "holding" | "neon" | "standing";
+export type TPrint = "sheet" | "banner" | "business-card" | "sticker" | "poster" | "catalog" | "envelope";
 
 export const MAIN_CATEGORY: IMainCategory[] = [
   { id: "logo", label: "로고", href: "/board/logo" },
@@ -36,11 +32,11 @@ export const MAIN_CATEGORY: IMainCategory[] = [
 
 export const SUB_CATEGORY: TSubCategory = {
   logo: [
-    { id: "text", label: "텍스트형", href: "/board/logo/text" },
-    { id: "wordmark", label: "워드마크형", href: "/board/logo/wordmark" },
-    { id: "symbol", label: "심볼형", href: "/board/logo/symbol" },
-    { id: "emblem", label: "엠블럼형", href: "/board/logo/emblem" },
-    { id: "character", label: "캐릭터형", href: "/board/logo/character" },
+    { id: "text", label: "텍스트", href: "/board/logo/text" },
+    { id: "wordmark", label: "워드마크", href: "/board/logo/wordmark" },
+    { id: "symbol", label: "심볼", href: "/board/logo/symbol" },
+    { id: "emblem", label: "엠블럼", href: "/board/logo/emblem" },
+    { id: "character", label: "캐릭터", href: "/board/logo/character" },
   ],
   sign: [
     { id: "channel", label: "채널", href: "/board/sign/channel" },

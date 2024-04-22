@@ -2,19 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
+/* @font-face {
   font-family: "Gmarket";
   src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff") format("woff");
   font-weight: normal;
   font-style: normal;
-}
+} */
 
 :root {
   --header-height: 50px;
   --header-margin-top: 60px;
   --footer-height: 200px;
   --layout-width: 1000px;
-  --layout-margin-top: 48px;
+  --layout-margin-top: 72px;
   --layout-margin-bottom: 80px;
 }
 
@@ -24,7 +24,7 @@ body {
 
 body,
 pre {
-  font-family: "Gmarket";
+  /* font-family: "Gmarket"; */
 }
 
 header {
@@ -37,7 +37,7 @@ main {
   width: 1000px;
   height: auto;
   min-height: calc(
-    100vh - var(--header-height) - var(--layout-margin-top) - var(--layout-margin-bottom) - var(--header-margin-top) -
+    100vh - var(--header-margin-top) - var(--header-height) - var(--layout-margin-top) - var(--layout-margin-bottom) -
       var(--footer-height)
   );
 
@@ -46,6 +46,11 @@ main {
 
 footer {
   height: var(--footer-height);
+}
+
+footer > * {
+  width: var(--layout-width);
+  padding: 0 40px;
 }
 
 @layer components {
@@ -71,7 +76,7 @@ footer {
     @apply flex justify-between items-center;
   }
   .main-button {
-    @apply contents-center gap-1 w-[110px] h-[30px] text-[13px] font-medium border-2 border-black002 rounded-2xl bg-sub text-white shadow-button;
+    @apply contents-center gap-1 w-[110px] h-[30px] text-sm font-medium border-2 border-black002 rounded-2xl bg-sub text-white shadow-button;
   }
   .navigation {
     @apply bg-white border-black002 border-[3px] mx-auto font-bold;
@@ -81,5 +86,20 @@ footer {
   }
   .input {
     @apply w-full p-[5px] border-none focus:border-none focus:outline-none;
+  }
+  .estimate-label {
+    @apply contents-between gap-5 w-[540px] min-h-[40px] px-2.5 bg-white border-[3px] border-black002;
+  }
+  .tab {
+    @apply flex items-center justify-around my-1 mx-10 gap-4;
+  }
+  .tab-button-box {
+    @apply w-full;
+  }
+  .tab-button {
+    @apply w-full contents-center p-2 rounded-3xl bg-white border border-black002;
+  }
+  .basic-button {
+    @apply cursor-pointer bg-sub text-main;
   }
 }

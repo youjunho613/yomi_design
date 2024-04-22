@@ -1,8 +1,8 @@
-import { Tables } from "@/../lib/supabase/schema";
-import usePostEdit from "@/store/usePostEdit";
+import usePostEdit from "@/store/usePostPhotoModify";
+import { Tables } from "@/supabase/type";
 
 interface Props {
-  post: Tables<"board", "Row">;
+  post: Tables<"board">;
   index: number;
 }
 
@@ -10,27 +10,37 @@ export default function PhotoEditButtons({ post, index }: Props) {
   const { deleteOnePhoto, sequenceChangeHandler } = usePostEdit();
 
   return (
-    <div className="flex flex-col w-[60px]">
+    <div className="contents-center flex-col gap-4 w-20 absolute -right-4 translate-x-full">
       {index !== 0 && (
         <input
           type="button"
           value="▲"
-          className="border-2 border-black002 h-full px-3 py-2 cursor-pointer"
-          onClick={() => sequenceChangeHandler(post.id, index, index - 1)}
+          className="basic-button px-4 py-3 rounded-xl"
+          onClick={() => {
+            sequenceChangeHandler({ index, target: index - 1 });
+          }}
         />
       )}
       <input
         type="button"
         value="삭제"
-        className="border-2 border-black002 h-full px-3 py-2 cursor-pointer"
+        className="basic-button px-4 py-3 rounded-xl"
         onClick={() => deleteOnePhoto(post.id, index)}
       />
       {index !== post.photoUrl.length - 1 && (
         <input
           type="button"
           value="▼"
-          className="border-2 border-black002 h-full px-3 py-2 cursor-pointer"
-          onClick={() => sequenceChangeHandler(post.id, index, index + 1)}
+          className="basic-button px-4 py-3 rounded-xl"
+          onClick={(event) => {
+            sequenceChangeHandler({ index, target: index + 1 });
+            const gap = 40;
+            const imageHeight = event.currentTarget.offsetParent?.parentNode?.firstElementChild?.clientHeight;
+
+            if (imageHeight) {
+              window.scrollBy(0, imageHeight + gap * 2);
+            }
+          }}
         />
       )}
     </div>

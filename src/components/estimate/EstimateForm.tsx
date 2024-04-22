@@ -1,38 +1,77 @@
 "use client";
 
-import { createEstimate } from "@/app/api/estimate";
 import type { SubmitHandler } from "react-hook-form";
 import { useForm } from "react-hook-form";
-import EstimateInput from "./EstimateInput";
+import Input from "../shared/input/Input";
+import Textarea from "../shared/input/Textarea";
+import FileInput from "../shared/input/FileInput";
+import useEstimate from "@/service/estimate/mutations";
+import { fileToUrls } from "@/supabase/supabase";
 
-export interface EstimateInput {
+interface EstimateInput {
   storeName: string;
-  category: string;
-  name: string;
+  storeCategory: string;
   phone: string;
   address: string;
-  estimate: string;
-  conceptFile: FileList;
+  inquiryContent: string;
+  conceptFile?: FileList;
+  storePhoto?: FileList;
 }
 
+const textInputArray: { id: keyof EstimateInput; label: string }[] = [
+  { id: "storeName", label: "상호명" },
+  { id: "storeCategory", label: "업종" },
+  { id: "phone", label: "연락처" },
+  { id: "address", label: "현장주소" },
+];
+
 export default function EstimateForm() {
-  const { register, handleSubmit } = useForm<EstimateInput>();
+  const { register, handleSubmit, reset } = useForm<EstimateInput>();
+  const { createEstimateMutation } = useEstimate();
 
   const onSubmit: SubmitHandler<EstimateInput> = (data) => {
-    createEstimate(data);
+    const { address, inquiryContent, phone, storeCategory, storeName, conceptFile, storePhoto } = data;
+    const bucket = "estimate";
+    const conceptPhotoUrl = !!conceptFile ? fileToUrls({ bucket, fileList: conceptFile }) : [];
+    const storePhotoUrl = !!storePhoto ? fileToUrls({ bucket, fileList: storePhoto }) : [];
+
+    const request = {
+      address,
+      inquiryContent,
+      phone,
+      storeCategory,
+      storeName,
+      photoUrl: conceptPhotoUrl,
+      storePhoto: storePhotoUrl,
+    };
+
+    createEstimateMutation.mutate(request);
+    reset();
+    alert("문의가 접수되었습니다.");
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex-col contents-center gap-2.5">
-      <EstimateInput register={register} id="storeName" label="상호명" />
-      <EstimateInput register={register} id="category" label="업종" />
-      <EstimateInput register={register} id="name" label="성함" />
-      <EstimateInput register={register} id="phone" label="연락처" />
-      <EstimateInput register={register} id="address" label="현장주소" />
-      <EstimateInput register={register} id="estimate" label="문의사항" type="textarea" />
-      <EstimateInput register={register} id="conceptFile" label="원하는 간판 예시 사진" type="file" />
+    <form onSubmit={handleSubmit(onSubmit)} className="flex-col contents-center gap-2.5 text-sm">
+      {textInputArray.map((input) => (
+        <label key={input.id} className="estimate-label" htmlFor={input.id}>
+          <span className="w-20">{input.label}</span>
+          <Input className="h-10 input" id={input.id} register={register(input.id)} />
+        </label>
+      ))}
+      <label className="estimate-label" htmlFor="estimate">
+        <span className="w-20">문의사항</span>
+        <Textarea className="h-[120px] input resize-none" id="estimate" register={register("inquiryContent")} />
+      </label>
+      <label className="estimate-label" htmlFor={"conceptFile"}>
+        <span className="w-full">현장사진</span>
+        <FileInput id={"conceptFile"} register={register("conceptFile")} />
+      </label>
+      <label className="estimate-label" htmlFor={"conceptFile"}>
+        <span className="w-full">원하는 간판 예시 사진</span>
+        <FileInput id={"conceptFile"} register={register("conceptFile")} />
+      </label>
 
-      <input className="" type="submit" value="문의하기" />
+      <input className="cursor-pointer bg-sub px-4 py-3 rounded-lg text-main" type="submit" value="문의하기" />
     </form>
   );
 }

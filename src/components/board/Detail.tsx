@@ -1,39 +1,35 @@
 "use client";
 
-import { Tables } from "@/../lib/supabase/schema";
-import { SUPABASE_URL } from "@/../lib/supabase/supabase";
-import { getPost } from "@/app/api/post";
+import { STORAGE_URL } from "@/supabase/supabase";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import usePost from "@/service/post/mutations";
+import { SUB_CATEGORY } from "@/app/category.constant";
+import type { TMainSignType } from "@/app/category.constant";
 
-interface Props {
-  postId: string;
-}
+export default function Detail() {
+  const { fetchPost } = usePost();
+  const { data, isLoading, isError } = fetchPost;
 
-export default function Detail({ postId }: Props) {
-  const [post, setPost] = useState<Tables<"board", "Insert"> | null>(null);
-  useEffect(() => {
-    const fetchPost = async () => {
-      const data = await getPost(postId);
-      setPost(data);
-    };
+  if (!data) return <p>업로드된 게시물이 없습니다.</p>;
+  if (isLoading) return <p>로딩 중...</p>;
+  if (isError) return <p>에러가 발생했습니다.</p>;
 
-    fetchPost();
-  }, [postId]);
-
-  if (post === null) return <p>업로드된 게시물이 없습니다.</p>;
+  const mainCategory = data.mainCategory as TMainSignType;
+  const subCategory = SUB_CATEGORY[mainCategory];
+  const currentCategory = subCategory.find(({ id }) => id === data.subCategory);
+  const categoryLabel = currentCategory?.label;
 
   return (
     <div>
       <div className="flex flex-col border-b-2 border-black002">
-        <h2 className="text-2xl">{post.title}</h2>
-        <p className="text-sm px-5">주소 : {post.address}</p>
-        <p className="text-sm px-5">종류 : {post.category}</p>
+        <h2 className="text-2xl">{data.title}</h2>
+        <p className="text-sm px-5">주소 : {data.address}</p>
+        <p className="text-sm px-5">종류 : {categoryLabel}</p>
       </div>
       <ul className="flex flex-col contents-center my-10 gap-5">
-        {post.photoUrl.map((photo, index) => (
+        {data.photoUrl.map((photo, index) => (
           <li key={index}>
-            <Image width={700} height={700} src={`${SUPABASE_URL}/storage/v1/object/public/estimate/${photo}`} alt="" />
+            <Image width={700} height={700} src={`${STORAGE_URL}/post/${photo}`} alt="" />
           </li>
         ))}
       </ul>
