@@ -23,7 +23,7 @@ export default function Board({ params: { category: params } }: IProps) {
   return (
     <div>
       <nav>
-        <ul className="relative contents-center gap-12 w-[1000px] h-12 mb-12 navigation animation text-lg">
+        <ul className="contents-center relative gap-12 w-[1000px] h-12 mb-12 navigation animation text-sm">
           <li>
             <Link href={`/board/${category.mainCategory}`}>전체</Link>
           </li>
