@@ -13,23 +13,7 @@ export const metadata: Metadata = {
 };
 
 export const myFont = localFont({
-  src: [
-    {
-      path: "/fonts/GmarketSansTTFLight.ttf",
-      weight: "100",
-      style: "normal",
-    },
-    {
-      path: "/fonts/GmarketSansTTFMedium.ttf",
-      weight: "400",
-      style: "normal",
-    },
-    {
-      path: "/fonts/GmarketSansTTFBold.ttf",
-      weight: "600",
-      style: "normal",
-    },
-  ],
+  src: "/fonts/PretendardVariable.woff2",
   display: "block",
 });
 
