@@ -20,10 +20,10 @@ export const myFont = localFont({
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ko">
-      <body className={myFont.className}>
+      <body className={`${myFont.className} contents-center min-h-screen flex-col bg-main pt-14`}>
         <ReactQueryProviders>
           <Header />
-          <main className="w-full">{children}</main>
+          <main className="my-14 min-h-fit w-10/12 grow-[1]">{children}</main>
           <Footer />
         </ReactQueryProviders>
       </body>

@@ -51,7 +51,7 @@ export default function EstimateForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="contents-center flex-col gap-2.5 text-sm">
+    <form onSubmit={handleSubmit(onSubmit)} className="contents-center w-full flex-col gap-2.5 text-sm xl:w-1/2">
       {textInputArray.map((input) => (
         <label key={input.id} className="estimate-label" htmlFor={input.id}>
           <span className="w-20">{input.label}</span>
@@ -71,7 +71,7 @@ export default function EstimateForm() {
         <FileInput id={"conceptFile"} register={register("conceptFile")} />
       </label>
 
-      <input className="cursor-pointer rounded-lg bg-sub px-4 py-3 text-main" type="submit" value="문의하기" />
+      <input className="basic-button mt-10 rounded-lg px-4 py-3" type="submit" value="문의하기" />
     </form>
   );
 }

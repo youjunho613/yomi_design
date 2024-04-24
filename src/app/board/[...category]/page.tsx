@@ -20,15 +20,20 @@ export default function Board({ params: { category: params } }: IProps) {
 
   if (!category.mainCategory) return <p>잘못된 접근입니다.</p>;
 
+  /* 
+  1. 햄버거 버튼
+  2. 히든
+  3. 전체 노출
+  */
   return (
     <div>
       <nav>
-        <ul className="contents-center navigation animation relative mb-12 h-12 w-[1000px] gap-12 text-sm">
-          <li>
+        <ul className="contents-center sub-navigation mb-12">
+          <li className="break-keep">
             <Link href={`/board/${category.mainCategory}`}>전체</Link>
           </li>
           {SUB_CATEGORY[category.mainCategory].map((item) => (
-            <li key={item.id}>
+            <li key={item.id} className="break-keep">
               <Link href={item.href}>{item.label}</Link>
             </li>
           ))}

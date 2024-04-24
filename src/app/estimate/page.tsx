@@ -3,7 +3,7 @@ import Info from "@/components/estimate/Info";
 
 export default function page() {
   return (
-    <div className="mt-12 flex justify-between gap-4 px-12">
+    <div className="contents-center xl:items-start mx-auto mt-12 w-full flex-col gap-20 md:w-10/12 xl:flex-row">
       <Info />
       <EstimateForm />
     </div>

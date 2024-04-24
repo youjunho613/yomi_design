@@ -3,54 +3,24 @@
 @tailwind utilities;
 
 :root {
-  --footer-height: 200px;
-  --layout-width: 1000px;
   --layout-margin-top: 72px;
   --layout-margin-bottom: 80px;
 }
 
-body {
-  background-color: #fef4e8;
-}
-
-header {
-  width: var(--layout-width);
-}
-
-main {
-  width: 1000px;
-  height: auto;
-  min-height: calc(100vh - var(--layout-margin-top) - var(--layout-margin-bottom) - var(--footer-height));
-
-  margin: var(--layout-margin-top) auto var(--layout-margin-bottom) auto;
-}
-
-footer {
-  height: var(--footer-height);
-}
-
 footer > * {
-  width: var(--layout-width);
   padding: 0 40px;
 }
 
 @layer components {
   .pop {
-    @apply absolute top-0 h-[22px] w-11 -translate-x-1/2 -translate-y-full;
+    @apply h-5.5 absolute top-0 w-11 -translate-x-1/2 -translate-y-full;
   }
   .pop:after {
-    @apply absolute left-0 top-0 h-0 w-0 border-b-[22px] 
-    border-l-[22px] border-r-[22px]
-    border-b-white border-l-transparent
-    border-r-transparent content-[""];
+    @apply border-b-22 border-l-22 border-r-22 absolute left-0 top-0 h-0 w-0 border-b-white border-l-transparent border-r-transparent content-[""];
   }
   .pop:before {
-    @apply absolute -top-[3px] left-0 h-0 w-0 border-b-[22px]
-    border-l-[22px] border-r-[22px]
-    border-b-black002 border-l-transparent
-    border-r-transparent content-[""];
+    @apply border-b-22 border-l-22 border-r-22 absolute -top-[3px] left-0 h-0 w-0 border-b-black002 border-l-transparent border-r-transparent content-[""];
   }
-  
   .contents-center {
     @apply flex items-center justify-center;
   }
@@ -61,10 +31,25 @@ footer > * {
     @apply flex items-center justify-around;
   }
   .main-button {
-    @apply contents-center h-[30px] w-[110px] gap-1 rounded-2xl border-2 border-black002 bg-sub text-sm font-medium text-white shadow-button;
+    @apply contents-center h-7.5 w-[110px] gap-1 rounded-2xl border-2 border-black002 bg-sub text-sm font-medium text-white shadow-button;
+  }
+  .navigation-common {
+    @apply border-3 mx-auto rounded-full border-black002 bg-white text-sm font-bold lg:text-base;
   }
   .navigation {
-    @apply mx-auto mt-16 h-12 w-10/12 rounded-full border-[3px] border-black002 bg-white px-10 text-sm font-bold lg:text-base;
+    @apply navigation-common h-12 max-w-[1000px] w-[78%] px-10;
+  }
+  .sub-navigation {
+    @apply navigation-common min-h-[48px] w-full flex-wrap gap-x-3 gap-y-3 px-4 py-4 md:w-10/12 lg:gap-x-6 lg:py-0 xl:gap-x-12;
+  }
+  .footer {
+    @apply contents-center relative w-full flex-col gap-6 bg-sub px-4 py-10 text-main;
+  }
+  .footer-list {
+    @apply flex flex-wrap;
+  }
+  .footer-item {
+    @apply flex gap-1 after:mx-2.5 after:content-["|"] last:after:content-[""] sm:break-keep;
   }
   .animation {
     @apply transition-all duration-150 ease-linear;
@@ -73,7 +58,7 @@ footer > * {
     @apply w-full border-none p-[5px] focus:border-none focus:outline-none;
   }
   .estimate-label {
-    @apply contents-between min-h-[40px] w-[540px] gap-5 border-[3px] border-black002 bg-white px-2.5;
+    @apply contents-between border-3 min-h-[40px] w-full gap-5 border-black002 bg-white px-2.5;
   }
   .tab {
     @apply mx-10 my-1 flex items-center justify-around gap-4;

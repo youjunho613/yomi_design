@@ -24,7 +24,7 @@ export default function PostList({ category }: IProps) {
   if (isError) return <p>에러가 발생했습니다.</p>;
 
   return (
-    <ul className="flex flex-wrap gap-[26px]">
+    <ul className="flex flex-wrap gap-[26px] justify-center sm:justify-start">
       {data.map((data) => {
         const path = `/board/${data.mainCategory}/${data.subCategory}/${data.id}`;
         const mainCategory = data.mainCategory as TMainSignType;

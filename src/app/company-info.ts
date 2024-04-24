@@ -1,6 +1,6 @@
 const document = {
   companyRegistrationNumber: "738-18-01884",
-  outdoorAdvertisingRegistrationNumber: "제 2023-3150127-08-5-00006호",
+  outdoorAdvertising: "제 2023-3150127-08-5-00006호",
 };
 
 const contact = {
