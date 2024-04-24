@@ -2,12 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* @font-face {
-  font-family: "Gmarket";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-} */
 
 :root {
   --header-height: 50px;
@@ -22,10 +16,6 @@ body {
   background-color: #fef4e8;
 }
 
-body,
-pre {
-  /* font-family: "Gmarket"; */
-}
 
 header {
   width: var(--layout-width);
@@ -74,6 +64,9 @@ footer > * {
   }
   .contents-between {
     @apply flex justify-between items-center;
+  }
+  .contents-around {
+    @apply flex justify-around items-center;
   }
   .main-button {
     @apply contents-center gap-1 w-[110px] h-[30px] text-sm font-medium border-2 border-black002 rounded-2xl bg-sub text-white shadow-button;
