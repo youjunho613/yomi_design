@@ -10,12 +10,12 @@ export default function PhotoEditButtons({ post, index }: Props) {
   const { deleteOnePhoto, sequenceChangeHandler } = usePostEdit();
 
   return (
-    <div className="contents-center flex-col gap-4 w-20 absolute -right-4 translate-x-full">
+    <div className="contents-center absolute -right-4 w-20 translate-x-full flex-col gap-4">
       {index !== 0 && (
         <input
           type="button"
           value="▲"
-          className="basic-button px-4 py-3 rounded-xl"
+          className="basic-button rounded-xl px-4 py-3"
           onClick={() => {
             sequenceChangeHandler({ index, target: index - 1 });
           }}
@@ -24,14 +24,14 @@ export default function PhotoEditButtons({ post, index }: Props) {
       <input
         type="button"
         value="삭제"
-        className="basic-button px-4 py-3 rounded-xl"
+        className="basic-button rounded-xl px-4 py-3"
         onClick={() => deleteOnePhoto(post.id, index)}
       />
       {index !== post.photoUrl.length - 1 && (
         <input
           type="button"
           value="▼"
-          className="basic-button px-4 py-3 rounded-xl"
+          className="basic-button rounded-xl px-4 py-3"
           onClick={(event) => {
             sequenceChangeHandler({ index, target: index + 1 });
             const gap = 40;

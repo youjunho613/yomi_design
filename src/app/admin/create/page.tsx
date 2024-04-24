@@ -47,7 +47,7 @@ export default function Page() {
       <Input id="imageFile" type="file" label="사진" register={register} />
       <CategorySelect />
 
-      <input type="submit" value="등록" className="basic-button w-20 self-center px-3 py-2 rounded-lg" />
+      <input type="submit" value="등록" className="basic-button w-20 self-center rounded-lg px-3 py-2" />
     </form>
   );
 }

@@ -11,10 +11,10 @@ interface Props {
 
 export default function Input({ id, type, label, register }: Props) {
   return (
-    <label htmlFor={id} className="flex gap-1 items-center">
+    <label htmlFor={id} className="flex items-center gap-1">
       {`${label} : `}
       {type !== "file" ? (
-        <input id={id} className="w-96 h-10 px-2" type={type} {...register(id)} />
+        <input id={id} className="h-10 w-96 px-2" type={type} {...register(id)} />
       ) : (
         <input id={id} className="h-10" type={type} multiple accept="image/*" {...register(id)} />
       )}

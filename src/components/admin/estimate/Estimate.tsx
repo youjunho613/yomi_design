@@ -34,39 +34,39 @@ export default function Estimate({ estimate }: Props) {
   const date = new Date(estimate.created_at);
   const createdDate = new Intl.DateTimeFormat("ko", { dateStyle: "medium", timeStyle: "short" }).format(date);
   return (
-    <li className="flex flex-col gap-4 bg-main rounded-lg px-5 py-10">
+    <li className="flex flex-col gap-4 rounded-lg bg-main px-5 py-10">
       <Text label="문의글 ID" data={estimate.id} />
       <Text label="문의글 작성일" data={createdDate} />
-      <div className="w-full grid grid-cols-3">
+      <div className="grid w-full grid-cols-3">
         <Text label="상호명" data={estimate.storeName} />
         <Text label="업종" data={estimate.storeCategory} />
         <Text label="현장 주소" data={estimate.address} />
       </div>
-      <div className="w-full grid grid-cols-2">
+      <div className="grid w-full grid-cols-2">
         <Text label="연락처" data={estimate.phone} />
       </div>
       <Text label="문의사항" data={estimate.inquiryContent} />
       <div className="flex items-center justify-end gap-5">
-        <button className="bg-red-500 text-black px-3 py-2" onClick={() => modifyEstimateStatusHandler("unconfirmed")}>
+        <button className="bg-red-500 px-3 py-2 text-black" onClick={() => modifyEstimateStatusHandler("unconfirmed")}>
           미확인
         </button>
-        <button className="bg-yellow-500 text-black px-3 py-2" onClick={() => modifyEstimateStatusHandler("confirm")}>
+        <button className="bg-yellow-500 px-3 py-2 text-black" onClick={() => modifyEstimateStatusHandler("confirm")}>
           진행
         </button>
-        <button className="bg-green-500 text-black px-3 py-2" onClick={() => modifyEstimateStatusHandler("done")}>
+        <button className="bg-green-500 px-3 py-2 text-black" onClick={() => modifyEstimateStatusHandler("done")}>
           완료
         </button>
-        <button className="bg-black text-white px-3 py-2" onClick={() => modifyEstimateStatusHandler("hidden")}>
+        <button className="bg-black px-3 py-2 text-white" onClick={() => modifyEstimateStatusHandler("hidden")}>
           숨김
         </button>
-        <button className="bg-black text-white px-3 py-2" onClick={() => deleteEstimateHandler(estimate.id)}>
+        <button className="bg-black px-3 py-2 text-white" onClick={() => deleteEstimateHandler(estimate.id)}>
           삭제
         </button>
       </div>
       {emptyStorePhoto && (
-        <div className="flex flex-col gap-5 contents-center">
+        <div className="contents-center flex flex-col gap-5">
           <button
-            className="bg-sub px-3 py-2 w-full"
+            className="w-full bg-sub px-3 py-2"
             onClick={() => {
               openChangeHandler("storePhoto");
             }}
@@ -85,9 +85,9 @@ export default function Estimate({ estimate }: Props) {
         </div>
       )}
       {emptyPhotoUrl && (
-        <div className="flex flex-col gap-5 contents-center">
+        <div className="contents-center flex flex-col gap-5">
           <button
-            className="bg-sub px-3 py-2 w-full"
+            className="w-full bg-sub px-3 py-2"
             onClick={() => {
               openChangeHandler("photoUrl");
             }}

@@ -17,7 +17,7 @@ const FOOTER_CONTENT = [
 
 function Footer() {
   return (
-    <footer className="relative b-0 flex flex-col items-center justify-center gap-6 w-full bg-sub text-main text-sm">
+    <footer className="contents-center relative w-full flex-col gap-6 bg-sub text-2xl text-main sm:text-lg md:text-base lg:text-sm">
       <div className="flex flex-col gap-0">
         <p
           className="cursor-pointer"
@@ -25,9 +25,9 @@ function Footer() {
         >{`(${company.addressPostcode}) ${company.address} ${company.addressDetail}`}</p>
         <ul className="flex flex-wrap">
           {FOOTER_CONTENT.map((item, index) => (
-            <li className="flex break-keep text-inherit gap-1" key={index}>
+            <li className="flex gap-1 break-keep text-inherit" key={index}>
               {index !== 0 && <span className="mx-2.5 align-middle">|</span>}
-              <label className="font-bold align-middle">{item.label}</label>
+              <label className="align-middle font-bold">{item.label}</label>
               <p className="align-middle">{item.content}</p>
             </li>
           ))}

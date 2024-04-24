@@ -23,10 +23,10 @@ export default function Detail() {
     <div>
       <div className="flex flex-col border-b-2 border-black002">
         <h2 className="text-2xl">{data.title}</h2>
-        <p className="text-sm px-5">주소 : {data.address}</p>
-        <p className="text-sm px-5">종류 : {categoryLabel}</p>
+        <p className="px-5 text-sm">주소 : {data.address}</p>
+        <p className="px-5 text-sm">종류 : {categoryLabel}</p>
       </div>
-      <ul className="flex flex-col contents-center my-10 gap-5">
+      <ul className="contents-center my-10 flex flex-col gap-5">
         {data.photoUrl.map((photo, index) => (
           <li key={index}>
             <Image width={700} height={700} src={`${STORAGE_URL}/post/${photo}`} alt="" />

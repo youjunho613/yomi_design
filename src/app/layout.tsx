@@ -23,7 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={myFont.className}>
         <ReactQueryProviders>
           <Header />
-          <main>{children}</main>
+          <main className="w-full">{children}</main>
           <Footer />
         </ReactQueryProviders>
       </body>

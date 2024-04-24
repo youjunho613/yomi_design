@@ -73,35 +73,35 @@ export default function PhotoList({ post }: Props) {
   };
 
   return (
-    <ul className="flex-col gap-5 contents-between">
+    <ul className="contents-between flex-col gap-5">
       <div className="contents-center gap-5">
         <input
-          className="basic-button px-4 py-3 rounded-xl bg-green-500"
+          className="basic-button rounded-xl bg-green-500 px-4 py-3"
           type="button"
           value="저장"
           onClick={() => {
             modifyPhoto({ id: post.id, photoUrl: post.photoUrl });
           }}
         />
-        <button className="basic-button px-4 py-3 rounded-xl bg-slate-500" onClick={TogglePhotoModify}>
+        <button className="basic-button rounded-xl bg-slate-500 px-4 py-3" onClick={TogglePhotoModify}>
           {photoModifyIsOpen ? "닫기" : "편집"}
         </button>
       </div>
       {post.photoUrl.map((url, index) => (
-        <li key={url} className="flex contents-center gap-5 relative">
+        <li key={url} className="contents-center relative flex gap-5">
           <Image width={500} height={500} src={`${STORAGE_URL}/post/${url}`} alt={`${index + 1}번째 사진`} />
           {photoModifyIsOpen && <PhotoEditButton post={post} index={index} />}
         </li>
       ))}
 
       {preview.length > 0 && (
-        <ul className="contents-center gap-10 relative w-full my-20 mx-10 p-10 border border-slate-500 rounded-xl">
-          <p className="absolute top-0 left-2 -translate-y-full">미리보기</p>
+        <ul className="contents-center relative mx-10 my-20 w-full gap-10 rounded-xl border border-slate-500 p-10">
+          <p className="absolute left-2 top-0 -translate-y-full">미리보기</p>
           {preview.map((url, index) => (
             <PreviewImage key={url} url={url} index={index} />
           ))}
-          <div className="contents-center gap-4 absolute -bottom-1 right-2 translate-y-full">
-            <label className="basic-button px-4 py-3 rounded-xl bg-green-500" htmlFor="addFile">
+          <div className="contents-center absolute -bottom-1 right-2 translate-y-full gap-4">
+            <label className="basic-button rounded-xl bg-green-500 px-4 py-3" htmlFor="addFile">
               추가
               <input
                 className="hidden"
@@ -115,7 +115,7 @@ export default function PhotoList({ post }: Props) {
               />
             </label>
             <input
-              className="basic-button px-4 py-3 rounded-2xl bg-red-700"
+              className="basic-button rounded-2xl bg-red-700 px-4 py-3"
               type="button"
               value="취소"
               onClick={clearPhoto}
@@ -124,7 +124,7 @@ export default function PhotoList({ post }: Props) {
         </ul>
       )}
       {photoModifyIsOpen && preview.length === 0 && (
-        <label className="basic-button px-4 py-3 rounded-xl bg-slate-500" htmlFor="file">
+        <label className="basic-button rounded-xl bg-slate-500 px-4 py-3" htmlFor="file">
           추가
           <input
             className="hidden"
@@ -140,14 +140,14 @@ export default function PhotoList({ post }: Props) {
       )}
       <div className="contents-center gap-5">
         <input
-          className="basic-button px-4 py-3 rounded-xl bg-green-500"
+          className="basic-button rounded-xl bg-green-500 px-4 py-3"
           type="button"
           value="저장"
           onClick={() => {
             modifyPhoto({ id: post.id, photoUrl: post.photoUrl });
           }}
         />
-        <button className="basic-button px-4 py-3 rounded-xl bg-slate-500" onClick={TogglePhotoModify}>
+        <button className="basic-button rounded-xl bg-slate-500 px-4 py-3" onClick={TogglePhotoModify}>
           {photoModifyIsOpen ? "닫기" : "편집"}
         </button>
       </div>

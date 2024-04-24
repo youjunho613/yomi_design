@@ -7,7 +7,7 @@ export default function NavItem() {
   return (
     <nav className="contents-center">
       {NAV_CONTENT.map((item) => (
-        <Link key={item.href} href={item.href} id={item.href} className="mx-2 px-2 font-bold text-sm">
+        <Link key={item.href} href={item.href} id={item.href} className="mx-2 px-2 text-sm font-bold">
           {item.label}
         </Link>
       ))}

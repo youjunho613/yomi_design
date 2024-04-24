@@ -50,10 +50,10 @@ export default function Page() {
         ))}
       </div>
 
-      <ul className="flex flex-col gap-7 bg-sub mt-10 px-5 py-10 rounded-lg">
+      <ul className="mt-10 flex flex-col gap-7 rounded-lg bg-sub px-5 py-10">
         {toggleStatus === "all" && data.map((estimate) => <Estimate key={estimate.id} estimate={estimate} />)}
         {toggleStatus !== "all" && filteredData.length === 0 && (
-          <p className="bg-main px-5 py-10 rounded-lg">문의가 없습니다.</p>
+          <p className="rounded-lg bg-main px-5 py-10">문의가 없습니다.</p>
         )}
         {toggleStatus !== "all" && filteredData.map((estimate) => <Estimate key={estimate.id} estimate={estimate} />)}
       </ul>

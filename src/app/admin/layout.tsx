@@ -21,10 +21,10 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="w-8/12 mx-auto contents-between">
+      <div className="contents-between mx-auto w-8/12">
         <p>{user.email}</p>
         <h1>관리자 페이지</h1>
-        <button className="basic-button px-4 py-3 rounded-2xl" onClick={logoutHandler}>
+        <button className="basic-button rounded-2xl px-4 py-3" onClick={logoutHandler}>
           로그아웃
         </button>
       </div>
@@ -45,7 +45,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           </Link>
         </li>
       </ul>
-      <div className="mt-10 my-2">{children}</div>
+      <div className="my-2 mt-10">{children}</div>
     </div>
   );
 }
