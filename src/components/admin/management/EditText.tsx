@@ -19,7 +19,7 @@ export default function EditText({ post, name, label }: Props) {
     <label htmlFor={name}>
       {`${label} : `}
       <input
-        className="p-2 w-full"
+        className="w-full p-2"
         name={name}
         id={name}
         value={modifyContent[name]}

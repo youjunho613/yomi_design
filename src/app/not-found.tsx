@@ -19,7 +19,7 @@ export default function NotFound() {
         <br />
         감사합니다.
       </p>
-      <Link href="/" className="px-4 py-2 bg-sub rounded-3xl text-main text-xl">
+      <Link href="/" className="rounded-3xl bg-sub px-4 py-2 text-xl text-main">
         홈으로
       </Link>
     </div>

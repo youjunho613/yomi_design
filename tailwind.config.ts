@@ -15,6 +15,16 @@ const config: Config = {
         main: "#fef4e8",
         sub: "#ea5456",
       },
+      borderWidth: {
+        "3": "3px",
+        "22": "22px"
+      },
+      spacing: {
+        "5.5": "1.375rem",
+        "7.5": "1.875rem",
+        "13": "3.25rem",
+        "15": "3.75rem",
+      },
     },
   },
   plugins: [],

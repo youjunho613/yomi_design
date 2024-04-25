@@ -39,8 +39,8 @@ export default function Dropdown({ isShowNav, currentNav, linkRef }: Props) {
 
   return (
     <div
-      className={`contents-center relative gap-[50px] w-[1000px] navigation animation ${
-        isCurrentDropdown && isShowNav ? "h-[50px] mt-[50px] visible" : "h-0 scale-y-0 invisible"
+      className={`contents-center navigation animation relative w-[1000px] gap-[50px] ${
+        isCurrentDropdown && isShowNav ? "visible mt-[50px] h-[50px]" : "invisible h-0 scale-y-0"
       }`}
       id={currentNav}
     >

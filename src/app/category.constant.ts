@@ -1,4 +1,4 @@
-export type TMainSignType = "logo" | "sign" | "print";
+export type TMainSignType = "logo" | "sign";
 
 interface IMainCategory {
   id: TMainSignType;
@@ -15,19 +15,19 @@ export type TSubCategory = Record<
   }[]
 >;
 
-export type TSubSignType = TLogo | TSign | TPrint;
+export type TSubSignType = TLogo | TSign;
 
 // type TLogoCategory = "텍스트" | "워드마크형" | "심볼형" | "엠블럼형" | "캐릭터형";
 // type TSignCategory = "채널" | "갈바" | "후렉스(플렉스)" | "스카시" | "아크릴" | "돌출" | "지주" | "네온" | "입간판";
 // type TPrintCategory ="시트지"| "현수막/배너"| "명함"| "스티커"| "포스터/전단지"| "리플렛/팜플렛"| "대봉투/소봉투";
 export type TLogo = "text" | "wordmark" | "symbol" | "emblem" | "character";
 export type TSign = "channel" | "galba" | "flex" | "scasi" | "acrylic" | "protruding" | "holding" | "neon" | "standing";
-export type TPrint = "sheet" | "banner" | "business-card" | "sticker" | "poster" | "catalog" | "envelope";
+// export type TPrint = "sheet" | "banner" | "business-card" | "sticker" | "poster" | "catalog" | "envelope";
 
 export const MAIN_CATEGORY: IMainCategory[] = [
   { id: "logo", label: "로고", href: "/board/logo" },
   { id: "sign", label: "사인물", href: "/board/sign" },
-  { id: "print", label: "인쇄물", href: "/board/print" },
+  // { id: "print", label: "인쇄물", href: "/board/print" },
 ];
 
 export const SUB_CATEGORY: TSubCategory = {
@@ -49,13 +49,13 @@ export const SUB_CATEGORY: TSubCategory = {
     { id: "neon", label: "네온", href: "/board/sign/neon" },
     { id: "standing", label: "입간판", href: "/board/sign/standing" },
   ],
-  print: [
-    { id: "sheet", label: "시트지", href: "/board/print/sheet" },
-    { id: "banner", label: "현수막/배너", href: "/board/print/banner" },
-    { id: "business-card", label: "명함", href: "/board/print/business-card" },
-    { id: "sticker", label: "스티커", href: "/board/print/sticker" },
-    { id: "poster", label: "포스터/전단지", href: "/board/print/poster" },
-    { id: "catalog", label: "리플렛/팜플렛", href: "/board/print/catalog" },
-    { id: "envelope", label: "대봉투/소봉투", href: "/board/print/envelope" },
-  ],
+  // print: [
+  //   { id: "sheet", label: "시트지", href: "/board/print/sheet" },
+  //   { id: "banner", label: "현수막/배너", href: "/board/print/banner" },
+  //   { id: "business-card", label: "명함", href: "/board/print/business-card" },
+  //   { id: "sticker", label: "스티커", href: "/board/print/sticker" },
+  //   { id: "poster", label: "포스터/전단지", href: "/board/print/poster" },
+  //   { id: "catalog", label: "리플렛/팜플렛", href: "/board/print/catalog" },
+  //   { id: "envelope", label: "대봉투/소봉투", href: "/board/print/envelope" },
+  // ],
 };

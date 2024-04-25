@@ -51,16 +51,16 @@ export default function EstimateForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex-col contents-center gap-2.5 text-sm">
+    <form onSubmit={handleSubmit(onSubmit)} className="contents-center w-full flex-col gap-2.5 text-sm xl:w-1/2">
       {textInputArray.map((input) => (
         <label key={input.id} className="estimate-label" htmlFor={input.id}>
           <span className="w-20">{input.label}</span>
-          <Input className="h-10 input" id={input.id} register={register(input.id)} />
+          <Input className="input h-10" id={input.id} register={register(input.id)} />
         </label>
       ))}
       <label className="estimate-label" htmlFor="estimate">
         <span className="w-20">문의사항</span>
-        <Textarea className="h-[120px] input resize-none" id="estimate" register={register("inquiryContent")} />
+        <Textarea className="input h-[120px] resize-none" id="estimate" register={register("inquiryContent")} />
       </label>
       <label className="estimate-label" htmlFor={"conceptFile"}>
         <span className="w-full">현장사진</span>
@@ -71,7 +71,7 @@ export default function EstimateForm() {
         <FileInput id={"conceptFile"} register={register("conceptFile")} />
       </label>
 
-      <input className="cursor-pointer bg-sub px-4 py-3 rounded-lg text-main" type="submit" value="문의하기" />
+      <input className="basic-button mt-10 rounded-lg px-4 py-3" type="submit" value="문의하기" />
     </form>
   );
 }

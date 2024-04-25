@@ -24,7 +24,7 @@ export default function PostList({ category }: IProps) {
   if (isError) return <p>에러가 발생했습니다.</p>;
 
   return (
-    <ul className="flex gap-[26px] flex-wrap">
+    <ul className="flex flex-wrap gap-[26px] justify-center sm:justify-start">
       {data.map((data) => {
         const path = `/board/${data.mainCategory}/${data.subCategory}/${data.id}`;
         const mainCategory = data.mainCategory as TMainSignType;
@@ -34,8 +34,8 @@ export default function PostList({ category }: IProps) {
 
         return (
           <Link key={data.id} href={path}>
-            <li className="bg-white border-[3px] border-black002 w-[230px]">
-              <div className="contents-center relative w-[224px] h-[224px]">
+            <li className="w-[230px] border-[3px] border-black002 bg-white">
+              <div className="contents-center relative h-[224px] w-[224px]">
                 <Image
                   // width={224}
                   // height={224}
@@ -45,9 +45,9 @@ export default function PostList({ category }: IProps) {
                   layout="fill"
                 />
               </div>
-              <div className="border-t-[3px] border-black002 w-[224px] h-[60px] flex flex-col justify-center px-3">
-                <p className="font-bold text-base">{data.title}</p>
-                <p className="font-medium text-sm">{categoryLabel}</p>
+              <div className="flex h-[60px] w-[224px] flex-col justify-center border-t-[3px] border-black002 px-3">
+                <p className="text-base font-bold">{data.title}</p>
+                <p className="text-sm font-medium">{categoryLabel}</p>
               </div>
             </li>
           </Link>

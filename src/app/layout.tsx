@@ -13,33 +13,17 @@ export const metadata: Metadata = {
 };
 
 export const myFont = localFont({
-  src: [
-    {
-      path: "/fonts/GmarketSansTTFLight.ttf",
-      weight: "100",
-      style: "normal",
-    },
-    {
-      path: "/fonts/GmarketSansTTFMedium.ttf",
-      weight: "400",
-      style: "normal",
-    },
-    {
-      path: "/fonts/GmarketSansTTFBold.ttf",
-      weight: "600",
-      style: "normal",
-    },
-  ],
+  src: "/fonts/PretendardVariable.woff2",
   display: "block",
 });
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ko">
-      <body className={myFont.className}>
+      <body className={`${myFont.className} contents-center min-h-screen flex-col bg-main pt-14`}>
         <ReactQueryProviders>
           <Header />
-          <main>{children}</main>
+          <main className="my-14 min-h-fit w-10/12 grow-[1]">{children}</main>
           <Footer />
         </ReactQueryProviders>
       </body>

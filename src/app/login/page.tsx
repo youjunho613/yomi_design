@@ -24,11 +24,11 @@ export default function Login() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col bg-main gap-10 w-10/12 p-20 rounded-3xl mx-auto border-2 border-sub"
+      className="mx-auto flex w-10/12 flex-col gap-10 rounded-3xl border-2 border-sub bg-main p-20"
     >
       <label htmlFor="email" className="flex flex-col">
         Email
-        <input type="email" id="email" className="w-full h-10 input" placeholder="이메일" {...register("email")} />
+        <input type="email" id="email" className="input h-10 w-full" placeholder="이메일" {...register("email")} />
       </label>
 
       <label htmlFor="password" className="flex flex-col">
@@ -36,7 +36,7 @@ export default function Login() {
         <input
           type="password"
           id="password"
-          className="w-full h-10 input"
+          className="input h-10 w-full"
           placeholder="비밀번호"
           {...register("password")}
         />

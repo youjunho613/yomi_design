@@ -18,7 +18,7 @@ export default function TabButton(props: IProps) {
       onClick={() => {
         onChangeStatus(estimateStatus.status);
       }}
-      className={`${statusColorStyle()} w-full px-3 py-2 rounded-md`}
+      className={`${statusColorStyle()} w-full rounded-md px-3 py-2`}
     >
       {estimateStatus.label}
     </button>

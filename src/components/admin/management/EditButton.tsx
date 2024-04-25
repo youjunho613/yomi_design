@@ -51,23 +51,23 @@ export default function EditButton({ post }: Props) {
   };
 
   return (
-    <div className="contents-center gap-10 mt-10">
+    <div className="contents-center mt-10 gap-10">
       {postIsOpen === id ? (
         <>
-          <button className="basic-button bg-green-500 px-4 py-3 rounded-2xl" onClick={onClickModify}>
+          <button className="basic-button rounded-2xl bg-green-500 px-4 py-3" onClick={onClickModify}>
             완료
           </button>
-          <button className="basic-button px-4 py-3 rounded-2xl" onClick={cancelModify}>
+          <button className="basic-button rounded-2xl px-4 py-3" onClick={cancelModify}>
             취소
           </button>
         </>
       ) : (
-        <button className="basic-button px-4 py-3 rounded-2xl" onClick={modifyToggle}>
+        <button className="basic-button rounded-2xl px-4 py-3" onClick={modifyToggle}>
           수정
         </button>
       )}
 
-      <button className="basic-button px-4 py-3 rounded-2xl" onClick={onClickDelete}>
+      <button className="basic-button rounded-2xl px-4 py-3" onClick={onClickDelete}>
         삭제
       </button>
     </div>

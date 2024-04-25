@@ -27,10 +27,10 @@ export default function Page() {
   };
 
   return (
-    <ul className="flex flex-col gap-7 bg-sub mt-10 px-5 py-10 rounded-lg">
+    <ul className="mt-10 flex flex-col gap-7 rounded-lg bg-sub px-5 py-10">
       {data.map((post) => (
-        <li className="flex flex-col gap-4 bg-main rounded-lg px-5 py-10" key={post.id}>
-          <div className="w-full flex flex-col gap-5">
+        <li className="flex flex-col gap-4 rounded-lg bg-main px-5 py-10" key={post.id}>
+          <div className="flex w-full flex-col gap-5">
             <Text label="게시물 ID" data={post.id} />
             <EditText label="제목" name="title" post={post} />
             <EditText label="주소" name="address" post={post} />
