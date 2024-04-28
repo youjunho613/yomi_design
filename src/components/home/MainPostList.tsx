@@ -14,7 +14,7 @@ export default function MainPostList() {
   if (!data) return <div>업로드된 게시물이 없습니다.</div>;
 
   return (
-    <div className="contents-center w-8/12 xl:w-auto flex-wrap gap-6">
+    <div className="contents-center w-full flex-wrap gap-6">
       {data.map((post) => {
         const path = `/board/${post.mainCategory}/${post.subCategory}`;
         return (

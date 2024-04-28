@@ -5,7 +5,11 @@ import { useAuth } from "@/service/auth/mutations";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-export default function AdminLayout({ children }: { children: React.ReactNode }) {
+interface IProps {
+  children: React.ReactNode;
+}
+
+export default function AdminLayout({ children }: IProps) {
   const router = useRouter();
 
   const { getUser, logoutMutation } = useAuth();
@@ -21,7 +25,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="contents-between mx-auto w-8/12">
+      <div className="contents-between flex-col gap-4 sm:flex-row">
         <p>{user.email}</p>
         <h1>관리자 페이지</h1>
         <button className="basic-button rounded-2xl px-4 py-3" onClick={logoutHandler}>
@@ -45,7 +49,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           </Link>
         </li>
       </ul>
-      <div className="my-2 mt-10">{children}</div>
+      <div className="mb-2 mt-10">{children}</div>
     </div>
   );
 }

@@ -24,7 +24,7 @@ export default function Login() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="mx-auto flex w-10/12 flex-col gap-10 rounded-3xl border-2 border-sub bg-main p-20"
+      className="flex flex-col gap-10 rounded-3xl bg-main p-8 sm:border-2 sm:border-sub sm:p-20"
     >
       <label htmlFor="email" className="flex flex-col">
         Email

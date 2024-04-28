@@ -12,14 +12,17 @@ footer > * {
 }
 
 @layer components {
+  .layout {
+    @apply mx-auto w-layout max-w-[1000px];
+  }
   .pop {
-    @apply h-5.5 absolute top-0 w-11 -translate-x-1/2 -translate-y-full;
+    @apply absolute top-0 h-5.5 w-11 -translate-x-1/2 -translate-y-full;
   }
   .pop:after {
-    @apply border-b-22 border-l-22 border-r-22 absolute left-0 top-0 h-0 w-0 border-b-white border-l-transparent border-r-transparent content-[""];
+    @apply absolute left-0 top-0 h-0 w-0 border-b-22 border-l-22 border-r-22 border-b-white border-l-transparent border-r-transparent content-[""];
   }
   .pop:before {
-    @apply border-b-22 border-l-22 border-r-22 absolute -top-[3px] left-0 h-0 w-0 border-b-black002 border-l-transparent border-r-transparent content-[""];
+    @apply absolute -top-[3px] left-0 h-0 w-0 border-b-22 border-l-22 border-r-22 border-b-black002 border-l-transparent border-r-transparent content-[""];
   }
   .contents-center {
     @apply flex items-center justify-center;
@@ -34,13 +37,13 @@ footer > * {
     @apply contents-center h-7.5 w-[110px] gap-1 rounded-2xl border-2 border-black002 bg-sub text-sm font-medium text-white shadow-button;
   }
   .navigation-common {
-    @apply border-3 mx-auto rounded-full border-black002 bg-white text-sm font-bold lg:text-base;
+    @apply mx-auto border-3 border-black002 bg-white text-sm font-bold lg:text-base;
   }
   .navigation {
-    @apply navigation-common h-12 max-w-[1000px] w-[78%] px-10;
+    @apply navigation-common layout h-12 rounded-full px-10;
   }
   .sub-navigation {
-    @apply navigation-common min-h-[48px] w-full flex-wrap gap-x-3 gap-y-3 px-4 py-4 md:w-10/12 lg:gap-x-6 lg:py-0 xl:gap-x-12;
+    @apply navigation-common h-auto min-h-[48px] w-full max-w-[1000px] flex-wrap gap-x-6 gap-y-3 px-4;
   }
   .footer {
     @apply contents-center relative w-full flex-col gap-6 bg-sub px-4 py-10 text-main;
@@ -58,16 +61,16 @@ footer > * {
     @apply w-full border-none p-[5px] focus:border-none focus:outline-none;
   }
   .estimate-label {
-    @apply contents-between border-3 min-h-[40px] w-full gap-5 border-black002 bg-white px-2.5;
+    @apply contents-between min-h-[40px] w-full gap-5 border-3 border-black002 bg-white px-2.5;
   }
   .tab {
-    @apply mx-10 my-1 flex items-center justify-around gap-4;
+    @apply contents-around mx-10 my-1 flex-wrap gap-x-4 gap-y-2 sm:flex-nowrap;
   }
   .tab-button-box {
     @apply w-full;
   }
   .tab-button {
-    @apply contents-center w-full rounded-3xl border border-black002 bg-white p-2;
+    @apply contents-center w-full break-keep rounded-full border border-black002 bg-white p-2;
   }
   .basic-button {
     @apply cursor-pointer bg-sub text-main;

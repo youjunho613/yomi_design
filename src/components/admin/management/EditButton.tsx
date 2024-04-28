@@ -2,6 +2,7 @@ import usePost from "@/service/post/mutations";
 import useCategorySelect from "@/store/useCategorySelect";
 import usePostModify from "@/store/usePostModify";
 import { Tables } from "@/supabase/type";
+import { toast } from "react-toastify";
 
 interface Props {
   post: Tables<"board">;
@@ -31,13 +32,14 @@ export default function EditButton({ post }: Props) {
     modifyPostMutation.mutate({ request, id });
     reset();
     resetCategory();
+    toast.success("게시글이 수정되었습니다.");
   };
 
   const onClickDelete = () => {
-    if (window.confirm("정말 삭제하시겠습니까?")) {
-      deletePostMutation.mutate({ id, fileList });
-      return;
-    }
+    if (!window.confirm("정말 삭제하시겠습니까?")) return;
+
+    deletePostMutation.mutate({ id, fileList });
+    toast.success("게시글이 삭제되었습니다.");
   };
 
   const modifyToggle = () => {

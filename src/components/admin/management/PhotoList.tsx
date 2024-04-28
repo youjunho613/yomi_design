@@ -7,6 +7,7 @@ import { useState } from "react";
 import type { ChangeEvent } from "react";
 import { Tables } from "@/supabase/type";
 import PreviewImage from "./PreviewImage";
+import { toast } from "react-toastify";
 
 interface Props {
   post: Tables<"board">;
@@ -62,14 +63,12 @@ export default function PhotoList({ post }: Props) {
 
     const newUrls = fileToUrls({ bucket: "post", fileList });
     const modifyPhotoUrl = photoUrl.concat(newUrls);
-    modifyPostMutation.mutate({
-      id,
-      request: { photoUrl: modifyPhotoUrl },
-    });
+    modifyPostMutation.mutate({ id, request: { photoUrl: modifyPhotoUrl } });
 
     clearPhoto();
     TogglePhotoModify();
     TogglePhoto(null);
+    toast.success("수정되었습니다.");
   };
 
   return (

@@ -54,20 +54,20 @@ export default function EstimateForm() {
     <form onSubmit={handleSubmit(onSubmit)} className="contents-center w-full flex-col gap-2.5 text-sm xl:w-1/2">
       {textInputArray.map((input) => (
         <label key={input.id} className="estimate-label" htmlFor={input.id}>
-          <span className="w-20">{input.label}</span>
+          <span className="break-keep">{input.label}</span>
           <Input className="input h-10" id={input.id} register={register(input.id)} />
         </label>
       ))}
       <label className="estimate-label" htmlFor="estimate">
-        <span className="w-20">문의사항</span>
+        <span className="break-keep">문의사항</span>
         <Textarea className="input h-[120px] resize-none" id="estimate" register={register("inquiryContent")} />
       </label>
       <label className="estimate-label" htmlFor={"conceptFile"}>
-        <span className="w-full">현장사진</span>
+        <span className="w-full break-keep">현장사진</span>
         <FileInput id={"conceptFile"} register={register("conceptFile")} />
       </label>
       <label className="estimate-label" htmlFor={"conceptFile"}>
-        <span className="w-full">원하는 간판 예시 사진</span>
+        <span className="w-full break-keep">원하는 간판 예시 사진</span>
         <FileInput id={"conceptFile"} register={register("conceptFile")} />
       </label>
 

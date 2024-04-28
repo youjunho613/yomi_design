@@ -27,33 +27,36 @@ export default function Page() {
   };
 
   return (
-    <ul className="mt-10 flex flex-col gap-7 rounded-lg bg-sub px-5 py-10">
-      {data.map((post) => (
-        <li className="flex flex-col gap-4 rounded-lg bg-main px-5 py-10" key={post.id}>
-          <div className="flex w-full flex-col gap-5">
-            <Text label="게시물 ID" data={post.id} />
-            <EditText label="제목" name="title" post={post} />
-            <EditText label="주소" name="address" post={post} />
-            <EditText label="종류" name="subCategory" post={post} />
-            {photoIsOpen === post.id ? (
-              <button className="basic-button px-4 py-2" onClick={toggleClose}>
-                닫기
-              </button>
-            ) : (
-              <button
-                className="basic-button px-4 py-2"
-                onClick={() => {
-                  toggleOpen({ id: post.id, photos: post.photoUrl });
-                }}
-              >
-                사진보기
-              </button>
-            )}
-          </div>
-          {photoIsOpen === post.id && <PhotoList post={post} />}
-          <EditButton post={post} />
-        </li>
-      ))}
-    </ul>
+    <>
+      <h1 className="my-5 w-full text-center text-2xl font-bold">게시물 관리</h1>
+      <ul className="mt-10 flex flex-col gap-7 rounded-lg bg-sub px-5 py-10">
+        {data.map((post) => (
+          <li className="flex flex-col gap-4 rounded-lg bg-main px-5 py-10" key={post.id}>
+            <div className="flex w-full flex-col gap-5">
+              <Text label="게시물 ID" data={post.id} />
+              <EditText label="제목" name="title" post={post} />
+              <EditText label="주소" name="address" post={post} />
+              <EditText label="종류" name="subCategory" post={post} />
+              {photoIsOpen === post.id ? (
+                <button className="basic-button px-4 py-2" onClick={toggleClose}>
+                  닫기
+                </button>
+              ) : (
+                <button
+                  className="basic-button px-4 py-2"
+                  onClick={() => {
+                    toggleOpen({ id: post.id, photos: post.photoUrl });
+                  }}
+                >
+                  사진보기
+                </button>
+              )}
+            </div>
+            {photoIsOpen === post.id && <PhotoList post={post} />}
+            <EditButton post={post} />
+          </li>
+        ))}
+      </ul>
+    </>
   );
 }

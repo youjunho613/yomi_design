@@ -38,25 +38,28 @@ export default function Page() {
   const filteredData = data.filter((item) => item.status === toggleStatus);
 
   return (
-    <div>
-      <div className="flex justify-around gap-10">
-        {statusArray.map((item) => (
-          <TabButton
-            key={item.status}
-            estimateStatus={item}
-            toggleStatus={toggleStatus}
-            onChangeStatus={onChangeStatus}
-          />
-        ))}
-      </div>
+    <>
+      <h1 className="my-5 w-full text-center text-2xl font-bold">문의글 관리</h1>
+      <div>
+        <div className="flex justify-around gap-10">
+          {statusArray.map((item) => (
+            <TabButton
+              key={item.status}
+              estimateStatus={item}
+              toggleStatus={toggleStatus}
+              onChangeStatus={onChangeStatus}
+            />
+          ))}
+        </div>
 
-      <ul className="mt-10 flex flex-col gap-7 rounded-lg bg-sub px-5 py-10">
-        {toggleStatus === "all" && data.map((estimate) => <Estimate key={estimate.id} estimate={estimate} />)}
-        {toggleStatus !== "all" && filteredData.length === 0 && (
-          <p className="rounded-lg bg-main px-5 py-10">문의가 없습니다.</p>
-        )}
-        {toggleStatus !== "all" && filteredData.map((estimate) => <Estimate key={estimate.id} estimate={estimate} />)}
-      </ul>
-    </div>
+        <ul className="mt-10 flex flex-col gap-7 rounded-lg bg-sub px-5 py-10">
+          {toggleStatus === "all" && data.map((estimate) => <Estimate key={estimate.id} estimate={estimate} />)}
+          {toggleStatus !== "all" && filteredData.length === 0 && (
+            <p className="rounded-lg bg-main px-5 py-10">문의가 없습니다.</p>
+          )}
+          {toggleStatus !== "all" && filteredData.map((estimate) => <Estimate key={estimate.id} estimate={estimate} />)}
+        </ul>
+      </div>
+    </>
   );
 }
