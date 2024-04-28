@@ -18,23 +18,19 @@ export interface PostFormInput {
 export default function Page() {
   const { register, handleSubmit, reset } = useForm<PostFormInput>();
   const { mainCategory, subCategory } = useCategorySelect();
+  const isCategory = mainCategory === undefined || subCategory === undefined;
 
   const { createPostMutation } = usePost();
 
-  const onSubmit = async (data: PostFormInput) => {
-    if (mainCategory === undefined || subCategory === undefined) return;
-    const { title, address, imageFile } = data;
-    if (imageFile.length === 0) return;
+  const onSubmit = async ({ title, address, imageFile }: PostFormInput) => {
+    if (!title) return toast.error("제목을 입력해주세요.");
+    if (!address) return toast.error("주소를 입력해주세요.");
+    if (imageFile.length === 0) return toast.error("사진을 선택해주세요.");
+    if (isCategory) return toast.error("카테고리를 선택해주세요.");
 
     const photoUrl = fileToUrls({ bucket: "post", fileList: imageFile });
 
-    const request = {
-      title,
-      address,
-      mainCategory,
-      subCategory,
-      photoUrl,
-    };
+    const request = { title, address, mainCategory, subCategory, photoUrl };
 
     createPostMutation.mutate(request);
     reset();

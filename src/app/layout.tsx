@@ -1,11 +1,12 @@
 import Footer from "@/components/shared/Footer";
 import Header from "@/components/shared/header/Header";
 import ReactQueryProviders from "@/hook/useReactQuery";
+import { NextUIProvider } from "@nextui-org/react";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { ToastContainer } from "react-toastify";
-import "./globals.css";
 import "react-toastify/dist/ReactToastify.css";
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "요미디자인",
@@ -24,9 +25,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="ko">
       <body className={`${myFont.className} contents-center min-h-screen flex-col bg-main pt-14`}>
         <ReactQueryProviders>
-          <Header />
-          <main className="layout my-14 min-h-fit grow-[1]">{children}</main>
-          <Footer />
+          <NextUIProvider>
+            <Header />
+            <main className="layout my-14 min-h-fit grow-[1]">{children}</main>
+            <Footer />
+          </NextUIProvider>
         </ReactQueryProviders>
         <ToastContainer pauseOnFocusLoss closeOnClick autoClose={2000} position="top-right" />
       </body>
