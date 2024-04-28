@@ -2,6 +2,7 @@
 
 import company from "@/app/company-info";
 import { copyToClipboard } from "@/utils/clipboard";
+import { toast } from "react-toastify";
 
 const FOOTER_CONTENT = [
   { label: "상호", content: company.name },
@@ -13,13 +14,18 @@ const FOOTER_CONTENT = [
 ];
 
 function Footer() {
+  const copyHandler = () => {
+    copyToClipboard(company.address);
+    toast.info("주소가 복사되었습니다.", { position: "bottom-right" });
+  };
+  const fullAddress = `(${company.addressPostcode}) ${company.address} ${company.addressDetail}`;
+
   return (
     <footer className="footer relative shrink-0 grow-0 text-sm">
-      <div className="flex flex-col">
-        <p
-          className="cursor-pointer"
-          onClick={() => copyToClipboard(company.address)}
-        >{`(${company.addressPostcode}) ${company.address} ${company.addressDetail}`}</p>
+      <div className="flex flex-col px-10">
+        <p>
+          <button onClick={copyHandler}>{fullAddress}</button>
+        </p>
         <ul className="flex flex-wrap">
           {FOOTER_CONTENT.map((item, index) => (
             <li className="footer-item" key={index}>
@@ -29,7 +35,7 @@ function Footer() {
           ))}
         </ul>
       </div>
-      <p>{company.copyRight}</p>
+      <p className="px-10">{company.copyRight}</p>
     </footer>
   );
 }
