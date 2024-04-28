@@ -6,6 +6,7 @@ interface IProps {
 }
 
 export default function GlobalError({ error, reset }: IProps) {
+  console.error("error :", error);
   return (
     <html>
       <body>

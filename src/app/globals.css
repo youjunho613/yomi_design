@@ -2,15 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --layout-margin-top: 72px;
-  --layout-margin-bottom: 80px;
-}
-
-footer > * {
-  padding: 0 40px;
-}
-
 @layer components {
   .layout {
     @apply mx-auto w-layout max-w-[1000px];
