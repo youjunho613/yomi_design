@@ -1,43 +1,40 @@
 "use client";
 
 import { useMutation, useQuery } from "@tanstack/react-query";
-import {
-  getPostList,
-  getPost,
-  getMainPostList,
-  getPostListByCategory,
-  createPost,
-  modifyPost,
-  deletePost,
-} from "./postService";
+import { getMainPostList, getPostListByCategory, createPost, modifyPost, deletePost } from "./postService";
 import queryOptions from "./queries";
 import { queryClient } from "@/hook/useReactQuery";
 import { useParams } from "next/navigation";
 
 export default function usePost() {
   const { category } = useParams();
-  const mainCategory = category !== undefined ? category[0] : "";
-  const subcategory = category !== undefined ? category[1] : "";
-  const postId = category !== undefined ? category[2] : "";
 
-  const currentCategory = !subcategory ? mainCategory : subcategory;
+  const mainCategory = category?.[0] ?? undefined;
+  const subcategory = category?.[1] ?? undefined;
+  const postId = category?.[2] ?? undefined;
 
-  const changCategory = !subcategory ? "mainCategory" : "subCategory";
+  const currentCategory = !!subcategory ? subcategory : mainCategory;
+  const changCategory = !!subcategory ? "subCategory" : "mainCategory";
 
   const queryKey = queryOptions.all().queryKeys;
 
-  const fetchPosts = useQuery({ queryKey, queryFn: getPostList });
+  const fetchPosts = useQuery({ queryKey, queryFn: queryOptions.all().queryFn });
 
-  const fetchMainPost = useQuery({ queryKey, queryFn: getMainPostList });
+  const fetchMainPost = useQuery({
+    queryKey: [...queryKey, "main"],
+    queryFn: getMainPostList,
+    enabled: !mainCategory,
+  });
 
   const fetchFilteredPosts = useQuery({
-    queryKey: ["post", currentCategory],
+    queryKey: [...queryKey, currentCategory],
     queryFn: () => getPostListByCategory({ changCategory, currentCategory }),
+    enabled: !!mainCategory,
   });
 
   const fetchPost = useQuery({
     queryKey: queryOptions.detail({ postId }).queryKeys,
-    queryFn: () => getPost({ postId }),
+    queryFn: queryOptions.detail({ postId }).queryFn,
     enabled: !!postId,
   });
 

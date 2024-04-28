@@ -24,7 +24,7 @@ export default function PostList({ category }: IProps) {
   if (isError) return <p>에러가 발생했습니다.</p>;
 
   return (
-    <ul className="flex flex-wrap gap-[26px] justify-center sm:justify-start">
+    <ul className="flex flex-wrap justify-center gap-[26px] sm:justify-start">
       {data.map((data) => {
         const path = `/board/${data.mainCategory}/${data.subCategory}/${data.id}`;
         const mainCategory = data.mainCategory as TMainSignType;
@@ -39,7 +39,7 @@ export default function PostList({ category }: IProps) {
                 <Image
                   // width={224}
                   // height={224}
-                  src={`${STORAGE_URL}/post/${data.mainPhotoUrl}`}
+                  src={`${STORAGE_URL}/post/${data.photoUrl[0]}`}
                   alt={`${data.title} 시공사진`}
                   objectFit="cover"
                   layout="fill"

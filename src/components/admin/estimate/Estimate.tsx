@@ -4,6 +4,7 @@ import { useState } from "react";
 import Text from "../Text";
 import type { Database, Tables } from "@/supabase/type";
 import useEstimate from "@/service/estimate/mutations";
+import { toast } from "react-toastify";
 
 interface Props {
   estimate: Tables<"estimate">;
@@ -18,10 +19,12 @@ export default function Estimate({ estimate }: Props) {
 
   const modifyEstimateStatusHandler = (status: TEstimateStatusUpdate) => {
     modifyEstimateMutation.mutate({ id: estimate.id, status });
+    toast.success("문의글이 수정되었습니다.");
   };
 
   const deleteEstimateHandler = (id: number) => {
     deleteEstimateMutation.mutate(id);
+    toast.success("문의글이 삭제되었습니다.");
   };
 
   const openChangeHandler = (target: "storePhoto" | "photoUrl") => {

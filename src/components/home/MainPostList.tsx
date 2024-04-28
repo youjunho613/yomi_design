@@ -14,7 +14,7 @@ export default function MainPostList() {
   if (!data) return <div>업로드된 게시물이 없습니다.</div>;
 
   return (
-    <div className="contents-center w-8/12 xl:w-auto flex-wrap gap-6">
+    <div className="contents-center w-full flex-wrap gap-6">
       {data.map((post) => {
         const path = `/board/${post.mainCategory}/${post.subCategory}`;
         return (
@@ -24,7 +24,7 @@ export default function MainPostList() {
             className="contents-center relative h-[230px] w-[230px] border-[3px] border-black"
           >
             <Image
-              src={`${STORAGE_URL}/post/${post.mainPhotoUrl}`}
+              src={`${STORAGE_URL}/post/${post.photoUrl[0]}`}
               alt="시공 사진"
               loading="eager"
               objectFit="cover"

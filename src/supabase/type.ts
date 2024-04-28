@@ -3,13 +3,50 @@ export type Json = string | number | boolean | null | { [key: string]: Json | un
 export type Database = {
   public: {
     Tables: {
+      admin: {
+        Row: {
+          birthday: string | null;
+          created_at: string;
+          email: string;
+          id: number;
+          name: string;
+          phone: string;
+          userUID: string | null;
+        };
+        Insert: {
+          birthday?: string | null;
+          created_at?: string;
+          email: string;
+          id?: number;
+          name: string;
+          phone: string;
+          userUID?: string | null;
+        };
+        Update: {
+          birthday?: string | null;
+          created_at?: string;
+          email?: string;
+          id?: number;
+          name?: string;
+          phone?: string;
+          userUID?: string | null;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "public_admin_userUID_fkey";
+            columns: ["userUID"];
+            isOneToOne: false;
+            referencedRelation: "identities";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
       board: {
         Row: {
           address: string;
           created_at: string;
           id: number;
           mainCategory: string;
-          mainPhotoUrl: string;
           photoUrl: string[];
           subCategory: string;
           title: string;
@@ -19,7 +56,6 @@ export type Database = {
           created_at?: string;
           id?: number;
           mainCategory: string;
-          mainPhotoUrl: string;
           photoUrl: string[];
           subCategory: string;
           title: string;
@@ -29,7 +65,6 @@ export type Database = {
           created_at?: string;
           id?: number;
           mainCategory?: string;
-          mainPhotoUrl?: string;
           photoUrl?: string[];
           subCategory?: string;
           title?: string;
