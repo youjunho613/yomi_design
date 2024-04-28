@@ -1,12 +1,12 @@
 "use client";
 
-import type { SubmitHandler } from "react-hook-form";
-import { useForm } from "react-hook-form";
-import Input from "../shared/input/Input";
-import Textarea from "../shared/input/Textarea";
-import FileInput from "../shared/input/FileInput";
 import useEstimate from "@/service/estimate/mutations";
 import { fileToUrls } from "@/supabase/supabase";
+import type { SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
+import FileInput from "../shared/input/FileInput";
+import Input from "../shared/input/Input";
+import Textarea from "../shared/input/Textarea";
 
 interface EstimateInput {
   storeName: string;
@@ -29,11 +29,11 @@ export default function EstimateForm() {
   const { register, handleSubmit, reset } = useForm<EstimateInput>();
   const { createEstimateMutation } = useEstimate();
 
-  const onSubmit: SubmitHandler<EstimateInput> = (data) => {
+  const onSubmit: SubmitHandler<EstimateInput> = async (data) => {
     const { address, inquiryContent, phone, storeCategory, storeName, conceptFile, storePhoto } = data;
     const bucket = "estimate";
-    const conceptPhotoUrl = !!conceptFile ? fileToUrls({ bucket, fileList: conceptFile }) : [];
-    const storePhotoUrl = !!storePhoto ? fileToUrls({ bucket, fileList: storePhoto }) : [];
+    const conceptPhotoUrl = !!conceptFile ? await fileToUrls({ bucket, fileList: conceptFile }) : [];
+    const storePhotoUrl = !!storePhoto ? await fileToUrls({ bucket, fileList: storePhoto }) : [];
 
     const request = {
       address,

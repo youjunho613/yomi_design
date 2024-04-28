@@ -4,16 +4,18 @@ import Text from "@/components/admin/Text";
 import EditButton from "@/components/admin/management/EditButton";
 import EditText from "@/components/admin/management/EditText";
 import PhotoList from "@/components/admin/management/PhotoList";
+import Error from "@/components/shared/Error";
+import Loading from "@/components/shared/loading/Loading";
 import usePost from "@/service/post/mutations";
 import usePostPhotoModify from "@/store/usePostPhotoModify";
 
 export default function Page() {
   const { fetchPosts } = usePost();
-  const { isError, isLoading, data } = fetchPosts;
+  const { data, isError, isLoading, error } = fetchPosts;
   const { photoIsOpen, TogglePhoto, setInitialPhoto } = usePostPhotoModify();
 
-  if (isError) return <p>에러가 발생했습니다.</p>;
-  if (isLoading) return <p>로딩 중...</p>;
+  if (isLoading) return <Loading />;
+  if (isError) return <Error error={error.message} />;
   if (!data) return <p>업로드된 게시물이 없습니다.</p>;
 
   const toggleOpen = ({ id, photos }: { id: number; photos: string[] }) => {

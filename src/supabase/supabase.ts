@@ -1,6 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
-import { Database } from "./type";
 import uuid from "react-uuid";
+import { Database } from "./type";
 
 type TBucket = "estimate" | "post";
 
@@ -28,19 +28,17 @@ export const uploadStorage = async ({ bucket, id, file }: IUploadStorage) => {
   return data;
 };
 
-export const fileToUrls = ({ bucket, fileList }: IFileToUrls) => {
+export const fileToUrls = async ({ bucket, fileList }: IFileToUrls) => {
   const fileUrls: string[] = [];
   const files = Array.from(fileList);
 
-  files.forEach(async (file) => {
-    const id = uuid();
-    try {
+  await Promise.all(
+    files.map(async (file) => {
+      const id = uuid();
       await uploadStorage({ bucket, id, file });
-    } catch (error) {
-      console.error("fileToUrls > uploadStorage : ", error);
-    }
-    fileUrls.push(id);
-  });
+      fileUrls.push(id);
+    }),
+  );
 
   return fileUrls;
 };

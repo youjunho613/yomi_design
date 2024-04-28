@@ -1,5 +1,6 @@
 "use client";
 
+import Error from "@/components/shared/Error";
 import AuthLoading from "@/components/shared/loading/AuthLoading";
 import { useAuth } from "@/service/auth/mutations";
 import Link from "next/link";
@@ -13,14 +14,14 @@ export default function AdminLayout({ children }: IProps) {
   const router = useRouter();
 
   const { getUser, logoutMutation } = useAuth();
-  const { data: user, isLoading, isError } = getUser;
+  const { data: user, isLoading, isError, error } = getUser;
 
   const logoutHandler = () => {
     logoutMutation.mutate();
   };
 
   if (isLoading) return <AuthLoading />;
-  if (isError) return <p>Error</p>;
+  if (isError) return <Error error={error.message} />;
   if (!user) return router.push("/login");
 
   return (

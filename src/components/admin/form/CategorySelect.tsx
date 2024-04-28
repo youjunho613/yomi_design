@@ -1,7 +1,7 @@
-import type { ChangeEvent } from "react";
 import type { TMainSignType, TSubSignType } from "@/app/category.constant";
 import { MAIN_CATEGORY, SUB_CATEGORY } from "@/app/category.constant";
 import useCategorySelect from "@/store/useCategorySelect";
+import type { ChangeEvent } from "react";
 
 export default function CategorySelect() {
   const { mainCategory, setMainCategory, setSubCategory } = useCategorySelect();

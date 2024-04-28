@@ -2,6 +2,8 @@
 
 import Estimate from "@/components/admin/estimate/Estimate";
 import TabButton from "@/components/admin/estimate/TabButton";
+import Error from "@/components/shared/Error";
+import Loading from "@/components/shared/loading/Loading";
 import useEstimate from "@/service/estimate/mutations";
 import { Database } from "@/supabase/type";
 import { useState } from "react";
@@ -25,14 +27,14 @@ export default function Page() {
   const [toggleStatus, setToggleStatus] = useState<TEstimateStatus>("unconfirmed");
 
   const { fetchEstimate } = useEstimate();
-  const { data, isError, isLoading } = fetchEstimate;
+  const { data, isError, isLoading, error } = fetchEstimate;
 
   const onChangeStatus = (status: TEstimateStatus) => {
     setToggleStatus(status);
   };
 
-  if (isError) return <p>에러가 발생했습니다.</p>;
-  if (isLoading) return <p>로딩중...</p>;
+  if (isLoading) return <Loading />;
+  if (isError) return <Error error={error.message} />;
   if (!data) return <p>문의가 없습니다.</p>;
 
   const filteredData = data.filter((item) => item.status === toggleStatus);

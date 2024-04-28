@@ -1,11 +1,13 @@
 "use client";
 
+import type { TMainSignType, TSubCategory } from "@/app/category.constant";
+import { SUB_CATEGORY } from "@/app/category.constant";
+import usePost from "@/service/post/mutations";
 import { STORAGE_URL } from "@/supabase/supabase";
 import Image from "next/image";
 import Link from "next/link";
-import usePost from "@/service/post/mutations";
-import { SUB_CATEGORY } from "@/app/category.constant";
-import type { TMainSignType, TSubCategory } from "@/app/category.constant";
+import Error from "../shared/Error";
+import Loading from "../shared/loading/Loading";
 
 interface IProps {
   category: {
@@ -17,11 +19,11 @@ interface IProps {
 export default function PostList({ category }: IProps) {
   const { fetchFilteredPosts } = usePost();
 
-  const { data, isLoading, isError } = fetchFilteredPosts;
+  const { data, isError, isLoading, error } = fetchFilteredPosts;
 
+  if (isLoading) return <Loading />;
+  if (isError) return <Error error={error.message} />;
   if (!data || data.length === 0) return <p>업로드된 게시물이 없습니다.</p>;
-  if (isLoading) return <p>로딩 중...</p>;
-  if (isError) return <p>에러가 발생했습니다.</p>;
 
   return (
     <ul className="flex flex-wrap justify-center gap-[26px] sm:justify-start">

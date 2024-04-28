@@ -14,11 +14,11 @@ const contact = {
 const address = {
   addressPostcode: "07631",
   address: "서울 강서구 마곡중앙4로 22",
-  addressDetail: "파인스퀘어 2층 B동 204호",
+  addressDetail: "파인스퀘어 B동 204호",
   address_en: "22, Magokjungang 4-ro, Gangseo-gu, Seoul, Republic of Korea",
 };
 
-const company = {
+export const COMPANY = {
   name: "요미디자인",
   name_em: "YOMI DESIGN",
   chief: "허지혜",
@@ -29,4 +29,11 @@ const company = {
   copyRight: "ⓒ 2023. 요미디자인(YOMI DESIGN) all rights reserved.",
 };
 
-export default company;
+export const FOOTER_CONTENT = [
+  { label: "상호", content: COMPANY.name },
+  { label: "대표", content: COMPANY.chief },
+  { label: "사업자등록번호", content: COMPANY.companyRegistrationNumber },
+  { label: "옥외광고사업등록번호", content: COMPANY.outdoorAdvertising },
+  { label: "전화", content: COMPANY.phone },
+  { label: "메일", content: COMPANY.email },
+];

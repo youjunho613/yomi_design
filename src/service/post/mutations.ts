@@ -1,10 +1,10 @@
 "use client";
 
-import { useMutation, useQuery } from "@tanstack/react-query";
-import { getMainPostList, getPostListByCategory, createPost, modifyPost, deletePost } from "./postService";
-import queryOptions from "./queries";
 import { queryClient } from "@/hook/useReactQuery";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
+import { createPost, deletePost, getMainPostList, getPostListByCategory, modifyPost } from "./postService";
+import queryOptions from "./queries";
 
 export default function usePost() {
   const { category } = useParams();

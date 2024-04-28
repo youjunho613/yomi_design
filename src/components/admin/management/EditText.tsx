@@ -1,7 +1,7 @@
 import usePostModify from "@/store/usePostModify";
+import { Tables } from "@/supabase/type";
 import Text from "../Text";
 import CategorySelect from "../form/CategorySelect";
-import { Tables } from "@/supabase/type";
 
 interface Props {
   post: Tables<"board">;

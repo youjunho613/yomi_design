@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
-import queryOptions from "./queries";
-import { checkUser, login, logout } from "./auth";
 import { useRouter } from "next/navigation";
+import { checkUser, login, logout } from "./auth";
+import queryOptions from "./queries";
 
 export const useAuth = () => {
   const router = useRouter();
