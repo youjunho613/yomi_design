@@ -24,7 +24,7 @@ export default function MainPostList() {
             className="contents-center relative h-[230px] w-[230px] border-[3px] border-black"
           >
             <Image
-              src={`${STORAGE_URL}/post/${post.mainPhotoUrl}`}
+              src={`${STORAGE_URL}/post/${post.photoUrl[0]}`}
               alt="시공 사진"
               loading="eager"
               objectFit="cover"

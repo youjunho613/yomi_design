@@ -27,23 +27,17 @@ export default function Page() {
     if (imageFile.length === 0) return;
 
     const photoUrl = fileToUrls({ bucket: "post", fileList: imageFile });
-    const mainPhotoUrl = photoUrl.shift() ?? "";
 
     const request = {
       title,
       address,
       mainCategory,
       subCategory,
-      mainPhotoUrl,
       photoUrl,
     };
-    try {
-      createPostMutation.mutate(request);
-      reset();
-    } catch (error) {
-      console.error(error);
-      return;
-    }
+
+    createPostMutation.mutate(request);
+    reset();
     toast.success("게시글이 등록되었습니다.");
   };
 
