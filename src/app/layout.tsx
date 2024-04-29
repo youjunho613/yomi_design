@@ -4,8 +4,8 @@ import ReactQueryProviders from "@/hook/useReactQuery";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { ToastContainer } from "react-toastify";
-import "./globals.css";
 import "react-toastify/dist/ReactToastify.css";
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "요미디자인",

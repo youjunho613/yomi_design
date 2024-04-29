@@ -1,17 +1,21 @@
 import type { TMainSignType, TSubSignType } from "@/app/category.constant";
 import { MAIN_CATEGORY, SUB_CATEGORY } from "@/app/category.constant";
-
 import useCategorySelect from "@/store/useCategorySelect";
-import { ChangeEvent } from "react";
+import type { ChangeEvent } from "react";
 
 export default function CategorySelect() {
   const { mainCategory, setMainCategory, setSubCategory } = useCategorySelect();
 
-  const onChangeMain = ({ target: { value } }: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const onChangeMain = ({ target: { value } }: ChangeEvent<HTMLInputElement>) => {
     setMainCategory(value as TMainSignType | undefined);
   };
 
-  const onChangeSub = ({ target: { value } }: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const onChangeSub = ({ target: { value } }: ChangeEvent<HTMLSelectElement>) => {
+    if (value === "카테고리를 선택해주세요") {
+      setSubCategory(undefined);
+      return;
+    }
+
     setSubCategory(value as TSubSignType | undefined);
   };
 
@@ -31,11 +35,11 @@ export default function CategorySelect() {
           </label>
         ))}
       </div>
-      <select name="subCategory" onChange={(event) => onChangeSub(event)}>
-        {!mainCategory && <option value={undefined}>카테고리를 선택해주세요</option>}
+      <select name="subCategory" defaultValue={undefined} onChange={(event) => onChangeSub(event)}>
+        {!mainCategory && <option>카테고리를 선택해주세요</option>}
         {!!mainCategory && (
           <>
-            <option value={undefined}>카테고리를 선택해주세요</option>
+            <option>카테고리를 선택해주세요</option>
             {SUB_CATEGORY[mainCategory].map((category) => (
               <option key={category.id} value={category.id}>
                 {category.label}

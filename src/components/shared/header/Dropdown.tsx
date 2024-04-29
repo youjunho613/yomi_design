@@ -16,7 +16,7 @@ interface TLinkRef {
 
 export default function Dropdown({ isShowNav, currentNav, linkRef }: Props) {
   const [currentOffsetLeft, setCurrentOffsetLeft] = useState(1000);
-  const isCurrentDropdown = currentNav === "logo" || currentNav === "sign" || currentNav === "print";
+  const isCurrentDropdown = currentNav === "logo" || currentNav === "sign";
 
   useEffect(() => {
     const offsetLeft = linkRef.current[currentNav]?.offsetLeft;

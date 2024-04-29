@@ -1,13 +1,13 @@
-import { STORAGE_URL, fileToUrls } from "@/supabase/supabase";
-import Image from "next/image";
-import PhotoEditButton from "./PhotoEditButton";
-import usePostPhotoModify from "@/store/usePostPhotoModify";
 import usePost from "@/service/post/mutations";
-import { useState } from "react";
-import type { ChangeEvent } from "react";
+import usePostPhotoModify from "@/store/usePostPhotoModify";
+import { STORAGE_URL, fileToUrls } from "@/supabase/supabase";
 import { Tables } from "@/supabase/type";
-import PreviewImage from "./PreviewImage";
+import Image from "next/image";
+import type { ChangeEvent } from "react";
+import { useState } from "react";
 import { toast } from "react-toastify";
+import PhotoEditButton from "./PhotoEditButton";
+import PreviewImage from "./PreviewImage";
 
 interface Props {
   post: Tables<"board">;
@@ -57,11 +57,16 @@ export default function PhotoList({ post }: Props) {
     setFileList(undefined);
   };
 
-  const modifyPhoto = ({ id, photoUrl }: TModifyPhoto) => {
+  const modifyPhoto = async ({ id, photoUrl }: TModifyPhoto) => {
     const isEmpty = !fileList || preview.length === 0;
-    if (isEmpty) return alert("사진을 선택해주세요.");
+    if (isEmpty) return toast.error("사진을 선택해주세요.");
 
-    const newUrls = fileToUrls({ bucket: "post", fileList });
+    const newUrls = await toast.promise(fileToUrls({ bucket: "post", fileList }), {
+      pending: "업로드 중 🚀",
+      success: "업로드 성공 👌",
+      error: "업로드 실패 🤯",
+    });
+
     const modifyPhotoUrl = photoUrl.concat(newUrls);
     modifyPostMutation.mutate({ id, request: { photoUrl: modifyPhotoUrl } });
 

@@ -16,7 +16,7 @@ export default function EditButton({ post }: Props) {
   const { id, photoUrl: fileList } = post;
 
   const onClickModify = () => {
-    if (modifyContent === null) return alert("수정할 내용을 입력해주세요.");
+    if (modifyContent === null) return toast.error("수정할 내용을 입력해주세요.");
 
     let request = { ...modifyContent };
     const isSelectCategory = mainCategory !== undefined && subCategory !== undefined;
@@ -36,7 +36,7 @@ export default function EditButton({ post }: Props) {
   };
 
   const onClickDelete = () => {
-    if (!window.confirm("정말 삭제하시겠습니까?")) return;
+    if (!confirm("정말 삭제하시겠습니까?")) return;
 
     deletePostMutation.mutate({ id, fileList });
     toast.success("게시글이 삭제되었습니다.");

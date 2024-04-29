@@ -1,8 +1,8 @@
 "use client";
 
-import { useForm } from "react-hook-form";
 import { useAuth } from "@/service/auth/mutations";
 import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
 
 interface IAuth {
   email: string;

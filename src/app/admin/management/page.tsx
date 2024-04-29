@@ -4,16 +4,19 @@ import Text from "@/components/admin/Text";
 import EditButton from "@/components/admin/management/EditButton";
 import EditText from "@/components/admin/management/EditText";
 import PhotoList from "@/components/admin/management/PhotoList";
+import Error from "@/components/shared/Error";
+import Loading from "@/components/shared/loading/Loading";
 import usePost from "@/service/post/mutations";
 import usePostPhotoModify from "@/store/usePostPhotoModify";
+import { Fragment } from "react";
 
 export default function Page() {
   const { fetchPosts } = usePost();
-  const { isError, isLoading, data } = fetchPosts;
+  const { data, isError, isLoading, error } = fetchPosts;
   const { photoIsOpen, TogglePhoto, setInitialPhoto } = usePostPhotoModify();
 
-  if (isError) return <p>에러가 발생했습니다.</p>;
-  if (isLoading) return <p>로딩 중...</p>;
+  if (isLoading) return <Loading />;
+  if (isError) return <Error error={error.message} />;
   if (!data) return <p>업로드된 게시물이 없습니다.</p>;
 
   const toggleOpen = ({ id, photos }: { id: number; photos: string[] }) => {
@@ -27,7 +30,7 @@ export default function Page() {
   };
 
   return (
-    <>
+    <Fragment>
       <h1 className="my-5 w-full text-center text-2xl font-bold">게시물 관리</h1>
       <ul className="mt-10 flex flex-col gap-7 rounded-lg bg-sub px-5 py-10">
         {data.map((post) => (
@@ -57,6 +60,6 @@ export default function Page() {
           </li>
         ))}
       </ul>
-    </>
+    </Fragment>
   );
 }
