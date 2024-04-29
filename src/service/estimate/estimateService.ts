@@ -1,15 +1,28 @@
+import type { TEstimateStatusUpdate } from "@/app/admin/estimateList/page";
 import { supabase } from "@/supabase/supabase";
-import { TablesInsert, TablesUpdate } from "@/supabase/type";
+import type { TablesInsert, TablesUpdate } from "@/supabase/type";
 
 type TInsert = TablesInsert<"estimate">;
 type TUpdate = TablesUpdate<"estimate">;
 
 export const getEstimateList = async () => {
-  const { data: estimate, error } = await supabase.from("estimate").select("*").order("id", { ascending: false });
+  const { data, error } = await supabase.from("estimate").select("*").order("created_at", { ascending: false });
 
   if (error) console.error("getEstimateList : ", error);
 
-  return estimate;
+  return data;
+};
+
+export const getFilteredEstimateList = async (status: TEstimateStatusUpdate) => {
+  const { data, error } = await supabase
+    .from("estimate")
+    .select("*")
+    .eq("status", status)
+    .order("created_at", { ascending: false });
+
+  if (error) console.error("getFilteredEstimateList : ", error);
+
+  return data;
 };
 
 export const createEstimate = async (request: TInsert) => {

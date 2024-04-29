@@ -3,10 +3,19 @@
 import { queryClient } from "@/hook/useReactQuery";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
-import { createPost, deletePost, getMainPostList, getPostListByCategory, modifyPost } from "./postService";
-import queryOptions from "./queries";
+import {
+  createPost,
+  deletePost,
+  getMainPostList,
+  getPost,
+  getPostList,
+  getPostListByCategory,
+  modifyPost,
+} from "./postService";
 
 export default function usePost() {
+  const queryKey = ["posts"] as const;
+
   const { category } = useParams();
 
   const mainCategory = category?.[0] ?? undefined;
@@ -16,9 +25,7 @@ export default function usePost() {
   const currentCategory = !!subcategory ? subcategory : mainCategory;
   const changCategory = !!subcategory ? "subCategory" : "mainCategory";
 
-  const queryKey = queryOptions.all().queryKeys;
-
-  const fetchPosts = useQuery({ queryKey, queryFn: queryOptions.all().queryFn });
+  const fetchPosts = useQuery({ queryKey, queryFn: getPostList });
 
   const fetchMainPost = useQuery({
     queryKey: [...queryKey, "main"],
@@ -33,8 +40,8 @@ export default function usePost() {
   });
 
   const fetchPost = useQuery({
-    queryKey: queryOptions.detail({ postId }).queryKeys,
-    queryFn: queryOptions.detail({ postId }).queryFn,
+    queryKey: [...queryKey, postId],
+    queryFn: () => getPost({ postId }),
     enabled: !!postId,
   });
 

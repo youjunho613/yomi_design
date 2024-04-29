@@ -16,7 +16,7 @@ export default function EditButton({ post }: Props) {
   const { id, photoUrl: fileList } = post;
 
   const onClickModify = () => {
-    if (modifyContent === null) return alert("수정할 내용을 입력해주세요.");
+    if (modifyContent === null) return toast.error("수정할 내용을 입력해주세요.");
 
     let request = { ...modifyContent };
     const isSelectCategory = mainCategory !== undefined && subCategory !== undefined;

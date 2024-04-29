@@ -59,7 +59,7 @@ export default function PhotoList({ post }: Props) {
 
   const modifyPhoto = async ({ id, photoUrl }: TModifyPhoto) => {
     const isEmpty = !fileList || preview.length === 0;
-    if (isEmpty) return alert("사진을 선택해주세요.");
+    if (isEmpty) return toast.error("사진을 선택해주세요.");
 
     const newUrls = await toast.promise(fileToUrls({ bucket: "post", fileList }), {
       pending: "업로드 중 🚀",

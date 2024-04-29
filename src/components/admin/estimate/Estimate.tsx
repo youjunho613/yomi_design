@@ -1,33 +1,27 @@
 import useEstimate from "@/service/estimate/mutations";
-import { STORAGE_URL } from "@/supabase/supabase";
-import type { Database, Tables } from "@/supabase/type";
-import Image from "next/image";
+import type { Tables } from "@/supabase/type";
 import { useState } from "react";
-import { toast } from "react-toastify";
 import Text from "../Text";
+import ImageList from "./ImageList";
+import ImageToggleButton from "./ImageToggleButton";
+import StatusButton from "./StatusButton";
+
+export type TImageToggle = "storePhoto" | "photoUrl";
 
 interface Props {
   estimate: Tables<"estimate">;
 }
 
-type TEstimateStatusUpdate = Database["public"]["Enums"]["estimateStatus"];
-
 export default function Estimate({ estimate }: Props) {
   const [isOpen, setIsOpen] = useState({ storePhoto: false, photoUrl: false });
 
-  const { modifyEstimateMutation, deleteEstimateMutation } = useEstimate();
+  const { deleteEstimateMutation } = useEstimate({});
 
-  const modifyEstimateStatusHandler = (status: TEstimateStatusUpdate) => {
-    modifyEstimateMutation.mutate({ id: estimate.id, status });
-    toast.success("문의글이 수정되었습니다.");
+  const deleteHandler = () => {
+    deleteEstimateMutation.mutate(estimate.id);
   };
 
-  const deleteEstimateHandler = (id: number) => {
-    deleteEstimateMutation.mutate(id);
-    toast.success("문의글이 삭제되었습니다.");
-  };
-
-  const openChangeHandler = (target: "storePhoto" | "photoUrl") => {
+  const openChangeHandler = (target: TImageToggle) => {
     setIsOpen({ ...isOpen, [target]: !isOpen[target] });
   };
 
@@ -47,65 +41,38 @@ export default function Estimate({ estimate }: Props) {
       </div>
       <div className="grid w-full grid-cols-2">
         <Text label="연락처" data={estimate.phone} />
+        <Text label="상태" data={estimate.status} />
       </div>
       <Text label="문의사항" data={estimate.inquiryContent} />
-      <div className="flex items-center justify-end gap-5">
-        <button className="bg-red-500 px-3 py-2 text-black" onClick={() => modifyEstimateStatusHandler("unconfirmed")}>
-          미확인
-        </button>
-        <button className="bg-yellow-500 px-3 py-2 text-black" onClick={() => modifyEstimateStatusHandler("confirm")}>
-          진행
-        </button>
-        <button className="bg-green-500 px-3 py-2 text-black" onClick={() => modifyEstimateStatusHandler("done")}>
-          완료
-        </button>
-        <button className="bg-black px-3 py-2 text-white" onClick={() => modifyEstimateStatusHandler("hidden")}>
-          숨김
-        </button>
-        <button className="bg-black px-3 py-2 text-white" onClick={() => deleteEstimateHandler(estimate.id)}>
+      <div className="flex w-full items-center justify-end gap-5 lg:w-auto">
+        <StatusButton id={estimate.id} status="unconfirmed" dataStatus={estimate.status} />
+        <StatusButton id={estimate.id} status="confirm" dataStatus={estimate.status} />
+        <StatusButton id={estimate.id} status="done" dataStatus={estimate.status} />
+        <StatusButton id={estimate.id} status="hidden" dataStatus={estimate.status} />
+        <button className="rounded-md bg-red-500 px-3 py-2 text-white" onClick={deleteHandler}>
           삭제
         </button>
       </div>
       {emptyStorePhoto && (
         <div className="contents-center flex flex-col gap-5">
-          <button
-            className="w-full bg-sub px-3 py-2"
-            onClick={() => {
-              openChangeHandler("storePhoto");
-            }}
-          >
-            현장 사진 {isOpen.storePhoto ? "접기" : "펼치기"}
-          </button>
-          {isOpen.storePhoto && (
-            <ul>
-              {estimate.storePhoto?.map((url) => (
-                <li key={url}>
-                  <Image src={`${STORAGE_URL}/estimate/${url}`} width={500} height={500} alt="현장사진" />
-                </li>
-              ))}
-            </ul>
-          )}
+          <ImageToggleButton
+            text="현장 사진"
+            toggle="storePhoto"
+            isOpen={isOpen.storePhoto}
+            openChangeHandler={openChangeHandler}
+          />
+          {isOpen.storePhoto && <ImageList imageUrl={estimate.storePhoto} />}
         </div>
       )}
       {emptyPhotoUrl && (
         <div className="contents-center flex flex-col gap-5">
-          <button
-            className="w-full bg-sub px-3 py-2"
-            onClick={() => {
-              openChangeHandler("photoUrl");
-            }}
-          >
-            컨셉 사진 {isOpen.photoUrl ? "접기" : "펼치기"}
-          </button>
-          {isOpen.photoUrl && (
-            <ul>
-              {estimate.photoUrl?.map((url) => (
-                <li key={url}>
-                  <Image src={`${STORAGE_URL}/estimate/${url}`} width={500} height={500} alt="현장사진" />
-                </li>
-              ))}
-            </ul>
-          )}
+          <ImageToggleButton
+            text="컨셉 사진"
+            toggle="photoUrl"
+            isOpen={isOpen.photoUrl}
+            openChangeHandler={openChangeHandler}
+          />
+          {isOpen.photoUrl && <ImageList imageUrl={estimate.photoUrl} />}
         </div>
       )}
     </li>

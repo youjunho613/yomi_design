@@ -5,6 +5,7 @@ import Input from "@/components/admin/form/Input";
 import usePost from "@/service/post/mutations";
 import useCategorySelect from "@/store/useCategorySelect";
 import { fileToUrls } from "@/supabase/supabase";
+import { Fragment } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 
@@ -43,7 +44,7 @@ export default function Page() {
   };
 
   return (
-    <>
+    <Fragment>
       <h1 className="my-5 w-full text-center text-2xl font-bold">게시글 작성</h1>
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3">
         <Input id="title" type="text" label="제목" register={register} />
@@ -53,6 +54,6 @@ export default function Page() {
 
         <input type="submit" value="등록" className="basic-button w-20 self-center rounded-lg px-3 py-2" />
       </form>
-    </>
+    </Fragment>
   );
 }

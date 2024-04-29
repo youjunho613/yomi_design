@@ -4,6 +4,7 @@ import useEstimate from "@/service/estimate/mutations";
 import { fileToUrls } from "@/supabase/supabase";
 import type { SubmitHandler } from "react-hook-form";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 import FileInput from "../shared/input/FileInput";
 import Input from "../shared/input/Input";
 import Textarea from "../shared/input/Textarea";
@@ -27,13 +28,30 @@ const textInputArray: { id: keyof EstimateInput; label: string }[] = [
 
 export default function EstimateForm() {
   const { register, handleSubmit, reset } = useForm<EstimateInput>();
-  const { createEstimateMutation } = useEstimate();
+  const { createEstimateMutation } = useEstimate({});
 
   const onSubmit: SubmitHandler<EstimateInput> = async (data) => {
     const { address, inquiryContent, phone, storeCategory, storeName, conceptFile, storePhoto } = data;
+    if (!storeName) return toast.error("상호명을 입력해주세요");
+    if (!storeCategory) return toast.error("업종을 입력해주세요");
+    if (!phone) return toast.error("연락처를 입력해주세요");
+    if (!address) return toast.error("현장주소를 입력해주세요");
+
     const bucket = "estimate";
-    const conceptPhotoUrl = !!conceptFile ? await fileToUrls({ bucket, fileList: conceptFile }) : [];
-    const storePhotoUrl = !!storePhoto ? await fileToUrls({ bucket, fileList: storePhoto }) : [];
+    const promiseText = {
+      pending: "업로드 중 🚀",
+      success: "업로드 성공 👌",
+      error: "업로드 실패 🤯",
+    };
+
+    let storePhotoUrl: string[] = [];
+    let conceptPhotoUrl: string[] = [];
+    if (!!conceptFile) {
+      conceptPhotoUrl = await toast.promise(fileToUrls({ bucket, fileList: conceptFile }), promiseText);
+    }
+    if (!!storePhoto) {
+      storePhotoUrl = await toast.promise(fileToUrls({ bucket, fileList: storePhoto }), promiseText);
+    }
 
     const request = {
       address,
@@ -47,7 +65,6 @@ export default function EstimateForm() {
 
     createEstimateMutation.mutate(request);
     reset();
-    alert("문의가 접수되었습니다.");
   };
 
   return (
@@ -62,9 +79,9 @@ export default function EstimateForm() {
         <span className="break-keep">문의사항</span>
         <Textarea className="input h-[120px] resize-none" id="estimate" register={register("inquiryContent")} />
       </label>
-      <label className="estimate-label" htmlFor={"conceptFile"}>
+      <label className="estimate-label" htmlFor={"storePhoto"}>
         <span className="w-full break-keep">현장사진</span>
-        <FileInput id={"conceptFile"} register={register("conceptFile")} />
+        <FileInput id={"storePhoto"} register={register("storePhoto")} />
       </label>
       <label className="estimate-label" htmlFor={"conceptFile"}>
         <span className="w-full break-keep">원하는 간판 예시 사진</span>

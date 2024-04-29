@@ -8,6 +8,7 @@ import Error from "@/components/shared/Error";
 import Loading from "@/components/shared/loading/Loading";
 import usePost from "@/service/post/mutations";
 import usePostPhotoModify from "@/store/usePostPhotoModify";
+import { Fragment } from "react";
 
 export default function Page() {
   const { fetchPosts } = usePost();
@@ -29,7 +30,7 @@ export default function Page() {
   };
 
   return (
-    <>
+    <Fragment>
       <h1 className="my-5 w-full text-center text-2xl font-bold">게시물 관리</h1>
       <ul className="mt-10 flex flex-col gap-7 rounded-lg bg-sub px-5 py-10">
         {data.map((post) => (
@@ -59,6 +60,6 @@ export default function Page() {
           </li>
         ))}
       </ul>
-    </>
+    </Fragment>
   );
 }
