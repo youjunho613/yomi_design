@@ -3,10 +3,9 @@
 import { COMPANY } from "@/app/company-info";
 import Image from "next/image";
 import Link from "next/link";
+import { isMobile } from "react-device-detect";
 
 export default function SocialBox() {
-  const isMobile = /Mobi/i.test(window.navigator.userAgent);
-
   return (
     <div className="flex gap-2.5">
       {isMobile ? (
