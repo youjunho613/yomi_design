@@ -8,10 +8,20 @@ import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://acme.com"),
   title: "요미디자인",
   description: "아이덴티티와 디자인을 연결하다.",
   keywords: ["간판", "로고", "디자인", "사인물", "인쇄물"],
   authors: [{ name: "요미디자인", url: "https://yomi-design.com" }],
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: "요미디자인",
+    description: "아이덴티티와 디자인을 연결하다.",
+    images: [{ url: "/opengraph-image.png", alt: "About Yomi-design", width: 1200, height: 630 }],
+    siteName: "요미디자인",
+    locale: "ko_KR",
+    type: "website",
+  },
 };
 
 export const myFont = localFont({
