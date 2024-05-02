@@ -1,8 +1,8 @@
 "use client";
 
-import { useAuth } from "@/service/auth/mutations";
-import { useRouter } from "next/navigation";
+import { login } from "@/service/auth/auth";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 interface IAuth {
   email: string;
@@ -11,15 +11,14 @@ interface IAuth {
 
 export default function Login() {
   const { register, handleSubmit } = useForm<IAuth>();
-  const { getUser, loginMutation } = useAuth();
-  const { data: user } = getUser;
-  const router = useRouter();
 
   const onSubmit = async (data: IAuth) => {
-    loginMutation.mutate(data);
+    try {
+      const user = await login(data);
+    } catch (error) {
+      return toast.error(`로그인에 실패했습니다. (${error})`, { autoClose: 6000 });
+    }
   };
-
-  if (!!user) return router.push("/admin");
 
   return (
     <form

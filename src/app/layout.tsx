@@ -2,13 +2,14 @@ import Footer from "@/components/shared/Footer";
 import Header from "@/components/shared/header/Header";
 import ReactQueryProviders from "@/hook/useReactQuery";
 import type { Metadata } from "next";
+import type { NextFont } from "next/dist/compiled/@next/font";
 import localFont from "next/font/local";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://acme.com"),
+  metadataBase: new URL("https://yomi-design.com"),
   title: "요미디자인",
   description: "아이덴티티와 디자인을 연결하다.",
   keywords: ["간판", "로고", "디자인", "사인물", "인쇄물"],
@@ -24,9 +25,10 @@ export const metadata: Metadata = {
   },
 };
 
-export const myFont = localFont({
+export const myFont: NextFont = localFont({
   src: "/fonts/PretendardVariable.woff2",
-  display: "block",
+  display: "swap",
+  variable: "--font-pretendard",
 });
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

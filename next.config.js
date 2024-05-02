@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 
-const nextConfig = {
+module.exports = {
   images: {
     remotePatterns: [
       { protocol: "https", hostname: "tzzlrpratpmhrgdwxakp.supabase.co" },
@@ -8,11 +8,7 @@ const nextConfig = {
     ],
   },
   typescript: {
-    // !! WARN !!
-    // Dangerously allow production builds to successfully complete even if
-    // your project has type errors.
+    /* 빌드 오류 무시 */
     ignoreBuildErrors: true,
-  }
+  },
 };
-
-module.exports = nextConfig;

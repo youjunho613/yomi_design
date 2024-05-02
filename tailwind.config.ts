@@ -8,6 +8,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        pretendard: ["var(--font-pretendard)", "sans-serif"],
+      },
       boxShadow: { button: "#1f1f1f 5px 5px 0px 0px" },
       colors: {
         black001: "#1a1a1a",

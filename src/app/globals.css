@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "pretendard";
+  src: format("woff2"), url("/fonts/PretendardVariable.woff2/");
+}
+
+body {
+  @apply font-pretendard;
+}
+
 @layer components {
   .layout {
     @apply mx-auto w-layout max-w-[1000px];
