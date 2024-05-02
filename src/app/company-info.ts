@@ -22,7 +22,7 @@ export const COMPANY = {
   name: "요미디자인",
   name_em: "YOMI DESIGN",
   chief: "허지혜",
-  chief_en: "Ji-Hye Heo",
+  chief_en: "Ji-Hye Huh",
   ...address,
   ...document,
   ...contact,

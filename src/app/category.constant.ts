@@ -21,8 +21,20 @@ export type TSubSignType = TLogo | TSign;
 // type TSignCategory = "채널" | "갈바" | "후렉스(플렉스)" | "스카시" | "아크릴" | "돌출" | "지주" | "네온" | "입간판";
 // type TPrintCategory ="시트지"| "현수막/배너"| "명함"| "스티커"| "포스터/전단지"| "리플렛/팜플렛"| "대봉투/소봉투";
 export type TLogo = "text" | "wordmark" | "symbol" | "emblem" | "character";
-export type TSign = "channel" | "galba" | "flex" | "scasi" | "acrylic" | "protruding" | "holding" | "neon" | "standing";
-// export type TPrint = "sheet" | "banner" | "business-card" | "sticker" | "poster" | "catalog" | "envelope";
+export type TSign =
+  | "channel"
+  | "galba"
+  | "flex"
+  | "scasi"
+  | "acrylic"
+  | "protruding"
+  | "holding"
+  | "neon"
+  | "standing"
+  | "foamex"
+  | "brass"
+  | "sheet";
+// export type TPrint =  "sheet" | "banner" | "business-card" | "sticker" | "poster" | "catalog" | "envelope";
 
 export const MAIN_CATEGORY: IMainCategory[] = [
   { id: "logo", label: "로고", href: "/board/logo" },
@@ -41,13 +53,16 @@ export const SUB_CATEGORY: TSubCategory = {
   sign: [
     { id: "channel", label: "채널", href: "/board/sign/channel" },
     { id: "galba", label: "갈바", href: "/board/sign/galba" },
-    { id: "flex", label: "후렉스(플렉스)", href: "/board/sign/flex" },
+    { id: "flex", label: "플렉스(후렉스)", href: "/board/sign/flex" },
     { id: "scasi", label: "스카시", href: "/board/sign/scasi" },
     { id: "acrylic", label: "아크릴", href: "/board/sign/acrylic" },
+    { id: "foamex", label: "현판", href: "/board/sign/foamex" },
+    { id: "brass", label: "신주", href: "/board/sign/brass" },
     { id: "protruding", label: "돌출", href: "/board/sign/protruding" },
     { id: "holding", label: "지주", href: "/board/sign/holding" },
     { id: "neon", label: "네온", href: "/board/sign/neon" },
     { id: "standing", label: "입간판", href: "/board/sign/standing" },
+    { id: "sheet", label: "시트지", href: "/board/sign/sheet" },
   ],
   // print: [
   //   { id: "sheet", label: "시트지", href: "/board/print/sheet" },

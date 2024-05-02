@@ -1,33 +1,23 @@
 "use client";
 
-import Error from "@/components/shared/Error";
-import AuthLoading from "@/components/shared/loading/AuthLoading";
-import { useAuth } from "@/service/auth/mutations";
+import { logout } from "@/service/auth/auth";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 
 interface IProps {
   children: React.ReactNode;
 }
 
 export default function AdminLayout({ children }: IProps) {
-  const router = useRouter();
-
-  const { getUser, logoutMutation } = useAuth();
-  const { data: user, isLoading, isError, error } = getUser;
-
   const logoutHandler = () => {
-    logoutMutation.mutate();
+    logout();
+    redirect("/login");
   };
-
-  if (isLoading) return <AuthLoading />;
-  if (isError) return <Error error={error.message} />;
-  if (!user) return router.push("/login");
 
   return (
     <div className="flex flex-col gap-4">
       <div className="contents-between flex-col gap-4 sm:flex-row">
-        <p>{user.email}</p>
+        {/* <p>{user?.email}</p> */}
         <h1>관리자 페이지</h1>
         <button className="basic-button rounded-2xl px-4 py-3" onClick={logoutHandler}>
           로그아웃

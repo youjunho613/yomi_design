@@ -6,11 +6,9 @@ interface ILogin {
 }
 
 export const checkUser = async () => {
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  const { data } = await supabase.auth.getUser();
 
-  return user;
+  return data;
 };
 
 export const login = async ({ email, password }: ILogin) => {
