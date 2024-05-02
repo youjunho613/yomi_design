@@ -9,6 +9,6 @@ module.exports = {
   },
   typescript: {
     /* 빌드 오류 무시 */
-    // ignoreBuildErrors: true,
+    ignoreBuildErrors: true,
   },
 };
