@@ -4,6 +4,7 @@ import ReactQueryProviders from "@/hook/useReactQuery";
 import type { Metadata } from "next";
 import type { NextFont } from "next/dist/compiled/@next/font";
 import localFont from "next/font/local";
+import { ReactNode } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
@@ -31,7 +32,11 @@ export const myFont: NextFont = localFont({
   variable: "--font-pretendard",
 });
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+interface IProps {
+  children: ReactNode;
+}
+
+export default function RootLayout({ children }: IProps) {
   return (
     <html lang="ko">
       <body className={`${myFont.className} contents-center min-h-screen flex-col bg-main pt-14`}>
@@ -40,6 +45,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <main className="layout my-14 min-h-fit grow-[1]">{children}</main>
           <Footer />
         </ReactQueryProviders>
+        <div id="modal-root" />
         <ToastContainer pauseOnFocusLoss closeOnClick autoClose={2000} position="top-right" />
       </body>
     </html>
