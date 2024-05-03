@@ -5,7 +5,7 @@ function page() {
   return (
     <div className="mt-7 flex items-start justify-around gap-10 pl-10">
       <div className="flex w-full flex-col gap-7 align-baseline">
-        <Image src="/introduce_logo.svg" width={182} height={27} alt="요미디자인은?" />
+        <Image src="/introduce-title.png" width={182} height={27} alt="요미디자인은?" />
         <div className="break-keep leading-6">
           <p>
             [아이덴티티와 디자인을 연결하다]라는 슬로건을 가지고 시작한 저희 요미디자인은 다양한 분야의 사인물과
@@ -29,11 +29,16 @@ function page() {
           ))}
         </div>
         <div className="flex w-full flex-col gap-10">
-          <Image src="/step_title.svg" width={97} height={25} alt="진행방법" />
-          <Image src="/step.svg" width={573} height={230} alt="진행순서" />
+          <Image src="/introduce-step.png" width={573} height={438} alt="진행방법" />
         </div>
       </div>
-      <Image src="line_art.svg" width={251} height={915} className="hidden -translate-y-7 md:block" alt="deco" />
+      <Image
+        src="/introduce-line-art.png"
+        width={251}
+        height={915}
+        className="hidden -translate-y-7 md:block"
+        alt="deco"
+      />
     </div>
   );
 }

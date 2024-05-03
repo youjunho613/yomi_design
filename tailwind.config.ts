@@ -17,6 +17,7 @@ const config: Config = {
         black002: "#1f1f1f",
         main: "#fef4e8",
         sub: "#ea5456",
+        subsoft: "#f28183",
       },
       borderWidth: {
         "3": "3px",

@@ -1,10 +1,11 @@
 import useEstimate from "@/service/estimate/mutations";
-import type { Tables } from "@/supabase/type";
 import { useState } from "react";
 import Text from "../Text";
 import ImageList from "./ImageList";
 import ImageToggleButton from "./ImageToggleButton";
 import StatusButton from "./StatusButton";
+
+import type { Tables } from "@/supabase/type";
 
 export type TImageToggle = "storePhoto" | "photoUrl";
 

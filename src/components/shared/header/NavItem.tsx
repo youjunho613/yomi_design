@@ -1,14 +1,22 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useState } from "react";
+import HamburgerButton from "./HamburgerButton";
 import { NAV_CONTENT } from "./Header.content";
+
+const DynamicModal = dynamic(() => import("../../modal/Modal"), { ssr: false });
 
 export default function NavItem() {
   const [isOpen, setIsOpen] = useState(false);
 
   const openToggle = () => {
     setIsOpen(!isOpen);
+  };
+
+  const onClose = () => {
+    setIsOpen(false);
   };
 
   return (
@@ -18,11 +26,23 @@ export default function NavItem() {
           {item.label}
         </Link>
       ))}
-      <button className="contents-center group flex-col gap-1 sm:hidden" onClick={openToggle}>
-        <span className={`h-0.5 w-5 rounded-full bg-black duration-200 ${isOpen && "translate-y-1.5 rotate-45"}`} />
-        <span className={`h-0.5 w-5 rounded-full bg-black transition duration-200 ${isOpen && "scale-x-0"}`} />
-        <span className={`h-0.5 w-5 rounded-full bg-black duration-200 ${isOpen && "-translate-y-1.5 -rotate-45"}`} />
-      </button>
+      <HamburgerButton isOpen={isOpen} openToggle={openToggle} />
+      <DynamicModal
+        open={isOpen}
+        onClose={onClose}
+        className={{
+          overlay: "sm:hidden",
+          modal: "w-10/12 rounded-s-3xl bg-sub text-white",
+        }}
+      >
+        <div className="side-navigation">
+          {NAV_CONTENT.map((item) => (
+            <Link key={item.href} href={item.href} id={item.href} onClick={onClose} className="w-full border-b py-2">
+              {item.label}
+            </Link>
+          ))}
+        </div>
+      </DynamicModal>
     </nav>
   );
 }

@@ -1,4 +1,5 @@
 import { supabase } from "@/supabase/supabase";
+
 import type { TablesInsert, TablesUpdate } from "@/supabase/type";
 
 interface IModifyPost {

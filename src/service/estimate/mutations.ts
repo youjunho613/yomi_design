@@ -1,6 +1,5 @@
 "use client";
 
-import type { TEstimateStatusUpdate } from "@/app/admin/estimateList/page";
 import { queryClient } from "@/hook/useReactQuery";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { toast } from "react-toastify";
@@ -11,6 +10,8 @@ import {
   getFilteredEstimateList,
   modifyEstimateStatus,
 } from "./estimateService";
+
+import type { TEstimateStatusUpdate } from "@/app/admin/estimateList/page";
 
 interface IProps {
   status?: TEstimateStatusUpdate;

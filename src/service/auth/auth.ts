@@ -1,4 +1,4 @@
-import { supabase } from "@/supabase/supabase";
+import { supabaseAuth } from "@/supabase/supabase";
 
 interface ILogin {
   email: string;
@@ -6,20 +6,20 @@ interface ILogin {
 }
 
 export const checkUser = async () => {
-  const { data } = await supabase.auth.getUser();
+  const { data } = await supabaseAuth.getUser();
 
   return data;
 };
 
 export const login = async ({ email, password }: ILogin) => {
-  const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+  const { data, error } = await supabaseAuth.signInWithPassword({ email, password });
 
   if (error) return console.error(`${error.message}`);
   return data;
 };
 
 export const logout = async () => {
-  const { error } = await supabase.auth.signOut();
+  const { error } = await supabaseAuth.signOut();
 
   if (error) return console.error(`${error.message}`);
 };

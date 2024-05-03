@@ -1,8 +1,9 @@
-import type { TMainSignType, TSubCategory } from "@/app/category.constant";
 import { SUB_CATEGORY } from "@/app/category.constant";
 import Detail from "@/components/board/Detail";
 import PostList from "@/components/board/PostList";
 import Link from "next/link";
+
+import type { TMainSignType, TSubCategory } from "@/app/category.constant";
 
 export type TPostId = string | undefined;
 
@@ -20,15 +21,10 @@ export default function Board({ params: { category: params } }: IProps) {
 
   if (!category.mainCategory) return <p>잘못된 접근입니다.</p>;
 
-  /* 
-  1. 햄버거 버튼
-  2. 히든
-  3. 전체 노출
-  */
   return (
     <div>
       <nav>
-        <ul className="contents-center sub-navigation mb-12">
+        <ul className="contents-center page-navigation mb-12">
           <li className="break-keep">
             <Link href={`/board/${category.mainCategory}`}>전체</Link>
           </li>

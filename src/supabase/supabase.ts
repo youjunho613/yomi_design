@@ -1,6 +1,8 @@
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { createClient } from "@supabase/supabase-js";
 import uuid from "react-uuid";
-import { Database } from "./type";
+
+import type { Database } from "./type";
 
 type TBucket = "estimate" | "post";
 
@@ -20,6 +22,7 @@ export const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL ?? "";
 export const STORAGE_URL = `${process.env.NEXT_PUBLIC_SUPABASE_URL ?? ""}/storage/v1/object/public`;
 const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? "";
 export const supabase = createClient<Database>(SUPABASE_URL, SUPABASE_ANON_KEY);
+export const supabaseAuth = createClientComponentClient<Database>().auth;
 
 export const uploadStorage = async ({ bucket, id, file }: IUploadStorage) => {
   const { data, error } = await supabase.storage.from(bucket).upload(id, file);

@@ -1,12 +1,13 @@
 "use client";
 
-import type { TMainSignType } from "@/app/category.constant";
 import { SUB_CATEGORY } from "@/app/category.constant";
 import usePost from "@/service/post/mutations";
 import { STORAGE_URL } from "@/supabase/supabase";
 import Image from "next/image";
 import Error from "../shared/Error";
 import Loading from "../shared/loading/Loading";
+
+import type { TMainSignType } from "@/app/category.constant";
 
 export default function Detail() {
   const { fetchPost } = usePost();

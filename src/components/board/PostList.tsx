@@ -1,6 +1,5 @@
 "use client";
 
-import type { TMainSignType, TSubCategory } from "@/app/category.constant";
 import { SUB_CATEGORY } from "@/app/category.constant";
 import usePost from "@/service/post/mutations";
 import { STORAGE_URL } from "@/supabase/supabase";
@@ -8,6 +7,8 @@ import Image from "next/image";
 import Link from "next/link";
 import Error from "../shared/Error";
 import Loading from "../shared/loading/Loading";
+
+import type { TMainSignType, TSubCategory } from "@/app/category.constant";
 
 interface IProps {
   category: {
