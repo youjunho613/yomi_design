@@ -1,10 +1,12 @@
 "use client";
 
-import Modal from "@/components/modal/Modal";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useState } from "react";
 import HamburgerButton from "./HamburgerButton";
 import { NAV_CONTENT } from "./Header.content";
+
+const DynamicModal = dynamic(() => import("../../modal/Modal"), { ssr: false });
 
 export default function NavItem() {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,7 +27,7 @@ export default function NavItem() {
         </Link>
       ))}
       <HamburgerButton isOpen={isOpen} openToggle={openToggle} />
-      <Modal
+      <DynamicModal
         open={isOpen}
         onClose={onClose}
         className={{
@@ -40,7 +42,7 @@ export default function NavItem() {
             </Link>
           ))}
         </div>
-      </Modal>
+      </DynamicModal>
     </nav>
   );
 }
