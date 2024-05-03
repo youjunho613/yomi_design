@@ -1,8 +1,10 @@
 "use client";
 
 import { login } from "@/service/auth/auth";
+import { supabaseAuth } from "@/supabase/supabase";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { toast } from "react-toastify";
 
 interface IAuth {
   email: string;
@@ -11,13 +13,20 @@ interface IAuth {
 
 export default function Login() {
   const { register, handleSubmit } = useForm<IAuth>();
+  const router = useRouter();
+
+  useEffect(() => {
+    const getUser = async () => {
+      const { data } = await supabaseAuth.getUser();
+      if (!data.user) return;
+      router.push("/admin");
+    };
+    getUser();
+  }, [router]);
 
   const onSubmit = async (data: IAuth) => {
-    try {
-      const user = await login(data);
-    } catch (error) {
-      return toast.error(`로그인에 실패했습니다. (${error})`, { autoClose: 6000 });
-    }
+    await login(data);
+    router.push("/admin");
   };
 
   return (
