@@ -1,5 +1,6 @@
 "use client";
 
+import Loading from "@/components/shared/loading/Loading";
 import { supabaseAuth } from "@/supabase/supabase";
 import { User } from "@supabase/supabase-js";
 import Link from "next/link";
@@ -30,7 +31,7 @@ export default function AdminLayout({ children }: IProps) {
 
   return (
     <div className="flex flex-col gap-4">
-      {user && (
+      {user ? (
         <>
           <div className="contents-between flex-col gap-4 sm:flex-row">
             <p>{user.email}</p>
@@ -62,6 +63,8 @@ export default function AdminLayout({ children }: IProps) {
             {/* <Navbar /> */}
           </div>
         </>
+      ) : (
+        <Loading />
       )}
     </div>
   );
