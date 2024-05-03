@@ -1,13 +1,11 @@
 "use client";
 
-import { SUB_CATEGORY } from "@/app/category.constant";
 import usePost from "@/service/post/mutations";
 import { STORAGE_URL } from "@/supabase/supabase";
+import CategoryKor from "@/utils/categoryKor";
 import Image from "next/image";
 import Error from "../shared/Error";
 import Loading from "../shared/loading/Loading";
-
-import type { TMainSignType } from "@/app/category.constant";
 
 export default function Detail() {
   const { fetchPost } = usePost();
@@ -17,10 +15,8 @@ export default function Detail() {
   if (isError) return <Error error={error.message} />;
   if (!data) return <p>업로드된 게시물이 없습니다.</p>;
 
-  const mainCategory = data.mainCategory as TMainSignType;
-  const subCategory = SUB_CATEGORY[mainCategory];
-  const currentCategory = subCategory.find(({ id }) => id === data.subCategory);
-  const categoryLabel = currentCategory?.label;
+  const { mainCategory, subCategory } = data;
+  const categoryLabel = CategoryKor({ mainCategory, subCategory }).subCategory;
 
   return (
     <div>

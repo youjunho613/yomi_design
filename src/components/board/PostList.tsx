@@ -1,8 +1,8 @@
 "use client";
 
-import { SUB_CATEGORY } from "@/app/category.constant";
 import usePost from "@/service/post/mutations";
 import { STORAGE_URL } from "@/supabase/supabase";
+import CategoryKor from "@/utils/categoryKor";
 import Image from "next/image";
 import Link from "next/link";
 import Error from "../shared/Error";
@@ -30,18 +30,14 @@ export default function PostList({ category }: IProps) {
     <ul className="flex flex-wrap justify-center gap-[26px] sm:justify-start">
       {data.map((data) => {
         const path = `/board/${data.mainCategory}/${data.subCategory}/${data.id}`;
-        const mainCategory = data.mainCategory as TMainSignType;
-        const subCategory = SUB_CATEGORY[mainCategory];
-        const currentCategory = subCategory.find(({ id }) => id === data.subCategory);
-        const categoryLabel = currentCategory?.label;
+        const { mainCategory, subCategory } = data;
+        const categoryLabel = CategoryKor({ mainCategory, subCategory }).subCategory;
 
         return (
           <Link key={data.id} href={path}>
             <li className="w-[230px] border-[3px] border-black002 bg-white">
               <div className="contents-center relative h-[224px] w-[224px]">
                 <Image
-                  // width={224}
-                  // height={224}
                   src={`${STORAGE_URL}/post/${data.photoUrl[0]}`}
                   alt={`${data.title} 시공사진`}
                   objectFit="cover"

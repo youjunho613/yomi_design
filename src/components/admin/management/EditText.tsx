@@ -1,5 +1,6 @@
 import usePostModify from "@/store/usePostModify";
 import { Tables } from "@/supabase/type";
+import CategoryKor from "@/utils/categoryKor";
 import Text from "../Text";
 import CategorySelect from "../form/CategorySelect";
 
@@ -10,7 +11,10 @@ interface Props {
 }
 export default function EditText({ post, name, label }: Props) {
   const { postIsOpen, modifyContent, onChangeModifyContent } = usePostModify();
+  const { mainCategory, subCategory } = post;
+  const categoryLabel = CategoryKor({ mainCategory, subCategory }).detail;
 
+  if (postIsOpen !== post.id && label === "종류") return <Text label={label} data={categoryLabel} />;
   if (postIsOpen !== post.id) return <Text label={label} data={post[name]} />;
   if (postIsOpen === post.id && label === "종류") return <CategorySelect />;
   if (modifyContent === null) return <p>잘못된 경로입니다.</p>;
@@ -29,7 +33,4 @@ export default function EditText({ post, name, label }: Props) {
       />
     </label>
   );
-  {
-    /* <input name={name} value={post[name]} onChange={(event) => onChange(name, editBoard[post.id][name])} /> */
-  }
 }
