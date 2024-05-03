@@ -1,8 +1,9 @@
-import type { TMainSignType, TSubCategory } from "@/app/category.constant";
 import { SUB_CATEGORY } from "@/app/category.constant";
 import Detail from "@/components/board/Detail";
 import PostList from "@/components/board/PostList";
 import Link from "next/link";
+
+import type { TMainSignType, TSubCategory } from "@/app/category.constant";
 
 export type TPostId = string | undefined;
 

@@ -1,5 +1,6 @@
-import type { ReactNode } from "react";
 import ReactDOM from "react-dom";
+
+import type { ReactNode } from "react";
 
 interface IProps {
   open: boolean;

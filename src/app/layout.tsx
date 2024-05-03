@@ -1,13 +1,14 @@
 import Footer from "@/components/shared/Footer";
 import Header from "@/components/shared/header/Header";
 import ReactQueryProviders from "@/hook/useReactQuery";
-import type { Metadata } from "next";
-import type { NextFont } from "next/dist/compiled/@next/font";
 import localFont from "next/font/local";
 import { ReactNode } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
+
+import type { Metadata } from "next";
+import type { NextFont } from "next/dist/compiled/@next/font";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://yomi-design.com"),

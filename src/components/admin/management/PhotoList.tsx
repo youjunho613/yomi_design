@@ -3,11 +3,12 @@ import usePostPhotoModify from "@/store/usePostPhotoModify";
 import { STORAGE_URL, fileToUrls } from "@/supabase/supabase";
 import { Tables } from "@/supabase/type";
 import Image from "next/image";
-import type { ChangeEvent } from "react";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import PhotoEditButton from "./PhotoEditButton";
 import PreviewImage from "./PreviewImage";
+
+import type { ChangeEvent } from "react";
 
 interface Props {
   post: Tables<"board">;
