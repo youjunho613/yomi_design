@@ -28,7 +28,7 @@ const config: Config = {
         "7.5": "1.875rem",
         "13": "3.25rem",
         "15": "3.75rem",
-        layout: "78.125%",
+        layout: "87.5%",
       },
     },
   },

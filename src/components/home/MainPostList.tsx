@@ -16,14 +16,14 @@ export default function MainPostList() {
   if (!data) return <div>업로드된 게시물이 없습니다.</div>;
 
   return (
-    <div className="contents-center w-full flex-wrap gap-6">
+    <div className="contents-center w-full flex-wrap gap-2.5 sm:gap-6">
       {data.map((post) => {
         const path = `/board/${post.mainCategory}/${post.subCategory}`;
         return (
           <Link
             href={`${path}/${post.id}`}
             key={post.id}
-            className="contents-center relative h-[230px] w-[230px] border-[3px] border-black"
+            className="contents-center relative aspect-square w-[47.4%] border-[3px] border-black"
           >
             <Image
               src={`${STORAGE_URL}/post/${post.photoUrl[0]}`}
