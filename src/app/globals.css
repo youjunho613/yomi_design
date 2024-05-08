@@ -49,13 +49,13 @@ body {
     @apply flex flex-col gap-4 text-xl;
   }
   .footer {
-    @apply contents-center relative w-full flex-col gap-6 bg-sub px-4 py-10 text-main;
+    @apply relative flex w-full flex-col gap-6 bg-sub px-4 py-10 text-main;
   }
   .footer-list {
     @apply flex flex-wrap;
   }
   .footer-item {
-    @apply flex gap-1 after:mx-2.5 after:content-["|"] last:after:content-[""] sm:break-keep;
+    @apply flex gap-1 after:mx-2.5 sm:break-keep xl:after:content-["|"] xl:last:after:content-[""];
   }
   .animation {
     @apply transition-all duration-150 ease-linear;

@@ -26,7 +26,7 @@ export const COMPANY = {
   ...address,
   ...document,
   ...contact,
-  copyRight: "ⓒ 2023. 요미디자인(YOMI DESIGN) all rights reserved.",
+  copyRight: "ⓒ 2023. YOMI DESIGN all rights reserved.",
 };
 
 export const FOOTER_CONTENT = [
