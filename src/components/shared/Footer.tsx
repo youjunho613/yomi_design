@@ -4,10 +4,11 @@ function Footer() {
   const fullAddress = `(${COMPANY.addressPostcode}) ${COMPANY.address} ${COMPANY.addressDetail}`;
 
   return (
-    <footer className="footer relative shrink-0 grow-0 text-sm">
-      <div className="flex flex-col px-10">
+    <footer className="footer relative shrink-0 grow-0 text-[10px] sm:text-sm">
+      <div className="layout flex flex-col">
         <p>{fullAddress}</p>
-        <ul className="flex flex-wrap">
+        <br />
+        <ul className="flex flex-col flex-wrap xl:flex-row">
           {FOOTER_CONTENT.map((item, index) => (
             <li className="footer-item" key={index}>
               <label className="font-bold">{item.label}</label>
@@ -16,7 +17,7 @@ function Footer() {
           ))}
         </ul>
       </div>
-      <p className="px-10">{COMPANY.copyRight}</p>
+      <p className="layout">{COMPANY.copyRight}</p>
     </footer>
   );
 }
