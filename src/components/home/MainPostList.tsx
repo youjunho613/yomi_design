@@ -23,7 +23,7 @@ export default function MainPostList() {
           <Link
             href={`${path}/${post.id}`}
             key={post.id}
-            className="contents-center relative aspect-square w-[47.4%] border-[3px] border-black"
+            className="contents-center relative aspect-square max-h-[230px] w-[47.4%] max-w-[230px] border-[3px] border-black"
           >
             <Image
               src={`${STORAGE_URL}/post/${post.photoUrl[0]}`}

@@ -44,7 +44,7 @@ export default function RootLayout({ children }: IProps) {
       <body className={`${myFont.className} contents-center min-h-screen flex-col bg-main pt-14`}>
         <ReactQueryProviders>
           <Header />
-          <main className="layout my-14 min-h-fit grow-[1] px-[25px]">{children}</main>
+          <main className="layout my-14 min-h-fit grow-[1]">{children}</main>
           <Footer />
         </ReactQueryProviders>
         <div id="modal-root" />
