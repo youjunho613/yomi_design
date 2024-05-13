@@ -17,7 +17,10 @@ export const metadata: Metadata = {
   keywords: ["간판", "로고", "디자인", "사인물", "인쇄물"],
   authors: [{ name: "요미디자인", url: "https://yomi-design.com" }],
   alternates: { canonical: "/" },
-  verification: { other: { "naver-site-verification": ["40a9d008f18e219e238c9285c9a689a80ef1d80c"] } },
+  verification: {
+    google: "Giim6G-Ft1Am7_ngrovrawbuHfQQzEhg30jOhKutyek",
+    other: { "naver-site-verification": ["40a9d008f18e219e238c9285c9a689a80ef1d80c"] },
+  },
   openGraph: {
     title: "요미디자인",
     description: "아이덴티티와 디자인을 연결하다.",
