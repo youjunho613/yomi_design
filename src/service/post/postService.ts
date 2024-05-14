@@ -15,14 +15,16 @@ export const getPostList = async () => {
 };
 
 export const getMainPostList = async () => {
-  const { data: board, error } = await supabase
-    .from("board")
-    .select("*")
-    .order("created_at", { ascending: false })
-    .limit(4);
+  const { data, error } = await supabase.from("mainPosts").select("*,board (*)").order("position", { ascending: true });
 
   if (error) console.error("getPost : ", error);
-  return board;
+  return data;
+};
+
+export const changeFixPost = async ({ postId, position }: { postId: number; position: number }) => {
+  const { error } = await supabase.from("mainPosts").update({ postId }).eq("position", position);
+
+  if (error) console.error("changeFixPost : ", error);
 };
 
 export const getPostListByCategory = async ({

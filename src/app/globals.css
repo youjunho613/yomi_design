@@ -67,7 +67,7 @@ body {
     @apply transition-all duration-150 ease-linear;
   }
   .input {
-    @apply w-full border-none p-[5px] focus:border-none focus:outline-none;
+    @apply w-full border-none p-[5px] text-black focus:border-none focus:outline-none;
   }
   .estimate-label {
     @apply contents-between min-h-[40px] w-full gap-5 border-3 border-black002 bg-white px-2.5;
