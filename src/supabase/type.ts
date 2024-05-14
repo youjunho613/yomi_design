@@ -110,6 +110,35 @@ export type Database = {
         };
         Relationships: [];
       };
+      mainPosts: {
+        Row: {
+          created_at: string;
+          id: number;
+          position: number | null;
+          postId: number;
+        };
+        Insert: {
+          created_at?: string;
+          id?: number;
+          position?: number | null;
+          postId: number;
+        };
+        Update: {
+          created_at?: string;
+          id?: number;
+          position?: number | null;
+          postId?: number;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "mainPosts_postId_fkey";
+            columns: ["postId"];
+            isOneToOne: false;
+            referencedRelation: "board";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
     };
     Views: {
       [_ in never]: never;

@@ -4,6 +4,7 @@ import { queryClient } from "@/hook/useReactQuery";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
 import {
+  changeFixPost,
   createPost,
   deletePost,
   getMainPostList,
@@ -59,6 +60,13 @@ export default function usePost() {
     },
   });
 
+  const changeFixPostMutation = useMutation({
+    mutationFn: changeFixPost,
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey });
+    },
+  });
+
   const deletePostMutation = useMutation({
     mutationFn: deletePost,
     onSuccess: async () => {
@@ -73,6 +81,7 @@ export default function usePost() {
     fetchPost,
     createPostMutation,
     modifyPostMutation,
+    changeFixPostMutation,
     deletePostMutation,
   };
 }
