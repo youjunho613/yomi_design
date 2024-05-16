@@ -46,7 +46,7 @@ body {
     @apply mx-auto border-3 border-black002 bg-white text-sm font-bold lg:text-base;
   }
   .navigation {
-    @apply navigation-common contents-between layout h-12 min-w-fit shrink-0 grow-0 rounded-full px-10;
+    @apply navigation-common contents-between layout h-12 min-w-fit shrink-0 grow-0 rounded-full px-6;
   }
   .page-navigation {
     @apply navigation-common h-auto min-h-[48px] w-full max-w-[1000px] flex-wrap gap-x-6 gap-y-3 px-4;
