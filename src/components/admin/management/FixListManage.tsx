@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { toast } from "react-toastify";
 
-export default function FixPostManage() {
+export default function FixListManage() {
   const { fetchMainPost, changeFixPostMutation } = usePost();
   const [fixPostToggle, setFixPostToggle] = useState<boolean>(false);
   const [currentFixPost, setCurrentFixPost] = useState<Pick<Tables<"mainPosts">, "position">>({ position: null });
