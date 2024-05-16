@@ -7,7 +7,7 @@ import { isMobile } from "react-device-detect";
 
 export default function SocialBox() {
   return (
-    <div className="contents-center flex-nowrap gap-1.5 text-[7px] md:justify-start md:gap-2.5 md:text-sm">
+    <div className="contents-between gap-[6px]">
       {isMobile ? (
         <Link href={`tel:${COMPANY.phone}`} target="_blank" className="social-button">
           <div>
