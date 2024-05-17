@@ -1,23 +1,20 @@
 import { COMPANY, FOOTER_CONTENT } from "@/app/company-info";
 
-function Footer() {
-  const fullAddress = `(${COMPANY.addressPostcode}) ${COMPANY.address} ${COMPANY.addressDetail}`;
+const FULL_ADDRESS = `(${COMPANY.addressPostcode}) ${COMPANY.address} ${COMPANY.addressDetail}`;
 
+function Footer() {
   return (
-    <footer className="footer relative shrink-0 grow-0 text-[10px] sm:text-sm">
-      <div className="layout flex flex-col">
-        <p>{fullAddress}</p>
-        <br />
-        <ul className="flex flex-col flex-wrap xl:flex-row">
-          {FOOTER_CONTENT.map((item, index) => (
-            <li className="footer-item" key={index}>
-              <label className="font-bold">{item.label}</label>
-              <p>{item.content}</p>
-            </li>
-          ))}
-        </ul>
-      </div>
-      <p className="layout">{COMPANY.copyRight}</p>
+    <footer>
+      <ul>
+        <li className="mb-4">{FULL_ADDRESS}</li>
+        {FOOTER_CONTENT.map((item, index) => (
+          <li key={index}>
+            <label>{item.label}</label>
+            <p>{item.content}</p>
+          </li>
+        ))}
+      </ul>
+      <p>{COMPANY.copyRight}</p>
     </footer>
   );
 }

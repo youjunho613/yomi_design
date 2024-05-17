@@ -8,21 +8,35 @@
 }
 
 body {
-  @apply font-pretendard;
+  @apply contents-center min-h-screen flex-col bg-main pt-14 font-pretendard;
+  > main {
+    @apply layout my-14 min-h-fit grow-[1];
+  }
+}
+
+footer {
+  @apply relative flex w-full shrink-0 grow-0 flex-col gap-6 bg-sub px-4 py-10 text-[10px] text-main sm:text-sm;
+  > * {
+    @apply layout;
+  }
+  > ul {
+    @apply flex flex-col flex-wrap lg:flex-row;
+    > li:first-child {
+      @apply w-full;
+    }
+    > li:not(:first-child) {
+      @apply flex gap-1 after:mx-2.5 sm:break-keep lg:after:content-["|"] lg:last:after:content-[""];
+      > label {
+        @apply font-bold;
+      }
+    }
+  }
 }
 
 @layer components {
+  /* layout */
   .layout {
     @apply mx-auto w-layout max-w-[1000px];
-  }
-  .pop {
-    @apply absolute top-0 h-5.5 w-11 -translate-x-1/2 -translate-y-full;
-  }
-  .pop:after {
-    @apply absolute left-0 top-0 h-0 w-0 border-b-22 border-l-22 border-r-22 border-b-white border-l-transparent border-r-transparent content-[""];
-  }
-  .pop:before {
-    @apply absolute -top-[3px] left-0 h-0 w-0 border-b-22 border-l-22 border-r-22 border-b-black002 border-l-transparent border-r-transparent content-[""];
   }
   .contents-center {
     @apply flex items-center justify-center;
@@ -33,74 +47,18 @@ body {
   .contents-around {
     @apply flex items-center justify-around;
   }
-  .social-button {
-    @apply contents-center flex-1 gap-[3px] rounded-2xl border-2 border-black002 bg-sub py-[3px] text-[7px] text-main shadow-button sm:text-xs lg:gap-1.5 lg:text-sm;
-    > div {
-      @apply relative h-[9px] w-[9px] sm:h-3 sm:w-3 lg:h-4 lg:w-4;
-    }
-    > div > img {
-      @apply overflow-visible;
-    }
-  }
-  .navigation-common {
-    @apply mx-auto border-3 border-black002 bg-white text-sm font-bold lg:text-base;
-  }
-  .navigation {
-    @apply navigation-common contents-between layout h-12 min-w-fit shrink-0 grow-0 rounded-full px-6;
-  }
-  .page-navigation {
-    @apply navigation-common h-auto min-h-[48px] w-full max-w-[1000px] flex-wrap gap-x-6 gap-y-3 px-4;
-  }
-  .side-navigation {
-    @apply flex flex-col gap-4 text-xl;
-  }
-  .footer {
-    @apply relative flex w-full flex-col gap-6 bg-sub px-4 py-10 text-main;
-  }
-  .footer-list {
-    @apply flex flex-wrap;
-  }
-  .footer-item {
-    @apply flex gap-1 after:mx-2.5 sm:break-keep xl:after:content-["|"] xl:last:after:content-[""];
-  }
-  .animation {
-    @apply transition-all duration-150 ease-linear;
-  }
-  .input {
-    @apply w-full border-none p-[5px] text-black focus:border-none focus:outline-none;
-  }
-  .estimate-label {
-    @apply contents-between min-h-[40px] w-full gap-5 border-3 border-black002 bg-white px-2.5;
-  }
-  .tab {
-    @apply contents-around mx-10 my-1 flex-wrap gap-x-4 gap-y-2 sm:flex-nowrap;
-  }
-  .tab-button-box {
-    @apply w-full;
-  }
-  .tab-button {
-    @apply contents-center w-full break-keep rounded-full border border-black002 bg-white p-2;
-  }
+  /* common */
   .basic-button {
     @apply cursor-pointer bg-sub text-main;
   }
   .modal-overlay {
     @apply fixed inset-0 z-10 max-h-screen overflow-y-auto overflow-x-hidden overscroll-contain;
   }
-  .modal-overlay-open {
-    @apply block;
-  }
-  .modal-overlay-close {
-    @apply hidden;
-  }
   .modal {
-    @apply fixed right-0 top-0 z-10 min-h-screen w-1/2 transform overflow-y-auto overflow-x-hidden overscroll-contain bg-white p-10 transition-transform duration-700 ease-in-out;
-  }
-  .modal-open {
-    @apply translate-x-0;
-  }
-  .modal-close {
-    @apply translate-x-full;
+    @apply fixed right-0 top-0 z-10;
+    @apply min-h-screen w-1/2 bg-white p-10;
+    @apply transform overflow-y-auto overflow-x-hidden overscroll-contain;
+    @apply transition-transform duration-700 ease-in-out;
   }
   .close-button {
     @apply contents-center absolute right-1 top-1;
@@ -117,5 +75,60 @@ body {
     > span::after {
       @apply -rotate-45;
     }
+  }
+
+  /* component */
+  .navigation-common {
+    @apply mx-auto border-3 border-black002 bg-white text-sm font-bold;
+    @apply lg:text-base;
+  }
+  .page-navigation {
+    @apply navigation-common h-auto min-h-[48px] w-full max-w-[1000px] flex-wrap gap-x-6 gap-y-3 px-4;
+  }
+  .navigation {
+    @apply navigation-common contents-between layout h-12 min-w-fit shrink-0 grow-0 rounded-full px-6;
+    > a {
+      @apply min-w-fit;
+    }
+  }
+  .side-navigation {
+    @apply flex flex-col gap-4 text-xl;
+    > a {
+      @apply w-full border-b py-2;
+    }
+  }
+  .input {
+    @apply w-full border-none p-[5px] text-black focus:border-none focus:outline-none;
+  }
+  .tab {
+    @apply contents-around mx-10 my-1 flex-wrap gap-x-4 gap-y-2 sm:flex-nowrap;
+    > li {
+      @apply w-full;
+    }
+    > li > a {
+      @apply contents-center w-full break-keep rounded-full border border-black002 bg-white p-2;
+    }
+  }
+  .estimate-label {
+    @apply contents-between min-h-[40px] w-full gap-5 border-3 border-black002 bg-white px-2.5;
+    > span {
+      @apply break-keep;
+    }
+  }
+  .social-button {
+    @apply contents-center flex-1 gap-[3px] rounded-2xl border-2 border-black002 bg-sub py-[3px] text-[7px] text-main shadow-button;
+    @apply lg:gap-1.5 lg:text-sm;
+    @apply sm:text-xs;
+    > div {
+      @apply relative h-[9px] w-[9px] sm:h-3 sm:w-3 lg:h-4 lg:w-4;
+    }
+    > div > img {
+      @apply overflow-visible;
+    }
+  }
+
+  /* animation */
+  .animation {
+    @apply transition-all duration-150 ease-linear;
   }
 }

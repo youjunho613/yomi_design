@@ -44,10 +44,10 @@ interface IProps {
 export default function RootLayout({ children }: IProps) {
   return (
     <html lang="ko">
-      <body className={`${myFont.className} contents-center min-h-screen flex-col bg-main pt-14`}>
+      <body className={myFont.className}>
         <ReactQueryProviders>
           <Header />
-          <main className="layout my-14 min-h-fit grow-[1]">{children}</main>
+          <main>{children}</main>
           <Footer />
         </ReactQueryProviders>
         <div id="modal-root" />
