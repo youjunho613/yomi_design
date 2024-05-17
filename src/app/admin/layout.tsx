@@ -41,20 +41,14 @@ export default function AdminLayout({ children }: IProps) {
             </button>
           </div>
           <ul className="tab">
-            <li className="tab-button-box">
-              <Link href={"/admin/estimateList"} className="tab-button">
-                문의
-              </Link>
+            <li>
+              <Link href={"/admin/estimateList"}>문의</Link>
             </li>
-            <li className="tab-button-box">
-              <Link href={"/admin/management"} className="tab-button">
-                게시물 관리
-              </Link>
+            <li>
+              <Link href={"/admin/management"}>게시물 관리</Link>
             </li>
-            <li className="tab-button-box">
-              <Link href={"/admin/create"} className="tab-button">
-                게시물 등록
-              </Link>
+            <li>
+              <Link href={"/admin/create"}>게시물 등록</Link>
             </li>
           </ul>
           {/* <Sidebar /> */}

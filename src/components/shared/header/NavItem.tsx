@@ -37,7 +37,7 @@ export default function NavItem() {
       >
         <div className="side-navigation">
           {NAV_CONTENT.map((item) => (
-            <Link key={item.href} href={item.href} id={item.href} onClick={onClose} className="w-full border-b py-2">
+            <Link key={item.href} href={item.href} id={item.href} onClick={onClose}>
               {item.label}
             </Link>
           ))}

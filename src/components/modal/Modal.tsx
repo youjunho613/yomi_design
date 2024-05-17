@@ -21,11 +21,8 @@ export default function Modal({ open, onClose, children, className }: IProps) {
 
   return ReactDOM.createPortal(
     <>
-      <div
-        className={`${className?.overlay} ${open ? "modal-overlay-open" : "modal-overlay-close"} modal-overlay`}
-        onClick={onClose}
-      ></div>
-      <div className={`${className?.modal} ${open ? "modal-open" : "modal-close"} modal`}>
+      <div className={`${className?.overlay} ${open ? "block" : "hidden"} modal-overlay`} onClick={onClose}></div>
+      <div className={`${className?.modal} ${open ? "translate-x-0" : "translate-x-full"} modal`}>
         {children}
         <button className="close-button" onClick={onClose}>
           <span id="closeButton" />
