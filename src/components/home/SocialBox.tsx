@@ -3,27 +3,28 @@
 import { COMPANY } from "@/app/company-info";
 import Image from "next/image";
 import Link from "next/link";
+import { BrowserView, MobileView } from "react-device-detect";
+// import { BrowserView,MobileView, isMobile } from "react-device-detect";
 
 export default function SocialBox() {
-  const isMobile = /iPhone|iPad|iPod|Android/i.test(window.navigator.userAgent);
-
   return (
     <div className="contents-between gap-[6px]">
-      {isMobile ? (
+      <MobileView className="flex-1">
         <Link href={`tel:${COMPANY.phone}`} target="_blank" className="social-button">
           <div>
             <Image objectFit="cover" layout="fill" src="/social-phone.svg" alt="전화문의" />
           </div>
           전화문의
         </Link>
-      ) : (
+      </MobileView>
+      <BrowserView className="flex-1">
         <Link href={"/tel"} target="_blank" className="social-button">
           <div>
             <Image objectFit="cover" layout="fill" src="/social-phone.svg" alt="전화문의" />
           </div>
           전화문의
         </Link>
-      )}
+      </BrowserView>
 
       <Link href={COMPANY.kakaoTalk} target="_blank" className="social-button">
         <div>
