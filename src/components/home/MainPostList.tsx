@@ -18,20 +18,11 @@ export default function MainPostList() {
   return (
     <div className="contents-center w-layout flex-wrap gap-2.5 sm:gap-6">
       {data.map((post) => {
-        const path = `/board/${post.board?.mainCategory}/${post.board?.subCategory}`;
+        const path = `/board/${post.board?.mainCategory}/${post.board?.subCategory}/${post.board?.id}`;
+        const sourcePath = `${STORAGE_URL}/post/${post.board?.photoUrl[0]}`;
         return (
-          <Link
-            href={`${path}/${post.board?.id}`}
-            key={post.id}
-            className="contents-center relative aspect-square w-[47.4%] max-w-[251px] border-[3px] border-black lg:w-[22.7%]"
-          >
-            <Image
-              src={`${STORAGE_URL}/post/${post.board?.photoUrl[0]}`}
-              alt="시공 사진"
-              loading="eager"
-              objectFit="cover"
-              layout="fill"
-            />
+          <Link href={path} key={post.id} className="main-post">
+            <Image src={sourcePath} alt="시공 사진" width={200} height={200} />
           </Link>
         );
       })}
