@@ -33,7 +33,11 @@ export default function useEstimate({ status }: IProps) {
   const createEstimateMutation = useMutation({
     mutationFn: createEstimate,
     onSuccess: async () => {
-      await queryClient.invalidateQueries({ queryKey });
+      await toast.promise(queryClient.invalidateQueries({ queryKey }), {
+        pending: "문의 중...",
+        success: "문의 완료 ",
+        error: "문의 실패",
+      });
     },
   });
 

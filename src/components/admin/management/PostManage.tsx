@@ -73,7 +73,7 @@ export default function PostManage({ post }: IProps) {
   return (
     <li className="w-[47.4%] max-w-[230px]">
       <button className="w-full" type="button" onClick={() => toggleModifyHandler(post.id)}>
-        <div className="relative aspect-square w-full border-[3px] border-black">
+        <div className="relative aspect-square w-full border-2 border-black">
           <Image
             src={`${STORAGE_URL}/post/${post.photoUrl[0]}`}
             alt="시공 사진"

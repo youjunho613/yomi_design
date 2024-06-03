@@ -7,7 +7,7 @@ interface IProps {
 
 export default function Post({ post }: IProps) {
   return (
-    <div className="flex flex-col items-start justify-center border-[3px] border-black bg-white p-2 text-black">
+    <div className="flex flex-col items-start justify-center border-2 border-black bg-white p-2 text-black">
       <p className="contents-between w-full">
         게시물 ID :<span>{post.id}</span>
       </p>

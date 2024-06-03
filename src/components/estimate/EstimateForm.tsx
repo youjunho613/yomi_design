@@ -37,20 +37,13 @@ export default function EstimateForm() {
     if (!phone) return toast.error("연락처를 입력해주세요");
     if (!address) return toast.error("현장주소를 입력해주세요");
 
-    const bucket = "estimate";
-    const promiseText = {
-      pending: "업로드 중 🚀",
-      success: "업로드 성공 👌",
-      error: "업로드 실패 🤯",
-    };
-
     let storePhotoUrl: string[] = [];
     let conceptPhotoUrl: string[] = [];
     if (!!conceptFile) {
-      conceptPhotoUrl = await toast.promise(fileToUrls({ bucket, fileList: conceptFile }), promiseText);
+      await fileToUrls({ bucket: "estimate", fileList: conceptFile });
     }
     if (!!storePhoto) {
-      storePhotoUrl = await toast.promise(fileToUrls({ bucket, fileList: storePhoto }), promiseText);
+      await fileToUrls({ bucket: "estimate", fileList: storePhoto });
     }
 
     const request = {
@@ -68,27 +61,34 @@ export default function EstimateForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="contents-center w-full flex-col gap-2.5 text-sm xl:w-1/2">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="contents-center w-full flex-col gap-1 text-[10px] md:gap-4 md:text-[22px] lg:text-[30px]"
+    >
       {textInputArray.map((input) => (
         <label key={input.id} className="estimate-label" htmlFor={input.id}>
           <span>{input.label}</span>
-          <Input className="input h-10" id={input.id} register={register(input.id)} />
+          <Input className="input h-full" id={input.id} register={register(input.id)} />
         </label>
       ))}
-      <label className="estimate-label" htmlFor="estimate">
+      <label className="estimate-label h-[120px] md:h-[160px] lg:h-[200px]" htmlFor="estimate">
         <span>문의사항</span>
-        <Textarea className="input h-[120px] resize-none" id="estimate" register={register("inquiryContent")} />
+        <Textarea className="input h-full resize-none" id="estimate" register={register("inquiryContent")} />
       </label>
       <label className="estimate-label" htmlFor={"storePhoto"}>
-        <span className="w-full ">현장사진</span>
+        <span className="min-w-fit">현장사진</span>
         <FileInput id={"storePhoto"} register={register("storePhoto")} />
       </label>
       <label className="estimate-label" htmlFor={"conceptFile"}>
-        <span className="w-full ">원하는 간판 예시 사진</span>
+        <span className="min-w-fit">원하는 간판 예시 사진</span>
         <FileInput id={"conceptFile"} register={register("conceptFile")} />
       </label>
 
-      <input className="basic-button mt-10 rounded-lg px-4 py-3" type="submit" value="문의하기" />
+      <input
+        className="basic-button self-start border-2 border-black002 px-1 py-[1px] font-bold md:px-2 md:py-1 lg:px-4 lg:py-2"
+        type="submit"
+        value="문의하기"
+      />
     </form>
   );
 }

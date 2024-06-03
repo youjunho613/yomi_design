@@ -16,7 +16,7 @@ export default function MainPostList() {
   if (!data) return <div>업로드된 게시물이 없습니다.</div>;
 
   return (
-    <div className="contents-center w-layout flex-wrap gap-2.5 sm:gap-6">
+    <div className="grid-flow-rows grid w-full grid-cols-2 gap-3 md:grid-flow-col md:grid-cols-none md:grid-rows-1">
       {data.map((post) => {
         const path = `/board/${post.board?.mainCategory}/${post.board?.subCategory}/${post.board?.id}`;
         const sourcePath = `${STORAGE_URL}/post/${post.board?.photoUrl[0]}`;

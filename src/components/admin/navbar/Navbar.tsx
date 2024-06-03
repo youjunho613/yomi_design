@@ -10,7 +10,7 @@ export default function Navbar() {
     <div className="layout fixed bottom-0 z-20">
       <ul className="contents-around flex rounded-t-xl border-2 border-sub/20 bg-main px-10">
         {menuItems.map((menu) => (
-          <li key={menu.name} className="contents-center bg-subsoft/50 m-2 h-20 w-20 rounded-full text-main">
+          <li key={menu.name} className="contents-center m-2 h-20 w-20 rounded-full bg-subsoft/50 text-main">
             <Link href={menu.path}>
               {menu.icon}
               {menu.name}

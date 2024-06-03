@@ -35,7 +35,7 @@ export default function PostEditForm(props: IProps) {
   return (
     <form
       onSubmit={reactForm.handleSubmit(postModifyHandler)}
-      className="flex -translate-y-2 flex-col items-start justify-center border-[3px] border-black bg-sub p-2 text-main"
+      className="flex -translate-y-2 flex-col items-start justify-center border-2 border-black bg-sub p-2 text-main"
     >
       <p className="flex w-full items-center justify-between">
         게시물 ID :<span>{post.id}</span>

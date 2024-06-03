@@ -7,6 +7,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
 
+import BottomNav from "@/components/shared/BottomNav";
 import type { Metadata } from "next";
 import type { NextFont } from "next/dist/compiled/@next/font";
 
@@ -50,6 +51,7 @@ export default function RootLayout({ children }: IProps) {
           <main>{children}</main>
           <Footer />
         </ReactQueryProviders>
+        <BottomNav />
         <div id="modal-root" />
         <ToastContainer pauseOnFocusLoss closeOnClick autoClose={2000} position="top-right" />
       </body>

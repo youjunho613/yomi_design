@@ -4,9 +4,16 @@ import NavItem from "./NavItem";
 
 export default function Header() {
   return (
-    <header className="navigation">
-      <Link href="/">
-        <Image width={125} height={24} src="/logo.png" priority alt="요미디자인" />
+    <header>
+      <Link href="/" className="logo">
+        <Image
+          src="/logo.png"
+          alt="요미디자인"
+          width={138}
+          height={26}
+          priority
+          className="w-[83px] md:w-[138px] lg:w-[191px]"
+        />
       </Link>
       <NavItem />
     </header>

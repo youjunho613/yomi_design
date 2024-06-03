@@ -16,7 +16,7 @@ export default function PhotoEdit({ post, closeHandler }: IProps) {
   };
 
   return (
-    <ul className="flex flex-col gap-2 border-[3px] border-black bg-sub p-2">
+    <ul className="flex flex-col gap-2 border-2 border-black bg-sub p-2">
       {post.photoUrl.map((url) => (
         <li key={url}>
           <Image src={`${STORAGE_URL}/post/${url}`} alt={url} width={500} height={500} />

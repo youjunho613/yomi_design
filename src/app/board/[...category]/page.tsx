@@ -22,9 +22,9 @@ export default function Board({ params: { category: params } }: IProps) {
   if (!category.mainCategory) return <p>잘못된 접근입니다.</p>;
 
   return (
-    <div>
+    <div className="my-4">
       <nav>
-        <ul className="contents-center page-navigation mb-12">
+        <ul className="board-navigation">
           <li className="break-keep">
             <Link href={`/board/${category.mainCategory}`}>전체</Link>
           </li>

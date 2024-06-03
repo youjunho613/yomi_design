@@ -20,9 +20,9 @@ export default function NavItem() {
   };
 
   return (
-    <nav className="contents-center mx-2 gap-4">
+    <nav className="contents-center gap-5">
       {NAV_CONTENT.map((item) => (
-        <Link key={item.href} href={item.href} id={item.href} className="hidden px-2 sm:block">
+        <Link key={item.href} href={item.href} id={item.href} className="hidden sm:block">
           {item.label}
         </Link>
       ))}

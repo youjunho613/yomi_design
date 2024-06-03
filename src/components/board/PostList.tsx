@@ -27,7 +27,7 @@ export default function PostList({ category }: IProps) {
   if (!data || data.length === 0) return <p>업로드된 게시물이 없습니다.</p>;
 
   return (
-    <ul className="flex flex-wrap justify-center gap-[26px] sm:justify-start">
+    <ul className="responsive-width responsive-post-list flex flex-wrap">
       {data.map((data) => {
         const path = `/board/${data.mainCategory}/${data.subCategory}/${data.id}`;
         const sourcePath = `${STORAGE_URL}/post/${data.photoUrl[0]}`;
@@ -35,14 +35,20 @@ export default function PostList({ category }: IProps) {
         const categoryLabel = CategoryKor({ mainCategory, subCategory }).subCategory;
 
         return (
-          <Link key={data.id} href={path}>
-            <li className="post-border w-[230px]">
-              <div className="contents-center relative h-[224px] w-[224px] object-fill">
-                <Image src={sourcePath} alt={`${data.title} 시공사진`} objectFit="cover" layout="fill" />
+          <Link key={data.id} href={path} className="responsive-post">
+            <li className="post-border w-full">
+              <div className="contents-center w-full">
+                <Image
+                  src={sourcePath}
+                  alt={`${data.title} 시공사진`}
+                  width={300}
+                  height={300}
+                  className="aspect-square w-full object-cover"
+                />
               </div>
-              <div className="flex h-[60px] w-[224px] flex-col justify-center border-t-[3px] border-black002 px-3">
-                <p className="text-base font-bold">{data.title}</p>
-                <p className="text-sm font-medium">{categoryLabel}</p>
+              <div className="flex h-[35px] w-full flex-col justify-center border-t-[3px] border-black002 px-2">
+                <p className="text-[12px] font-bold">{data.title}</p>
+                <p className="text-[8px] font-normal">{categoryLabel}</p>
               </div>
             </li>
           </Link>
