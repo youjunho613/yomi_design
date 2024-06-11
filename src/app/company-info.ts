@@ -26,6 +26,8 @@ export const COMPANY = {
   ...address,
   ...document,
   ...contact,
+  businessHours: "10:00 ~ 19:00",
+  businessDay: "법정 공휴일 휴무",
   copyRight: "ⓒ 2023. YOMI DESIGN all rights reserved.",
 };
 
