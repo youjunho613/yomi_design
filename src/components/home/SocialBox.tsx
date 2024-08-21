@@ -20,7 +20,7 @@ export default function SocialBox() {
   }, []);
 
   return (
-    <div className="contents-between gap-[6px]">
+    <div className="contents-between w-full max-w-[530px] gap-[6px]">
       {isMobile ? (
         <Link href={`tel:${COMPANY.phone}`} target="_blank" className="social-button">
           <div>
