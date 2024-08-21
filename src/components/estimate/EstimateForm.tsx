@@ -68,7 +68,7 @@ export default function EstimateForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="contents-center w-full flex-col gap-2.5 text-sm xl:w-1/2">
+    <form onSubmit={handleSubmit(onSubmit)} className="contents-center w-full flex-col gap-2.5 text-sm">
       {textInputArray.map((input) => (
         <label key={input.id} className="estimate-label" htmlFor={input.id}>
           <span>{input.label}</span>
