@@ -30,19 +30,15 @@ export default function PostList({ category }: IProps) {
     <ul className="flex flex-wrap justify-center gap-[26px] sm:justify-start">
       {data.map((data) => {
         const path = `/board/${data.mainCategory}/${data.subCategory}/${data.id}`;
+        const sourcePath = `${STORAGE_URL}/post/${data.photoUrl[0]}`;
         const { mainCategory, subCategory } = data;
         const categoryLabel = CategoryKor({ mainCategory, subCategory }).subCategory;
 
         return (
           <Link key={data.id} href={path}>
-            <li className="w-[230px] border-[3px] border-black002 bg-white">
-              <div className="contents-center relative h-[224px] w-[224px]">
-                <Image
-                  src={`${STORAGE_URL}/post/${data.photoUrl[0]}`}
-                  alt={`${data.title} 시공사진`}
-                  objectFit="cover"
-                  layout="fill"
-                />
+            <li className="post-border w-[230px]">
+              <div className="contents-center relative h-[224px] w-[224px] object-fill">
+                <Image src={sourcePath} alt={`${data.title} 시공사진`} objectFit="cover" layout="fill" />
               </div>
               <div className="flex h-[60px] w-[224px] flex-col justify-center border-t-[3px] border-black002 px-3">
                 <p className="text-base font-bold">{data.title}</p>

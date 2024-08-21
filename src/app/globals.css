@@ -76,6 +76,15 @@ footer {
       @apply -rotate-45;
     }
   }
+  .post-border {
+    @apply border-[3px] border-black002 bg-white;
+  }
+  .main-post {
+    @apply contents-center post-border aspect-square w-[47.4%] max-w-[251px] lg:w-[22.7%];
+    > img {
+      @apply aspect-square w-full object-cover object-center;
+    }
+  }
 
   /* component */
   .navigation-common {
@@ -120,10 +129,10 @@ footer {
     @apply lg:gap-1.5 lg:text-sm;
     @apply sm:text-xs;
     > div {
-      @apply relative h-[9px] w-[9px] sm:h-3 sm:w-3 lg:h-4 lg:w-4;
+      @apply contents-center relative aspect-square w-[9px] sm:w-3 lg:w-4;
     }
     > div > img {
-      @apply overflow-visible;
+      @apply h-auto w-full overflow-visible object-cover;
     }
   }
 

@@ -3,46 +3,53 @@
 import { COMPANY } from "@/app/company-info";
 import Image from "next/image";
 import Link from "next/link";
-import { BrowserView, MobileView } from "react-device-detect";
-// import { BrowserView,MobileView, isMobile } from "react-device-detect";
+import { useEffect, useRef } from "react";
 
 export default function SocialBox() {
+  const isMobile = useRef(false);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      isMobile.current = /iPhone|iPad|iPod|Android/i.test(window.navigator.userAgent);
+      console.log("isMobile.current :", isMobile.current);
+    }
+  }, []);
+
   return (
-    <div className="contents-between gap-[6px]">
-      <MobileView className="flex-1">
+    <div className="contents-between w-full max-w-[530px] gap-[6px]">
+      {isMobile ? (
         <Link href={`tel:${COMPANY.phone}`} target="_blank" className="social-button">
           <div>
-            <Image objectFit="cover" layout="fill" src="/social-phone.svg" alt="전화문의" />
+            <Image src="/social-phone.svg" alt="전화문의" width={16} height={16} />
           </div>
-          전화문의
+          <span>전화문의</span>
         </Link>
-      </MobileView>
-      <BrowserView className="flex-1">
+      ) : (
         <Link href={"/tel"} target="_blank" className="social-button">
           <div>
-            <Image objectFit="cover" layout="fill" src="/social-phone.svg" alt="전화문의" />
+            <Image src="/social-phone.svg" alt="전화문의" width={16} height={16} />
           </div>
-          전화문의
+          <span>전화문의</span>
         </Link>
-      </BrowserView>
+      )}
 
       <Link href={COMPANY.kakaoTalk} target="_blank" className="social-button">
         <div>
-          <Image objectFit="cover" layout="fill" src="/social-kakao.svg" alt="카톡상담" />
+          <Image src="/social-kakao.svg" alt="카톡상담" width={16} height={16} />
         </div>
-        카톡상담
+        <span>카톡상담</span>
       </Link>
       <Link href={COMPANY.instagram} target="_blank" className="social-button">
         <div>
-          <Image objectFit="cover" layout="fill" src="/social-insta.svg" alt="인스타그램" />
+          <Image src="/social-insta.svg" alt="인스타그램" width={16} height={16} />
         </div>
-        인스타그램
+        <span>인스타그램</span>
       </Link>
       <Link href={COMPANY.naverBlog} target="_blank" className="social-button">
         <div>
-          <Image objectFit="cover" layout="fill" src="/social-naver_blog.svg" alt="블로그" />
+          <Image src="/social-naver_blog.svg" alt="블로그" width={16} height={16} />
         </div>
-        블로그
+        <span>블로그</span>
       </Link>
     </div>
   );
