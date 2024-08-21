@@ -6,10 +6,6 @@ import Link from "next/link";
 import { useEffect, useRef } from "react";
 
 export default function SocialBox() {
-  // let isMobile = false;
-  // if (typeof window !== "undefined") {
-  //   isMobile = /iPhone|iPad|iPod|Android/i.test(window.navigator.userAgent);
-  // }
   const isMobile = useRef(false);
 
   useEffect(() => {
