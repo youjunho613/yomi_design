@@ -1,5 +1,4 @@
 import Footer from "@/components/shared/Footer";
-import Header from "@/components/shared/header/Header";
 import ReactQueryProviders from "@/hook/useReactQuery";
 import localFont from "next/font/local";
 import { ReactNode } from "react";
@@ -7,6 +6,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
 
+import NewHeader from "@/components/shared/header/New-Header";
 import type { Metadata } from "next";
 import type { NextFont } from "next/dist/compiled/@next/font";
 
@@ -46,7 +46,8 @@ export default function RootLayout({ children }: IProps) {
     <html lang="ko">
       <body className={myFont.className}>
         <ReactQueryProviders>
-          <Header />
+          {/* <Header /> */}
+          <NewHeader />
           <main>{children}</main>
           <Footer />
         </ReactQueryProviders>

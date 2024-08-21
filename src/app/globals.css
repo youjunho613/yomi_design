@@ -8,10 +8,13 @@
 }
 
 body {
-  @apply contents-center min-h-screen flex-col bg-main pt-14 font-pretendard;
+  @apply contents-center min-h-screen flex-col bg-main font-pretendard;
   > main {
-    @apply layout my-14 min-h-fit grow-[1];
+    @apply my-14 min-h-fit grow-[1];
   }
+}
+body::-webkit-scrollbar {
+  /* display: none; */
 }
 
 footer {
