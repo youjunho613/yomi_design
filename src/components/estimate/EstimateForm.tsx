@@ -2,6 +2,8 @@
 
 import useEstimate from "@/service/estimate/mutations";
 import { fileToUrls } from "@/supabase/supabase";
+import emailjs from "@emailjs/browser";
+import { useRef } from "react";
 import type { SubmitHandler } from "react-hook-form";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
@@ -26,12 +28,18 @@ const textInputArray: { id: keyof EstimateInput; label: string }[] = [
   { id: "address", label: "현장주소" },
 ];
 
+const EMAIL_JS_SERVICES_ID = process.env.NEXT_PUBLIC_EMAIL_JS_SERVICES_ID ?? "";
+const EMAIL_JS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAIL_JS_TEMPLATE_ID ?? "";
+const EMAIL_JS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAIL_JS_PUBLIC_KEY ?? "";
+
 export default function EstimateForm() {
   const { register, handleSubmit, reset } = useForm<EstimateInput>();
   const { createEstimateMutation } = useEstimate({});
+  const estimateForm = useRef<HTMLFormElement>(null);
 
   const onSubmit: SubmitHandler<EstimateInput> = async (data) => {
     const { address, inquiryContent, phone, storeCategory, storeName, conceptFile, storePhoto } = data;
+    if (!estimateForm.current) return;
     if (!storeName) return toast.error("상호명을 입력해주세요");
     if (!storeCategory) return toast.error("업종을 입력해주세요");
     if (!phone) return toast.error("연락처를 입력해주세요");
@@ -64,11 +72,27 @@ export default function EstimateForm() {
     };
 
     createEstimateMutation.mutate(request);
+
+    try {
+      emailjs.send(
+        EMAIL_JS_SERVICES_ID,
+        EMAIL_JS_TEMPLATE_ID,
+        { storeName, storeCategory, phone, address },
+        EMAIL_JS_PUBLIC_KEY,
+      );
+    } catch (error) {
+      console.error("onSubmit : ", error);
+    }
+
     reset();
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="contents-center w-full flex-col gap-2.5 text-sm">
+    <form
+      ref={estimateForm}
+      onSubmit={handleSubmit(onSubmit)}
+      className="contents-center w-full flex-col gap-2.5 text-sm"
+    >
       {textInputArray.map((input) => (
         <label key={input.id} className="estimate-label" htmlFor={input.id}>
           <span>{input.label}</span>
