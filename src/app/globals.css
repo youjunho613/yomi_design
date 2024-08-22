@@ -121,7 +121,7 @@ footer {
   .estimate-label {
     @apply contents-between min-h-[40px] w-full gap-5 border-3 border-black002 bg-white px-2.5;
     > span {
-      @apply break-keep;
+      @apply w-20 break-keep;
     }
   }
   .social-button {
