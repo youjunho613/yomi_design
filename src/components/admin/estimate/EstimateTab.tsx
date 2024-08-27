@@ -23,7 +23,7 @@ export default function EstimateTab(props: IProps) {
       {statusArray.map((item) => (
         <button
           key={item.status}
-          className={`${statusColorStyle(item.status)} w-full rounded-md px-3 py-2`}
+          className={`${statusColorStyle(item.status)} w-full rounded-md border border-sub px-3 py-2`}
           onClick={() => {
             onChangeStatus(item.status);
           }}

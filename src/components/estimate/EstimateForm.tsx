@@ -2,6 +2,8 @@
 
 import useEstimate from "@/service/estimate/mutations";
 import { fileToUrls } from "@/supabase/supabase";
+import emailjs from "@emailjs/browser";
+import { useRef } from "react";
 import type { SubmitHandler } from "react-hook-form";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
@@ -26,12 +28,24 @@ const textInputArray: { id: keyof EstimateInput; label: string }[] = [
   { id: "address", label: "현장주소" },
 ];
 
+const EMAIL_JS_SERVICES_ID = process.env.NEXT_PUBLIC_EMAIL_JS_SERVICES_ID ?? "";
+const EMAIL_JS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAIL_JS_TEMPLATE_ID ?? "";
+const EMAIL_JS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAIL_JS_PUBLIC_KEY ?? "";
+
 export default function EstimateForm() {
-  const { register, handleSubmit, reset } = useForm<EstimateInput>();
+  const { register, handleSubmit, reset, watch } = useForm<EstimateInput>();
   const { createEstimateMutation } = useEstimate({});
+  const estimateForm = useRef<HTMLFormElement>(null);
+
+  const conceptFile = watch("conceptFile");
+  const isConceptFile = conceptFile !== undefined && conceptFile.length > 0;
+  const storePhoto = watch("storePhoto");
+  console.log("storePhoto :", storePhoto);
+  const isStorePhoto = storePhoto !== undefined && storePhoto.length > 0;
 
   const onSubmit: SubmitHandler<EstimateInput> = async (data) => {
     const { address, inquiryContent, phone, storeCategory, storeName, conceptFile, storePhoto } = data;
+    if (!estimateForm.current) return;
     if (!storeName) return toast.error("상호명을 입력해주세요");
     if (!storeCategory) return toast.error("업종을 입력해주세요");
     if (!phone) return toast.error("연락처를 입력해주세요");
@@ -64,11 +78,27 @@ export default function EstimateForm() {
     };
 
     createEstimateMutation.mutate(request);
+
+    try {
+      emailjs.send(
+        EMAIL_JS_SERVICES_ID,
+        EMAIL_JS_TEMPLATE_ID,
+        { storeName, storeCategory, phone, address },
+        EMAIL_JS_PUBLIC_KEY,
+      );
+    } catch (error) {
+      console.error("onSubmit : ", error);
+    }
+
     reset();
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="contents-center w-full flex-col gap-2.5 text-sm xl:w-1/2">
+    <form
+      ref={estimateForm}
+      onSubmit={handleSubmit(onSubmit)}
+      className="contents-center w-full flex-col gap-2.5 text-sm"
+    >
       {textInputArray.map((input) => (
         <label key={input.id} className="estimate-label" htmlFor={input.id}>
           <span>{input.label}</span>
@@ -79,14 +109,36 @@ export default function EstimateForm() {
         <span>문의사항</span>
         <Textarea className="input h-[120px] resize-none" id="estimate" register={register("inquiryContent")} />
       </label>
-      <label className="estimate-label" htmlFor={"storePhoto"}>
-        <span className="w-full ">현장사진</span>
-        <FileInput id={"storePhoto"} register={register("storePhoto")} />
-      </label>
-      <label className="estimate-label" htmlFor={"conceptFile"}>
-        <span className="w-full ">원하는 간판 예시 사진</span>
-        <FileInput id={"conceptFile"} register={register("conceptFile")} />
-      </label>
+      <div className="min-h-[40px] w-full flex-col border-3 border-black002 bg-white px-2.5">
+        <label className="contents-between min-h-[40px] w-full" htmlFor={"storePhoto"}>
+          <span className="w-full break-keep">현장사진</span>
+          <FileInput id={"storePhoto"} register={register("storePhoto")} />
+        </label>
+        {isStorePhoto && (
+          <ul className="flex min-h-[40px] w-full select-none flex-col items-center pb-2">
+            {Array.from(storePhoto).map((photo) => (
+              <li key={photo.name} className="flex w-full justify-end">
+                <span>{photo.name}</span>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+      <div className="min-h-[40px] w-full flex-col border-3 border-black002 bg-white px-2.5">
+        <label className="contents-between min-h-[40px] w-full" htmlFor={"conceptFile"}>
+          <span className="w-full break-keep">원하는 간판 예시 사진</span>
+          <FileInput id={"conceptFile"} register={register("conceptFile")} />
+        </label>
+        {isConceptFile && (
+          <ul className="flex min-h-[40px] w-full select-none flex-col items-center pb-2">
+            {Array.from(conceptFile).map((photo) => (
+              <li key={photo.name} className="flex w-full justify-end">
+                <span>{photo.name}</span>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
 
       <input className="basic-button mt-10 rounded-lg px-4 py-3" type="submit" value="문의하기" />
     </form>
