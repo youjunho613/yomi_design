@@ -40,7 +40,6 @@ export default function EstimateForm() {
   const conceptFile = watch("conceptFile");
   const isConceptFile = conceptFile !== undefined && conceptFile.length > 0;
   const storePhoto = watch("storePhoto");
-  console.log("storePhoto :", storePhoto);
   const isStorePhoto = storePhoto !== undefined && storePhoto.length > 0;
 
   const onSubmit: SubmitHandler<EstimateInput> = async (data) => {

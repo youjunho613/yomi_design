@@ -6,9 +6,10 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
 
-import NewHeader from "@/components/shared/header/New-Header";
+import Vercel from "@/components/accessibility/Vercel";
 import type { Metadata } from "next";
 import type { NextFont } from "next/dist/compiled/@next/font";
+import NewHeader from "@/components/shared/header/New-Header";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://yomi-design.com"),
@@ -46,9 +47,11 @@ export default function RootLayout({ children }: IProps) {
     <html lang="ko">
       <body className={myFont.className}>
         <ReactQueryProviders>
-          {/* <Header /> */}
           <NewHeader />
-          <main>{children}</main>
+          <main>
+            {children}
+            <Vercel />
+          </main>
           <Footer />
         </ReactQueryProviders>
         <div id="modal-root" />
