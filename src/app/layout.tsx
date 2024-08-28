@@ -1,6 +1,7 @@
 import Footer from "@/components/shared/Footer";
 import Header from "@/components/shared/header/Header";
 import ReactQueryProviders from "@/hook/useReactQuery";
+import { Analytics } from "@vercel/analytics/react";
 import localFont from "next/font/local";
 import { ReactNode } from "react";
 import { ToastContainer } from "react-toastify";
@@ -47,7 +48,10 @@ export default function RootLayout({ children }: IProps) {
       <body className={myFont.className}>
         <ReactQueryProviders>
           <Header />
-          <main>{children}</main>
+          <main>
+            {children}
+            <Analytics />
+          </main>
           <Footer />
         </ReactQueryProviders>
         <div id="modal-root" />
