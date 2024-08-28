@@ -1,13 +1,13 @@
 import Footer from "@/components/shared/Footer";
 import Header from "@/components/shared/header/Header";
 import ReactQueryProviders from "@/hook/useReactQuery";
-import { Analytics } from "@vercel/analytics/react";
 import localFont from "next/font/local";
 import { ReactNode } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
 
+import Vercel from "@/components/accessibility/Vercel";
 import type { Metadata } from "next";
 import type { NextFont } from "next/dist/compiled/@next/font";
 
@@ -50,7 +50,7 @@ export default function RootLayout({ children }: IProps) {
           <Header />
           <main>
             {children}
-            <Analytics />
+            <Vercel />
           </main>
           <Footer />
         </ReactQueryProviders>
