@@ -5,9 +5,7 @@ export default function Home() {
     <div className="">
       <div className="flex border border-black">
         <div className="flex flex-col">
-          <Image src={"/example.jpg"} alt="" width={500} height={250} className="w-[55vw]" />
-          <Image src={"/example.jpg"} alt="" width={500} height={250} className="w-[55vw]" />
-          <Image src={"/example.jpg"} alt="" width={500} height={250} className="w-[55vw]" />
+          <Image src={"/home-visual.jpg"} alt="" width={500} height={250} className="w-[55vw]" />
         </div>
         <div className="mx-auto w-fit">
           <div className="sticky top-1/3 mb-[30%] flex flex-col gap-10 px-4 text-3xl">
