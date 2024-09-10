@@ -91,8 +91,8 @@ export default function Workflow() {
         {WORKFLOW_CONTENT.map((item, index) => {
           const { icon, title, content } = item;
           return (
-            <div className="relative h-full w-1/4">
-              <li key={title} className="flex h-[200px] flex-col items-center gap-2">
+            <div key={title} className="relative h-full w-1/4">
+              <li className="flex h-[200px] flex-col items-center gap-2">
                 <Image {...icon} alt={title} className="h-15" />
                 <p className="bg-gray003 text-[30px] font-bold">{title}</p>
                 {content}

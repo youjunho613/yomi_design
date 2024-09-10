@@ -32,7 +32,7 @@ export default function PostList({ label, data: aa }: IProps) {
       <PageTitle title={label} />
       <ul className="mb-10 flex w-full flex-wrap gap-[1%] gap-y-5">
         {data.map((post) => {
-          return <PostItem post={post} />;
+          return <PostItem post={post} key={post.id} />;
         })}
       </ul>
     </div>

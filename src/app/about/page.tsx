@@ -2,7 +2,7 @@ import { ABOUT_CONTENT } from "@/app/about/content";
 import AboutContents from "@/components/about/AboutContent";
 import PageTitle from "@/components/shared/PageTitle";
 
-export default function page() {
+export default function Page() {
   return (
     // <div>
     //   <PageTitle title="about" />
@@ -11,7 +11,7 @@ export default function page() {
       <PageTitle title="about" />
       <ul className="flex flex-col gap-[70px]">
         {ABOUT_CONTENT.map((item, index) => (
-          <AboutContents item={item} index={index} />
+          <AboutContents key={item.label} item={item} index={index} />
         ))}
       </ul>
     </div>
