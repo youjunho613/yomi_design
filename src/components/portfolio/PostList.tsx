@@ -8,9 +8,7 @@ interface IProps {
   data: Tables<"board">[] | undefined | null;
 }
 
-export default function PostList({ label, data: aa }: IProps) {
-  const data = aa?.filter((post) => post.mainCategory === label);
-
+export default function PostList({ label, data }: IProps) {
   if (!data)
     return (
       <div className="layout contents-center mt-[100px] flex-col">
