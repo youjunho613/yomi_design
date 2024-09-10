@@ -1,15 +1,17 @@
+import Vercel from "@/components/accessibility/Vercel";
 import Footer from "@/components/shared/Footer";
+import NewHeader from "@/components/shared/header/New-Header";
 import ReactQueryProviders from "@/hook/useReactQuery";
+import type { NextFont } from "next/dist/compiled/@next/font";
 import localFont from "next/font/local";
-import { ReactNode } from "react";
 import { ToastContainer } from "react-toastify";
+
 import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
 
-import Vercel from "@/components/accessibility/Vercel";
+/*
 import type { Metadata } from "next";
-import type { NextFont } from "next/dist/compiled/@next/font";
-import NewHeader from "@/components/shared/header/New-Header";
+
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://yomi-design.com"),
@@ -31,24 +33,30 @@ export const metadata: Metadata = {
     type: "website",
   },
 };
+*/
 
-export const myFont: NextFont = localFont({
-  src: "/fonts/PretendardVariable.woff2",
-  display: "swap",
-  variable: "--font-pretendard",
+export const pretendard: NextFont = localFont({
+  src: [
+    { path: "/fonts/Pretendard-Regular.woff2", weight: "400", style: "normal" },
+    { path: "/fonts/Pretendard-Bold.woff2", weight: "700", style: "normal" },
+  ],
+});
+
+export const montserrat: NextFont = localFont({
+  src: [{ path: "/fonts/Montserrat-Black.ttf", weight: "900", style: "normal" }],
 });
 
 interface IProps {
-  children: ReactNode;
+  children: React.ReactNode;
 }
 
 export default function RootLayout({ children }: IProps) {
   return (
     <html lang="ko">
-      <body className={myFont.className}>
+      <body>
         <ReactQueryProviders>
           <NewHeader />
-          <main>
+          <main className={`${pretendard.className}`}>
             {children}
             <Vercel />
           </main>

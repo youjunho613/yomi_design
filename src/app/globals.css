@@ -2,30 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-family: "pretendard";
-  src: format("woff2"), url("/fonts/PretendardVariable.woff2/");
-}
-
 body {
-  @apply contents-center min-h-screen flex-col bg-main font-pretendard;
+  @apply contents-center min-h-screen flex-col bg-white font-pretendard text-black;
   > main {
-    @apply my-14 min-h-fit grow-[1];
+    @apply min-h-fit w-full grow-[1];
   }
 }
 body::-webkit-scrollbar {
-  /* display: none; */
+  display: none;
+}
+::selection {
+  @apply bg-gray001 text-white;
 }
 
 footer {
-  @apply relative flex w-full shrink-0 grow-0 flex-col gap-6 bg-sub px-4 py-10 text-[10px] text-main sm:text-sm;
+  @apply relative flex w-full shrink-0 grow-0 flex-col bg-black py-7 text-[17px] text-white;
   > * {
     @apply layout;
   }
   > ul {
     @apply flex flex-col flex-wrap lg:flex-row;
     > li:first-child {
-      @apply w-full;
+      @apply mb-5 w-full;
     }
     > li:not(:first-child) {
       @apply flex gap-1 after:mx-2.5 sm:break-keep lg:after:content-["|"] lg:last:after:content-[""];
@@ -34,12 +32,18 @@ footer {
       }
     }
   }
+  > p {
+    @apply mt-10;
+  }
 }
 
 @layer components {
   /* layout */
+  .screen {
+    @apply h-[calc(100vh-60px)] w-screen;
+  }
   .layout {
-    @apply mx-auto w-layout max-w-[1000px];
+    @apply mx-auto w-layout;
   }
   .contents-center {
     @apply flex items-center justify-center;
@@ -54,17 +58,7 @@ footer {
   .basic-button {
     @apply cursor-pointer bg-sub text-main;
   }
-  .modal-overlay {
-    @apply fixed inset-0 z-10 max-h-screen overflow-y-auto overflow-x-hidden overscroll-contain;
-  }
-  .modal {
-    @apply fixed right-0 top-0 z-10;
-    @apply min-h-screen w-1/2 bg-white p-10;
-    @apply transform overflow-y-auto overflow-x-hidden overscroll-contain;
-    @apply transition-transform duration-700 ease-in-out;
-  }
   .close-button {
-    @apply contents-center absolute right-1 top-1;
     > span {
       @apply relative h-10 w-10;
     }
@@ -82,11 +76,18 @@ footer {
   .post-border {
     @apply border-[3px] border-black002 bg-white;
   }
-  .main-post {
-    @apply contents-center post-border aspect-square w-[47.4%] max-w-[251px] lg:w-[22.7%];
-    > img {
-      @apply aspect-square w-full object-cover object-center;
-    }
+  .link-button {
+    @apply rounded-full bg-black px-[38px] py-[10px] text-white shadow-md duration-500 hover:bg-gray001;
+  }
+
+  .divider-pattern {
+    @apply h-15 w-screen bg-white bg-[length:60px_60px];
+    background-color: #000;
+    background-image: linear-gradient(45deg, #fff 25%, transparent 25%, transparent 75%, #fff 75%, #fff),
+      linear-gradient(45deg, #fff 25%, transparent 25%, transparent 75%, #fff 75%, #fff);
+    background-position:
+      0 0,
+      30px 30px;
   }
 
   /* component */
@@ -101,12 +102,6 @@ footer {
     @apply navigation-common contents-between layout h-12 min-w-fit shrink-0 grow-0 rounded-full px-6;
     > a {
       @apply min-w-fit;
-    }
-  }
-  .side-navigation {
-    @apply flex flex-col gap-4 text-xl;
-    > a {
-      @apply w-full border-b py-2;
     }
   }
   .input {

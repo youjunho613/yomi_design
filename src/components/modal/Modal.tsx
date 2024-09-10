@@ -3,17 +3,13 @@ import ReactDOM from "react-dom";
 import type { ReactNode } from "react";
 
 interface IProps {
-  open: boolean;
-  onClose: () => void;
+  isOpen: boolean;
+  openToggle: () => void;
   children: ReactNode;
-  className?: {
-    overlay: string;
-    modal: string;
-  };
 }
 
-export default function Modal({ open, onClose, children, className }: IProps) {
-  if (open) {
+export default function Modal({ isOpen, openToggle, children }: IProps) {
+  if (isOpen) {
     document.body.style.overflow = "hidden";
   } else {
     document.body.style.overflow = "auto";
@@ -21,12 +17,17 @@ export default function Modal({ open, onClose, children, className }: IProps) {
 
   return ReactDOM.createPortal(
     <>
-      <div className={`${className?.overlay} ${open ? "block" : "hidden"} modal-overlay`} onClick={onClose}></div>
-      <div className={`${className?.modal} ${open ? "translate-x-0" : "translate-x-full"} modal`}>
+      <div
+        className={`${isOpen ? "block" : "hidden"} fixed inset-0 z-40 max-h-screen overflow-y-auto overflow-x-hidden overscroll-contain`}
+        onClick={openToggle}
+      ></div>
+      <div
+        className={`${isOpen ? "translate-x-0" : "translate-x-full"} fixed right-0 top-0 z-40 mt-15 h-[calc(100vh-60px)] w-1/3 transform overflow-y-auto overflow-x-hidden overscroll-contain rounded-es-3xl bg-gray001 p-10 text-black shadow-md transition-transform duration-700 ease-in-out`}
+      >
         {children}
-        <button className="close-button" onClick={onClose}>
-          <span id="closeButton" />
-        </button>
+        {/* <button className="close-button contents-center absolute right-1 top-1" onClick={onClose}>
+          <span id="closeButton" className="before:after:absolute" />
+        </button> */}
       </div>
     </>,
     document.getElementById("modal-root") as HTMLElement,

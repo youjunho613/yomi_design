@@ -13,19 +13,27 @@ export default function MainPostList() {
 
   if (isLoading) return <Loading />;
   if (isError) return <Error error={error.message} />;
-  if (!data) return <div>업로드된 게시물이 없습니다.</div>;
+  if (!data) return <p>업로드된 게시물이 없습니다.</p>;
 
   return (
-    <div className="contents-center w-layout flex-wrap gap-2.5 sm:gap-6">
+    <ul className="contents-between w-full gap-2">
       {data.map((post) => {
         const path = `/board/${post.board?.mainCategory}/${post.board?.subCategory}/${post.board?.id}`;
         const sourcePath = `${STORAGE_URL}/post/${post.board?.photoUrl[0]}`;
         return (
-          <Link href={path} key={post.id} className="main-post">
-            <Image src={sourcePath} alt="시공 사진" width={200} height={200} />
-          </Link>
+          <li key={post.id}>
+            <Link href={path}>
+              <Image
+                src={sourcePath}
+                alt="시공 사진"
+                width={500}
+                height={500}
+                className="aspect-square w-full object-cover object-center"
+              />
+            </Link>
+          </li>
         );
       })}
-    </div>
+    </ul>
   );
 }
