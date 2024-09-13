@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <div className="contents-center flex-col gap-10 text-lg">
+    <div className="contents-center mt-20 flex-col gap-10 text-lg">
       <h2 className="text-center">
         <p>
           죄송합니다.
@@ -19,7 +19,7 @@ export default function NotFound() {
         <br />
         감사합니다.
       </p>
-      <Link href="/" className="rounded-3xl bg-sub px-4 py-2 text-xl text-main">
+      <Link href="/" className="rounded-3xl bg-black px-4 py-2 text-xl text-main duration-500 hover:bg-gray001">
         홈으로
       </Link>
     </div>

@@ -1,15 +1,16 @@
+import Vercel from "@/components/accessibility/Vercel";
 import Footer from "@/components/shared/Footer";
-import Header from "@/components/shared/header/Header";
+import NewHeader from "@/components/shared/header/New-Header";
 import ReactQueryProviders from "@/hook/useReactQuery";
-import localFont from "next/font/local";
-import { ReactNode } from "react";
 import { ToastContainer } from "react-toastify";
+import { pretendard } from "./fonts/font";
+
 import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
 
-import Vercel from "@/components/accessibility/Vercel";
+/*
 import type { Metadata } from "next";
-import type { NextFont } from "next/dist/compiled/@next/font";
+
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://yomi-design.com"),
@@ -31,24 +32,19 @@ export const metadata: Metadata = {
     type: "website",
   },
 };
-
-export const myFont: NextFont = localFont({
-  src: "/fonts/PretendardVariable.woff2",
-  display: "swap",
-  variable: "--font-pretendard",
-});
+*/
 
 interface IProps {
-  children: ReactNode;
+  children: React.ReactNode;
 }
 
 export default function RootLayout({ children }: IProps) {
   return (
     <html lang="ko">
-      <body className={myFont.className}>
+      <body>
         <ReactQueryProviders>
-          <Header />
-          <main>
+          <NewHeader />
+          <main className={`${pretendard.className}`}>
             {children}
             <Vercel />
           </main>
