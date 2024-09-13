@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "요미디자인",
     description: "아이덴티티와 디자인을 연결하다.",
-    images: [{ url: "/opengraph-image.png", alt: "About Yomi-design", width: 1200, height: 630 }],
+    images: [{ url: "/opengraph-image.jpg", alt: "About Yomi-design", width: 1200, height: 630 }],
     siteName: "요미디자인",
     locale: "ko_KR",
     type: "website",
