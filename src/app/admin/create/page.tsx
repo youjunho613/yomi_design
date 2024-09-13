@@ -3,7 +3,6 @@
 import CategorySelect from "@/components/admin/form/CategorySelect";
 import Input from "@/components/admin/form/Input";
 import usePost from "@/service/post/mutations";
-import useCategorySelect from "@/store/useCategorySelect";
 import { fileToUrls } from "@/supabase/supabase";
 import { Fragment } from "react";
 import { useForm } from "react-hook-form";
@@ -18,8 +17,8 @@ export interface PostFormInput {
 
 export default function Page() {
   const { register, handleSubmit, reset } = useForm<PostFormInput>();
-  const { mainCategory, subCategory } = useCategorySelect();
-  const isCategory = mainCategory === undefined || subCategory === undefined;
+  // const { mainCategory, subCategory } = useCategorySelect();
+  // const isCategory = mainCategory === undefined || subCategory === undefined;
 
   const { createPostMutation } = usePost();
 
@@ -27,7 +26,7 @@ export default function Page() {
     if (!title) return toast.error("제목을 입력해주세요.");
     if (!address) return toast.error("주소를 입력해주세요.");
     if (imageFile.length === 0) return toast.error("사진을 선택해주세요.");
-    if (isCategory) return toast.error("카테고리를 선택해주세요.");
+    // if (isCategory) return toast.error("카테고리를 선택해주세요.");
 
     const photoUrl = await toast.promise(fileToUrls({ bucket: "post", fileList: imageFile }), {
       pending: "업로드 중 🚀",
@@ -37,9 +36,9 @@ export default function Page() {
 
     if (photoUrl.length === 0) return toast.error("사진 업로드에 실패했습니다.");
 
-    const request = { title, address, mainCategory, subCategory, photoUrl };
+    // const request = { title, address, mainCategory, subCategory, photoUrl };
 
-    createPostMutation.mutate(request);
+    // createPostMutation.mutate(request);
     reset();
   };
 
