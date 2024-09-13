@@ -2,15 +2,12 @@ import Vercel from "@/components/accessibility/Vercel";
 import Footer from "@/components/shared/Footer";
 import NewHeader from "@/components/shared/header/New-Header";
 import ReactQueryProviders from "@/hook/useReactQuery";
+import type { Metadata } from "next";
 import { ToastContainer } from "react-toastify";
 import { pretendard } from "./fonts/font";
 
 import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
-
-/*
-import type { Metadata } from "next";
-
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://yomi-design.com"),
@@ -32,7 +29,6 @@ export const metadata: Metadata = {
     type: "website",
   },
 };
-*/
 
 interface IProps {
   children: React.ReactNode;
