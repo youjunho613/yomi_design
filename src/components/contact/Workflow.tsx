@@ -117,7 +117,9 @@ export default function Workflow() {
                 >
                   <Image src={iconSrc} alt={title} fill sizes="3vw" />
                 </div>
-                <p className="my-4 bg-gray003 px-3 text-[2.3vw] font-bold leading-[110%] xl:text-[30px]">{title}</p>
+                <p className="my-4 bg-gray003 px-3 py-1 text-[2.3vw] font-bold leading-[110%] xl:text-[30px]">
+                  {title}
+                </p>
                 <div className="contents-center flex-col text-[2.3vw] md:text-[18px]">{content}</div>
               </li>
               {index !== 7 && index !== 3 && (

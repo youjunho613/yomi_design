@@ -1,5 +1,6 @@
 "use client";
 
+import { aggro } from "@/app/fonts/font";
 import Error from "@/components/shared/Error";
 import Loading from "@/components/shared/loading/Loading";
 import usePost from "@/service/post/mutations";
@@ -21,9 +22,9 @@ export default function Detail() {
 
   return (
     <div className="w-full">
-      <div className="flex flex-col content-center items-center gap-[15px]">
-        <p className="text-[40px] leading-[36px]">요미디자인</p>
-        <ul className="detail-subtitle flex gap-2 text-[26px] leading-[23px]">
+      <div className="flex flex-col content-center items-center gap-2 md:gap-[15px]">
+        <p className={`${aggro.className} text-[40px] leading-[36px]`}>요미디자인</p>
+        <ul className="detail-subtitle flex gap-2 text-[14px] leading-none xl:text-[26px]">
           <li className="flex gap-2">
             <p>{data.type === "signage" ? "간판" : "브랜딩"}</p>
           </li>
@@ -49,7 +50,7 @@ export default function Detail() {
       </div>
       <ul className="contents-center my-10 flex flex-col gap-5">
         {data.photoUrl.map((photo, index) => (
-          <li key={index} className="relative aspect-square w-8/12">
+          <li key={index} className="relative aspect-square w-full">
             <Image
               src={`${STORAGE_URL}/post/${photo}`}
               alt={data.title}

@@ -22,7 +22,7 @@ export default function Modal({ isOpen, openToggle, children }: IProps) {
         onClick={openToggle}
       ></div>
       <div
-        className={`${isOpen ? "translate-x-0" : "translate-x-full"} fixed right-0 top-0 z-40 mt-7.5 h-[calc(100vh-30px)] w-2/3 transform overflow-y-auto overflow-x-hidden overscroll-contain rounded-es-3xl bg-gray001 p-10 text-black shadow-md transition-transform duration-700 ease-in-out xl:mt-15 xl:h-[calc(100vh-60px)]`}
+        className={`${isOpen ? "translate-x-0" : "translate-x-full"} fixed right-0 top-0 z-40 mt-[40px] h-[calc(100vh-40px)] w-2/3 transform overflow-y-auto overflow-x-hidden overscroll-contain rounded-es-3xl bg-gray001 p-10 text-black shadow-md transition-transform duration-700 ease-in-out xl:mt-15 xl:h-[calc(100vh-60px)]`}
       >
         {children}
       </div>
