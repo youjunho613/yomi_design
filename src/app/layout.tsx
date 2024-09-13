@@ -2,9 +2,8 @@ import Vercel from "@/components/accessibility/Vercel";
 import Footer from "@/components/shared/Footer";
 import NewHeader from "@/components/shared/header/New-Header";
 import ReactQueryProviders from "@/hook/useReactQuery";
-import type { NextFont } from "next/dist/compiled/@next/font";
-import localFont from "next/font/local";
 import { ToastContainer } from "react-toastify";
+import { pretendard } from "./fonts/font";
 
 import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
@@ -34,17 +33,6 @@ export const metadata: Metadata = {
   },
 };
 */
-
-export const pretendard: NextFont = localFont({
-  src: [
-    { path: "/fonts/Pretendard-Regular.woff2", weight: "400", style: "normal" },
-    { path: "/fonts/Pretendard-Bold.woff2", weight: "700", style: "normal" },
-  ],
-});
-
-export const montserrat: NextFont = localFont({
-  src: [{ path: "/fonts/Montserrat-Black.ttf", weight: "900", style: "normal" }],
-});
 
 interface IProps {
   children: React.ReactNode;

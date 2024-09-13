@@ -16,17 +16,17 @@ body::-webkit-scrollbar {
 }
 
 footer {
-  @apply relative flex w-full shrink-0 grow-0 flex-col bg-black py-7 text-[17px] text-white;
+  @apply relative flex w-full shrink-0 grow-0 flex-col bg-black py-7 text-[10px] text-white xl:text-[14px];
   > * {
     @apply layout;
   }
   > ul {
-    @apply flex flex-col flex-wrap lg:flex-row;
+    @apply flex flex-col flex-wrap xl:flex-row;
     > li:first-child {
       @apply mb-5 w-full;
     }
     > li:not(:first-child) {
-      @apply flex gap-1 after:mx-2.5 sm:break-keep lg:after:content-["|"] lg:last:after:content-[""];
+      @apply flex gap-1 after:mx-2.5 sm:break-keep xl:after:content-["|"] xl:last:after:content-[""];
       > label {
         @apply font-bold;
       }
@@ -37,10 +37,14 @@ footer {
   }
 }
 
+.animate-infiniteSlide:hover {
+  animation-play-state: paused;
+}
+
 @layer components {
   /* layout */
   .screen {
-    @apply h-[calc(100vh-60px)] w-screen;
+    @apply h-[calc(100vh-30px)] w-screen xl:h-[calc(100vh-60px)];
   }
   .layout {
     @apply mx-auto w-layout;
@@ -73,21 +77,51 @@ footer {
       @apply -rotate-45;
     }
   }
+  .click-button {
+    @apply my-1 mr-5 rounded-lg border px-2 py-1 shadow-button hover:mb-[2px] hover:mt-[6px] hover:shadow-none;
+  }
   .post-border {
     @apply border-[3px] border-black002 bg-white;
   }
   .link-button {
-    @apply rounded-full bg-black px-[38px] py-[10px] text-white shadow-md duration-500 hover:bg-gray001;
+    @apply rounded-full bg-black px-[5.5vw] py-[7px] text-[3vw] text-white shadow-md duration-500 hover:bg-gray001 xl:px-10 xl:text-[20px];
+  }
+  .detail-subtitle {
+    :not(:last-child) {
+      @apply after:content-["|"];
+    }
   }
 
   .divider-pattern {
-    @apply h-15 w-screen bg-white bg-[length:60px_60px];
-    background-color: #000;
+    @apply h-[30px] w-screen bg-white xl:h-15;
+    background-image: linear-gradient(45deg, #000 25%, transparent 25%, transparent 75%, #000 75%, #000),
+      linear-gradient(45deg, #000 25%, transparent 25%, transparent 75%, #000 75%, #000);
+    background-position:
+      0 0,
+      15px 15px;
+    background-size: 30px 30px;
+    @media screen and (min-width: 1280px) {
+      background-position:
+        0 0,
+        30px 30px;
+      background-size: 60px 60px;
+    }
+  }
+
+  .divider-pattern-reverse {
+    @apply h-[30px] w-screen bg-black xl:h-15;
     background-image: linear-gradient(45deg, #fff 25%, transparent 25%, transparent 75%, #fff 75%, #fff),
       linear-gradient(45deg, #fff 25%, transparent 25%, transparent 75%, #fff 75%, #fff);
     background-position:
       0 0,
-      30px 30px;
+      15px 15px;
+    background-size: 30px 30px;
+    @media screen and (min-width: 1280px) {
+      background-position:
+        0 0,
+        30px 30px;
+      background-size: 60px 60px;
+    }
   }
 
   /* component */
@@ -117,10 +151,13 @@ footer {
     }
   }
   .estimate-label {
-    @apply contents-between min-h-[40px] w-full gap-5 border-3 border-black002 bg-white px-2.5;
-    > span {
-      @apply w-20 break-keep;
-    }
+    @apply contents-center w-full flex-col border border-b-0 border-gray001 text-[8px] md:text-[12px] xl:h-15 xl:flex-row xl:text-[18px];
+  }
+  .estimate-span {
+    @apply flex h-full w-full items-center justify-start bg-gray003 px-[3.1vw] xl:w-[27.8%] xl:px-10;
+  }
+  .estimate-input {
+    @apply my-2 w-10/12 border border-gray001 px-2 xl:mx-10 xl:my-0 xl:w-full;
   }
   .social-button {
     @apply contents-center flex-1 gap-[3px] rounded-2xl border-2 border-black002 bg-sub py-[3px] text-[7px] text-main shadow-button;

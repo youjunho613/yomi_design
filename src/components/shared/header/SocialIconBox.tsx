@@ -7,7 +7,7 @@ interface IProps {
 
 export default function SocialIconBox({ className }: IProps) {
   return (
-    <ul className={`${className} gap-4`}>
+    <ul className={className}>
       <li>
         <Link
           href={"http://pf.kakao.com/_xoxfvgxj/chat"}

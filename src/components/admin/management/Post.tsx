@@ -18,7 +18,7 @@ export default function Post({ post }: IProps) {
         주소 :<span>{post.address}</span>
       </p>
       <p className="contents-between w-full">
-        종류 :<span>{CategoryKor({ mainCategory: post.mainCategory, subCategory: post.subCategory }).detail}</span>
+        종류 :<span>{CategoryKor(post.signType)}</span>
       </p>
     </div>
   );

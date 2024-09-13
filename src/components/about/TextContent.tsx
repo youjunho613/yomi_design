@@ -1,7 +1,7 @@
 "use client";
 
 import type { IAbout } from "@/app/about/content";
-import { montserrat } from "@/app/layout";
+import { montserrat } from "@/app/fonts/font";
 import useIsVisible from "@/hook/useIsVisible";
 import { useRef } from "react";
 
@@ -19,17 +19,19 @@ export default function TextContent({ index, item }: IProps) {
   const textAlign = isOdd ? "text-left" : "text-right";
 
   return (
-    <div className={`${textAlign} flex w-[28.7%] flex-col justify-between`}>
+    <div className={`${textAlign} flex flex-col justify-between md:w-[28.7%]`}>
       <div className={`${montserrat.className}`}>
         <p
           ref={paragraphRef}
-          className={`${visibilityClasses} relative z-10 text-[180px] leading-[126px] text-gray002 duration-1000`}
+          className={`${visibilityClasses} relative z-10 text-[67px] leading-none text-gray002 duration-1000 md:text-[14vw] md:leading-[70%]`}
         >
           {item.index}
         </p>
-        <h2 className="relative z-20 mt-[23px] text-[40px] uppercase leading-[33px]">{item.label}</h2>
+        <h2 className="text:[17px] relative z-20 uppercase leading-none md:mt-[23px] md:text-[3vw] md:leading-[82.5%]">
+          {item.label}
+        </h2>
       </div>
-      <p className="break-keep text-[18px] leading-[22px]">{item.content}</p>
+      <p className="my-5 mb-2.5 break-keep text-[14px] leading-[120%] lg:text-[18px]">{item.content}</p>
     </div>
   );
 }

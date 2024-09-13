@@ -1,4 +1,4 @@
-import { montserrat } from "@/app/layout";
+import { montserrat } from "@/app/fonts/font";
 
 interface IProps {
   innerText: string[];

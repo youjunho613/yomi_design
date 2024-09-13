@@ -1,18 +1,14 @@
-import { MAIN_CATEGORY, SUB_CATEGORY, TMainSignType } from "@/app/category.constant";
+import { supabase } from "@/supabase/supabase";
 
 interface IProps {
-  mainCategory: string;
-  subCategory: string;
+  category: string | null;
 }
 
-export default function CategoryKor({ mainCategory, subCategory }: IProps) {
-  const currentMainCategory = SUB_CATEGORY[mainCategory as TMainSignType];
-  const mainCategoryLabel = MAIN_CATEGORY.find(({ id }) => id === mainCategory)?.label;
-  const subCategoryLabel = currentMainCategory.find(({ id }) => id === subCategory)?.label;
+// @TODO await 훅 변환
+export default async function CategoryKor(category: string | null) {
+  if (!category) return "";
+  const { data } = await supabase.from("category").select("*");
+  const kor_category = data?.find(({ eng_name }) => eng_name === category)?.kor_name;
 
-  return {
-    mainCategory: mainCategoryLabel,
-    subCategory: subCategoryLabel,
-    detail: `${mainCategoryLabel} > ${subCategoryLabel}`,
-  };
+  return kor_category;
 }

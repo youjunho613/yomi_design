@@ -9,31 +9,39 @@ export default function PageTitle({ title }: IProps) {
   switch (title) {
     case "about":
       return (
-        <>
-          <Image src={"/title/about.svg"} alt={title} width={688} height={180} />
+        <div className="contents-center w-full flex-col">
+          <div className="relative aspect-[688/180] w-[53vw]">
+            <Image src={"/title/about.svg"} alt={title} fill className="object-contain" />
+          </div>
           <DividerDot />
-        </>
+        </div>
       );
     case "signage":
       return (
-        <>
-          <Image src={"/title/signage.svg"} alt={title} width={494} height={180} />
+        <div className="contents-center w-full flex-col">
+          <div className="relative aspect-[494/180] w-[38vw]">
+            <Image src={"/title/signage.svg"} alt={title} fill className="object-contain" />
+          </div>
           <DividerDot />
-        </>
+        </div>
       );
     case "branding":
       return (
-        <>
-          <Image src={"/title/branding.svg"} alt={title} width={574} height={180} />
+        <div className="contents-center w-full flex-col">
+          <div className="relative aspect-[574/180] w-[44vw]">
+            <Image src={"/title/branding.svg"} alt={title} fill className="object-contain" />
+          </div>
           <DividerDot />
-        </>
+        </div>
       );
     case "contact":
       return (
-        <>
-          <Image src={"/title/contact.svg"} alt={title} width={630} height={180} />
+        <div className="contents-center w-full flex-col">
+          <div className="relative aspect-[630/180] w-[49vw]">
+            <Image src={"/title/contact.svg"} alt={title} fill className="object-contain" />
+          </div>
           <DividerDot />
-        </>
+        </div>
       );
 
     default:

@@ -8,14 +8,42 @@ interface IModifyPost {
 }
 
 export const getPostList = async () => {
-  const { data: board, error } = await supabase.from("board").select("*").order("created_at", { ascending: false });
+  const { data: board, error } = await supabase
+    .from("board")
+    .select("*,category (*)")
+    .order("created_at", { ascending: false });
 
   if (error) console.error("getPost : ", error);
   return board;
 };
 
 export const getMainPostList = async () => {
-  const { data, error } = await supabase.from("mainPosts").select("*,board (*)").order("position", { ascending: true });
+  const { data, error } = await supabase
+    .from("mainPosts")
+    .select("*,board (*, category (*))")
+    .order("position", { ascending: true });
+
+  if (error) console.error("getPost : ", error);
+  return data;
+};
+
+export const getSignagePostList = async () => {
+  const { data, error } = await supabase
+    .from("board")
+    .select("*,category (*)")
+    .eq("type", "signage")
+    .order("created_at", { ascending: false });
+
+  if (error) console.error("getPost : ", error);
+  return data;
+};
+
+export const getBrandPostList = async () => {
+  const { data, error } = await supabase
+    .from("board")
+    .select("*,category (*)")
+    .eq("type", "branding")
+    .order("created_at", { ascending: false });
 
   if (error) console.error("getPost : ", error);
   return data;

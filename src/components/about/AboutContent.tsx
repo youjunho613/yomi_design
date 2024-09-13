@@ -9,13 +9,13 @@ interface IProps {
 
 export default function AboutContents({ index, item }: IProps) {
   const isOdd = index % 2 === 0;
-  const reverseClasses = isOdd ? "flex-row" : "flex-row-reverse";
+  const reverseClasses = isOdd ? "md:flex-row" : "md:flex-row-reverse";
 
   return (
-    <li key={item.index} className={`flex ${reverseClasses} justify-between border-b border-black pb-[70px]`}>
+    <li key={item.index} className={`flex ${reverseClasses} flex-col justify-between border-b border-black pb-[5.4vw]`}>
       <TextContent item={item} index={index} />
-      <div className="w-[67.3%]">
-        <ul className="flex gap-[2.4%]">
+      <div className="contents-center w-fit md:w-[67.3%]">
+        <ul className="flex gap-[2.4vw]">
           {item.image.map((img) => (
             <li key={img.src} className="aspect-square w-full max-w-[48.8%]">
               <Image src={img.src} alt={img.alt} width={200} height={200} className="w-full" />
