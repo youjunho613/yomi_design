@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function IntroduceText() {
   return (
-    <div className="contents-center flex-col">
+    <div className="contents-center layout flex-col">
       <div className="relative aspect-[300/121] w-[52.7%] lg:w-[300px]">
         <Image src={"/home-logo.svg"} alt="logo" fill className="object-contain" />
       </div>

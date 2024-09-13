@@ -34,7 +34,7 @@ export default function NewHeader() {
   };
 
   return (
-    <header className="sticky top-0 z-30 h-7.5 w-full bg-gray001 text-black shadow-md md:h-15">
+    <header className="sticky top-0 z-30 h-[40px] w-full bg-gray001 text-black shadow-md md:h-[60px]">
       <div className="layout flex h-full items-center justify-between">
         <Link href="/" className="relative aspect-[93/40] w-[44px] md:min-w-[93px]">
           <Image src="/header-logo.svg" priority alt="요미디자인" fill className="object-contain" />
