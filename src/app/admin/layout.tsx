@@ -5,6 +5,7 @@ import Loading from "@/components/shared/loading/Loading";
 import useAuth from "@/service/auth/mutations";
 import { supabaseAuth } from "@/supabase/supabase";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 interface IProps {
   children: React.ReactNode;
@@ -22,10 +23,11 @@ export default function AdminLayout({ children }: IProps) {
     router.push("/login");
   };
 
-  if (!data?.user) {
-    router.push("/login");
-    return <></>;
-  }
+  useEffect(() => {
+    if (!data?.user) {
+      router.push("/login");
+    }
+  }, [router]);
 
   return (
     <div className="flex flex-col gap-4">
