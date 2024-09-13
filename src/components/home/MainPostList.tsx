@@ -13,19 +13,33 @@ export default function MainPostList() {
 
   if (isLoading) return <Loading />;
   if (isError) return <Error error={error.message} />;
-  if (!data) return <div>업로드된 게시물이 없습니다.</div>;
+  if (!data) return <p>업로드된 게시물이 없습니다.</p>;
+  const slidePosts = [...data, ...data];
 
   return (
-    <div className="contents-center w-layout flex-wrap gap-2.5 sm:gap-6">
-      {data.map((post) => {
-        const path = `/board/${post.board?.mainCategory}/${post.board?.subCategory}/${post.board?.id}`;
-        const sourcePath = `${STORAGE_URL}/post/${post.board?.photoUrl[0]}`;
-        return (
-          <Link href={path} key={post.id} className="main-post">
-            <Image src={sourcePath} alt="시공 사진" width={200} height={200} />
-          </Link>
-        );
-      })}
+    <div className="contents-center layout">
+      <div className="w-full overflow-hidden">
+        <ul className="animate-infiniteSlide flex w-fit gap-3 pr-3 xl:gap-6 xl:pr-6">
+          {slidePosts.map((post, index) => {
+            const path = `/portfolio/${post.board?.type}/${post.board?.category?.eng_name}/${post.board?.id}`;
+            const sourcePath = `${STORAGE_URL}/post/${post.board?.photoUrl[0]}`;
+            const alt = post.board?.title ?? "시공사진";
+            return (
+              <li key={`${post.id}-${index}`}>
+                <Link href={path} className="contents-center relative aspect-square w-[40vw] xl:w-[25vw]">
+                  <Image
+                    src={sourcePath}
+                    alt={alt}
+                    fill
+                    className="aspect-square object-center"
+                    sizes="40vw (max-width: 1280px) 25vw"
+                  />
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
     </div>
   );
 }

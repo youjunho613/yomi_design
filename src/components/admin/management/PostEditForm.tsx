@@ -1,4 +1,3 @@
-import { MAIN_CATEGORY, SUB_CATEGORY } from "@/app/category.constant";
 import usePost from "@/service/post/mutations";
 import type { Tables } from "@/supabase/type";
 import type { UseFormReturn } from "react-hook-form";
@@ -54,7 +53,7 @@ export default function PostEditForm(props: IProps) {
           {...reactForm.register("address")}
         />
       </label>
-      <label htmlFor="mainCategory" className="w-full">
+      {/* <label htmlFor="mainCategory" className="w-full">
         대분류 :
         <select
           id="mainCategory"
@@ -84,7 +83,7 @@ export default function PostEditForm(props: IProps) {
             </option>
           ))}
         </select>
-      </label>
+      </label> */}
       <button
         type="button"
         className="basic-button mt-2 w-full self-center rounded-xl bg-main px-4 py-2 font-bold text-sub"
