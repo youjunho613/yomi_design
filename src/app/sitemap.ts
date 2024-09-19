@@ -1,17 +1,22 @@
 import { MetadataRoute } from "next";
-
-const DOMAIN = "https://yomi-design.com";
+import { COMPANY } from "./company-info";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
-      url: `${DOMAIN}`,
+      url: `${COMPANY.url}`,
       lastModified: new Date(),
       changeFrequency: "yearly",
       priority: 1,
     },
     {
-      url: `${DOMAIN}/board`,
+      url: `${COMPANY.url}/portfolio/signage`,
+      lastModified: new Date(),
+      changeFrequency: "daily",
+      priority: 0.8,
+    },
+    {
+      url: `${COMPANY.url}/portfolio/branding`,
       lastModified: new Date(),
       changeFrequency: "daily",
       priority: 0.8,

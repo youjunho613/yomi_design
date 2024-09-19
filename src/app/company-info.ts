@@ -23,6 +23,8 @@ export const COMPANY = {
   name_em: "YOMI DESIGN",
   chief: "허지혜",
   chief_en: "Ji-Hye Huh",
+  description: "아이덴티티와 디자인을 연결하다.",
+  url: "https://yomi-design.com",
   ...address,
   ...document,
   ...contact,

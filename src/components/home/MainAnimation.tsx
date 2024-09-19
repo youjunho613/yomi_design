@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 const initialTypingEffect = { text: "", index: 0, count: 0 };
 
-export default function MainAnimationCopy() {
+export default function MainAnimation() {
   const [typingEffect, setTypingEffect] = useState(initialTypingEffect);
   const typeText = ["SIGN", "BRANDING", "YOUTHFUL SENSE", "PROFESSIONAL", "YOMI DESIGN"];
   const speed = 50;
