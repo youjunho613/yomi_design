@@ -4,7 +4,7 @@ import PageTitle from "@/components/shared/PageTitle";
 
 export default function Page() {
   return (
-    <div className="layout contents-center mt-[100px] select-none flex-col">
+    <div className="layout contents-center mt-[15vw] select-none flex-col md:mt-[100px]">
       <PageTitle title="about" />
       <ul className="flex flex-col gap-[5.4vw]">
         {ABOUT_CONTENT.map((item, index) => (

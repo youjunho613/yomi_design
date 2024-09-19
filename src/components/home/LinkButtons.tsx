@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function LinkButtons() {
   return (
-    <div className="contents-center mb-[50px] mt-[12px] gap-[5px] xl:gap-[10px]">
+    <div className="contents-center mb-[25px] mt-[12px] gap-[5px] xl:mb-[50px] xl:gap-[10px]">
       <Link href={"/about"} className="link-button">
         소개
       </Link>

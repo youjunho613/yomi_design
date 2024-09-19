@@ -44,7 +44,7 @@ footer {
 @layer components {
   /* layout */
   .screen {
-    @apply h-[calc(100vh-40px)] w-screen xl:h-[calc(100vh-60px)];
+    @apply h-[calc(100vh-60px)] w-screen;
   }
   .layout {
     @apply mx-auto w-layout;
