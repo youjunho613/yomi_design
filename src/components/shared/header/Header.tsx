@@ -5,6 +5,7 @@ import useCategory from "@/service/category/mutations";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import HamburgerButton from "./HamburgerButton";
 import { NAV_CONTENT } from "./Header.content";
@@ -13,6 +14,9 @@ import SocialIconBox from "./SocialIconBox";
 const DynamicModal = dynamic(() => import("../../modal/Modal"), { ssr: false });
 
 export default function Header() {
+  const pathname = usePathname();
+  if (pathname === "/linktree") return;
+
   const [isOpen, setIsOpen] = useState(false);
   const { fetchUser } = useAuth();
   const { data } = fetchUser;
