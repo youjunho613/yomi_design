@@ -102,7 +102,7 @@ export default function Workflow() {
 
   return (
     <div className="mb-[5.4vw] mt-[1.9vw] w-full xl:mb-[70px] xl:mt-[25px]">
-      <ul className="contents-between flex h-full w-full flex-wrap gap-y-[5.6vw] xl:gap-y-[72px]">
+      <ul className="contents-between flex h-full w-full flex-wrap gap-y-[3vw] xl:gap-y-[72px]">
         {WORKFLOW_CONTENT.map((item, index) => {
           const { iconSrc, iconSize, title, content } = item;
           return (
@@ -117,7 +117,7 @@ export default function Workflow() {
                 >
                   <Image src={iconSrc} alt={title} fill sizes="3vw" />
                 </div>
-                <p className="my-4 bg-gray003 px-3 py-1 text-[2.3vw] font-bold leading-[110%] xl:text-[30px]">
+                <p className="my-2 bg-gray003 px-3 py-1 text-[2.3vw] font-bold leading-[110%] xl:my-4 xl:text-[30px]">
                   {title}
                 </p>
                 <div className="contents-center flex-col text-[2.3vw] md:text-[18px]">{content}</div>

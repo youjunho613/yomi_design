@@ -22,8 +22,8 @@ export default function Detail() {
 
   return (
     <div className="w-full">
-      <div className="flex flex-col content-center items-center gap-2 md:gap-[15px]">
-        <p className={`${aggro.className} text-[40px] leading-[36px]`}>요미디자인</p>
+      <div className="flex flex-col content-center items-center gap-1 md:gap-[15px]">
+        <p className={`${aggro.className} text-[23px] leading-[90%] xl:text-[40px]`}>요미디자인</p>
         <ul className="detail-subtitle flex gap-2 text-[14px] leading-none xl:text-[26px]">
           <li className="flex gap-2">
             <p>{data.type === "signage" ? "간판" : "브랜딩"}</p>

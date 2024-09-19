@@ -31,7 +31,7 @@ export default function TextContent({ index, item }: IProps) {
           {item.label}
         </h2>
       </div>
-      <p className="my-5 mb-2.5 break-keep text-[14px] leading-[120%] lg:text-[18px]">{item.content}</p>
+      <p className="my-5 mb-2.5 break-keep text-[14px] leading-[120%] lg:text-[1.4vw]">{item.content}</p>
     </div>
   );
 }

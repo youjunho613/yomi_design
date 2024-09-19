@@ -10,7 +10,7 @@ export default function Home() {
       <h1 className="hidden">{COMPANY.name_em}</h1>
       <MainAnimation />
       <div className="divider-pattern" />
-      <section className="layout flex w-screen flex-col justify-between bg-white py-[4%]">
+      <section className="layout flex w-screen flex-col justify-between bg-white py-[10%] xl:py-[8%]">
         <IntroduceText />
         <LinkButtons />
         <MainPostList />
