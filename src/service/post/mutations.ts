@@ -7,38 +7,30 @@ import {
   changeFixPost,
   createPost,
   deletePost,
+  getBrandPostList,
   getMainPostList,
   getPost,
   getPostList,
-  getPostListByCategory,
+  getSignagePostList,
   modifyPost,
 } from "./postService";
 
 export default function usePost() {
   const queryKey = ["posts"] as const;
 
-  const { category } = useParams();
-
-  const mainCategory = category?.[0] ?? undefined;
-  const subcategory = category?.[1] ?? undefined;
-  const postId = category?.[2] ?? undefined;
-
-  const currentCategory = !!subcategory ? subcategory : mainCategory;
-  const changCategory = !!subcategory ? "subCategory" : "mainCategory";
+  const { category, id: postId }: { category: string; id: string } = useParams();
 
   const fetchPosts = useQuery({ queryKey, queryFn: getPostList });
 
   const fetchMainPost = useQuery({
     queryKey: [...queryKey, "main"],
     queryFn: getMainPostList,
-    enabled: !mainCategory,
+    enabled: !category,
   });
 
-  const fetchFilteredPosts = useQuery({
-    queryKey: [...queryKey, currentCategory],
-    queryFn: () => getPostListByCategory({ changCategory, currentCategory }),
-    enabled: !!mainCategory,
-  });
+  const fetchSignagePosts = useQuery({ queryKey: [...queryKey, "signage"], queryFn: getSignagePostList });
+
+  const fetchBrandingPosts = useQuery({ queryKey: [...queryKey, "branding"], queryFn: getBrandPostList });
 
   const fetchPost = useQuery({
     queryKey: [...queryKey, postId],
@@ -77,7 +69,8 @@ export default function usePost() {
   return {
     fetchPosts,
     fetchMainPost,
-    fetchFilteredPosts,
+    fetchSignagePosts,
+    fetchBrandingPosts,
     fetchPost,
     createPostMutation,
     modifyPostMutation,

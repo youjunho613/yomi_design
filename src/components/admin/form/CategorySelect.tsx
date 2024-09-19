@@ -1,53 +1,42 @@
-import { MAIN_CATEGORY, SUB_CATEGORY } from "@/app/category.constant";
+"use client";
+
+import { useSignType } from "@/service/sign/mutations";
 import useCategorySelect from "@/store/useCategorySelect";
 
-import type { TMainSignType, TSubSignType } from "@/app/category.constant";
 import type { ChangeEvent } from "react";
 
 export default function CategorySelect() {
-  const { mainCategory, setMainCategory, setSubCategory } = useCategorySelect();
+  const { setCategory } = useCategorySelect();
+  const { fetchSignType } = useSignType();
+  const { data } = fetchSignType;
 
-  const onChangeMain = ({ target: { value } }: ChangeEvent<HTMLInputElement>) => {
-    setMainCategory(value as TMainSignType | undefined);
-  };
-
-  const onChangeSub = ({ target: { value } }: ChangeEvent<HTMLSelectElement>) => {
-    if (value === "카테고리를 선택해주세요") {
-      setSubCategory(undefined);
-      return;
-    }
-
-    setSubCategory(value as TSubSignType | undefined);
+  const onChange = ({ target: { value } }: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>) => {
+    setCategory(value);
   };
 
   return (
     <div className="flex flex-col gap-4">
       <div className="flex gap-10">
-        {MAIN_CATEGORY.map((category) => (
-          <label htmlFor={category.id} key={category.id} className="flex items-center gap-1">
+        {data?.map((category) => (
+          <label htmlFor={category.eng_name} key={category.id} className="flex items-center gap-1">
             <input
-              id={category.id}
+              id={category.eng_name}
               value={category.id}
-              onChange={(event) => onChangeMain(event)}
-              name="board"
+              onChange={(event) => onChange(event)}
+              name="post"
               type="radio"
             />
-            {category.label}
+            {category.kor_name}
           </label>
         ))}
       </div>
-      <select name="subCategory" defaultValue={undefined} onChange={(event) => onChangeSub(event)}>
-        {!mainCategory && <option>카테고리를 선택해주세요</option>}
-        {!!mainCategory && (
-          <>
-            <option>카테고리를 선택해주세요</option>
-            {SUB_CATEGORY[mainCategory].map((category) => (
-              <option key={category.id} value={category.id}>
-                {category.label}
-              </option>
-            ))}
-          </>
-        )}
+      <select name="subCategory" defaultValue={undefined} onChange={(event) => onChange(event)}>
+        <option disabled>카테고리를 선택해주세요</option>
+        {data?.map((category) => (
+          <option key={category.id} value={category.eng_name}>
+            {category.kor_name}
+          </option>
+        ))}
       </select>
     </div>
   );

@@ -16,6 +16,19 @@ interface Props {
 export default function Estimate({ estimate }: Props) {
   const [isOpen, setIsOpen] = useState({ storePhoto: false, photoUrl: false });
 
+  const korStatus = (status: "confirm" | "done" | "hidden" | "unconfirmed") => {
+    switch (status) {
+      case "unconfirmed":
+        return "미확인";
+      case "confirm":
+        return "확인";
+      case "done":
+        return "완료";
+      case "hidden":
+        return "숨김";
+    }
+  };
+
   const { deleteEstimateMutation } = useEstimate({});
 
   const deleteHandler = () => {
@@ -26,23 +39,25 @@ export default function Estimate({ estimate }: Props) {
     setIsOpen({ ...isOpen, [target]: !isOpen[target] });
   };
 
-  const emptyStorePhoto = estimate.storePhoto !== null && estimate.storePhoto.length !== 0;
-  const emptyPhotoUrl = estimate.photoUrl !== null && estimate.photoUrl.length !== 0;
+  const isStorePhoto = estimate.storePhoto !== null && estimate.storePhoto.length !== 0;
+  const isPhotoUrl = estimate.photoUrl !== null && estimate.photoUrl.length !== 0;
 
   const date = new Date(estimate.created_at);
   const createdDate = new Intl.DateTimeFormat("ko", { dateStyle: "medium", timeStyle: "short" }).format(date);
   return (
     <li className="flex flex-col gap-4 rounded-lg bg-main px-5 py-10">
-      <Text label="문의글 ID" data={estimate.id} />
-      <Text label="문의글 작성일" data={createdDate} />
+      <div className="grid w-full grid-cols-3">
+        <Text label="문의글 ID" data={estimate.id} />
+        <Text label="문의글 작성일" data={createdDate} />
+      </div>
       <div className="grid w-full grid-cols-3">
         <Text label="상호명" data={estimate.storeName} />
         <Text label="업종" data={estimate.storeCategory} />
         <Text label="현장 주소" data={estimate.address} />
       </div>
-      <div className="grid w-full grid-cols-2">
+      <div className="grid w-full grid-cols-3">
         <Text label="연락처" data={estimate.phone} />
-        <Text label="상태" data={estimate.status} />
+        <Text label="상태" data={korStatus(estimate.status)} />
       </div>
       <Text label="문의사항" data={estimate.inquiryContent} />
       <div className="flex w-full items-center justify-end gap-5 lg:w-auto">
@@ -54,7 +69,7 @@ export default function Estimate({ estimate }: Props) {
           삭제
         </button>
       </div>
-      {emptyStorePhoto && (
+      {isStorePhoto && (
         <div className="contents-center flex flex-col gap-5">
           <ImageToggleButton
             text="현장 사진"
@@ -65,7 +80,7 @@ export default function Estimate({ estimate }: Props) {
           {isOpen.storePhoto && <ImageList imageUrl={estimate.storePhoto} />}
         </div>
       )}
-      {emptyPhotoUrl && (
+      {isPhotoUrl && (
         <div className="contents-center flex flex-col gap-5">
           <ImageToggleButton
             text="컨셉 사진"

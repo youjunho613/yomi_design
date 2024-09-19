@@ -6,7 +6,7 @@ function Footer() {
   return (
     <footer>
       <ul>
-        <li className="mb-4">{FULL_ADDRESS}</li>
+        <li>{FULL_ADDRESS}</li>
         {FOOTER_CONTENT.map((item, index) => (
           <li key={index}>
             <label>{item.label}</label>

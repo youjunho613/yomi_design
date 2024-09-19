@@ -1,22 +1,15 @@
-import { TMainSignType, TSubSignType } from "@/app/category.constant";
 import { create } from "zustand";
 
 interface ICategorySelect {
-  mainCategory: TMainSignType | undefined;
-  subCategory: TSubSignType | undefined;
-  setMainCategory: (mainCategory: TMainSignType | undefined) => void;
-  setSubCategory: (subCategory: TSubSignType | undefined) => void;
+  category: string | undefined;
+  setCategory: (category: string) => void;
   resetCategory: () => void;
 }
 
 const useCategorySelect = create<ICategorySelect>((set) => ({
-  mainCategory: undefined,
-  subCategory: undefined,
-  setMainCategory: (mainCategory) => {
-    set((state: ICategorySelect) => ({ ...state, mainCategory }));
-  },
-  setSubCategory: (subCategory) => {
-    set((state: ICategorySelect) => ({ ...state, subCategory }));
+  category: undefined,
+  setCategory: (category) => {
+    set((state: ICategorySelect) => ({ ...state, category }));
   },
   resetCategory: () => {
     set((state: ICategorySelect) => ({

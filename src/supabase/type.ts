@@ -44,30 +44,75 @@ export type Database = {
       board: {
         Row: {
           address: string;
+          categoryId: number | null;
           created_at: string;
+          done: string[] | null;
           id: number;
-          mainCategory: string;
           photoUrl: string[];
-          subCategory: string;
+          signType: string | null;
           title: string;
+          type: Database["public"]["Enums"]["postType"];
         };
         Insert: {
           address: string;
+          categoryId?: number | null;
           created_at?: string;
+          done?: string[] | null;
           id?: number;
-          mainCategory: string;
           photoUrl: string[];
-          subCategory: string;
+          signType?: string | null;
           title: string;
+          type?: Database["public"]["Enums"]["postType"];
         };
         Update: {
           address?: string;
+          categoryId?: number | null;
           created_at?: string;
+          done?: string[] | null;
           id?: number;
-          mainCategory?: string;
           photoUrl?: string[];
-          subCategory?: string;
+          signType?: string | null;
           title?: string;
+          type?: Database["public"]["Enums"]["postType"];
+        };
+        Relationships: [
+          {
+            foreignKeyName: "board_categoryId_fkey";
+            columns: ["categoryId"];
+            isOneToOne: false;
+            referencedRelation: "category";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "board_signType_fkey";
+            columns: ["signType"];
+            isOneToOne: false;
+            referencedRelation: "sign";
+            referencedColumns: ["eng_name"];
+          },
+        ];
+      };
+      category: {
+        Row: {
+          created_at: string;
+          eng_name: string | null;
+          id: number;
+          index: number | null;
+          kor_name: string | null;
+        };
+        Insert: {
+          created_at?: string;
+          eng_name?: string | null;
+          id?: number;
+          index?: number | null;
+          kor_name?: string | null;
+        };
+        Update: {
+          created_at?: string;
+          eng_name?: string | null;
+          id?: number;
+          index?: number | null;
+          kor_name?: string | null;
         };
         Relationships: [];
       };
@@ -77,36 +122,45 @@ export type Database = {
           created_at: string;
           id: number;
           inquiryContent: string;
+          isLogoDesign: string | null;
+          openDate: string | null;
           phone: string;
           photoUrl: string[] | null;
           status: Database["public"]["Enums"]["estimateStatus"];
           storeCategory: string;
           storeName: string;
           storePhoto: string[] | null;
+          workDate: string | null;
         };
         Insert: {
           address: string;
           created_at?: string;
           id?: number;
           inquiryContent: string;
+          isLogoDesign?: string | null;
+          openDate?: string | null;
           phone: string;
           photoUrl?: string[] | null;
           status?: Database["public"]["Enums"]["estimateStatus"];
           storeCategory: string;
           storeName: string;
           storePhoto?: string[] | null;
+          workDate?: string | null;
         };
         Update: {
           address?: string;
           created_at?: string;
           id?: number;
           inquiryContent?: string;
+          isLogoDesign?: string | null;
+          openDate?: string | null;
           phone?: string;
           photoUrl?: string[] | null;
           status?: Database["public"]["Enums"]["estimateStatus"];
           storeCategory?: string;
           storeName?: string;
           storePhoto?: string[] | null;
+          workDate?: string | null;
         };
         Relationships: [];
       };
@@ -139,6 +193,27 @@ export type Database = {
           },
         ];
       };
+      sign: {
+        Row: {
+          created_at: string;
+          eng_name: string;
+          id: number;
+          kor_name: string;
+        };
+        Insert: {
+          created_at?: string;
+          eng_name: string;
+          id?: number;
+          kor_name: string;
+        };
+        Update: {
+          created_at?: string;
+          eng_name?: string;
+          id?: number;
+          kor_name?: string;
+        };
+        Relationships: [];
+      };
     };
     Views: {
       [_ in never]: never;
@@ -148,6 +223,7 @@ export type Database = {
     };
     Enums: {
       estimateStatus: "confirm" | "done" | "hidden" | "unconfirmed";
+      postType: "signage" | "branding";
     };
     CompositeTypes: {
       [_ in never]: never;
