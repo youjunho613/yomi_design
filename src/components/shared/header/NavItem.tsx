@@ -27,14 +27,7 @@ export default function NavItem() {
         </Link>
       ))}
       <HamburgerButton isOpen={isOpen} openToggle={openToggle} />
-      <DynamicModal
-        open={isOpen}
-        onClose={onClose}
-        className={{
-          overlay: "sm:hidden",
-          modal: "w-10/12 rounded-s-3xl bg-sub text-white",
-        }}
-      >
+      <DynamicModal isOpen={isOpen} openToggle={onClose}>
         <div className="side-navigation">
           {NAV_CONTENT.map((item) => (
             <Link key={item.href} href={item.href} id={item.href} onClick={onClose}>

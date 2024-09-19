@@ -23,9 +23,13 @@ export const COMPANY = {
   name_em: "YOMI DESIGN",
   chief: "허지혜",
   chief_en: "Ji-Hye Huh",
+  description: "아이덴티티와 디자인을 연결하다.",
+  url: "https://yomi-design.com",
   ...address,
   ...document,
   ...contact,
+  businessHours: "10:00 ~ 19:00",
+  businessDay: "법정 공휴일 휴무",
   copyRight: "ⓒ 2023. YOMI DESIGN all rights reserved.",
 };
 

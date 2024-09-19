@@ -18,7 +18,6 @@ export default function AboutContents({ index, item }: IProps) {
         <ul className="flex w-full gap-[2.4vw]">
           {item.image.map((img) => (
             <li key={img.src} className="relative aspect-square w-[48.8%] max-w-[48.8%] object-fill">
-              {/* <Image src={img.src} alt={img.alt} width={200} height={200} className="w-full" /> */}
               <Image src={img.src} alt={img.alt} fill sizes="200px object-cover" />
             </li>
           ))}

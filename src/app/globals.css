@@ -44,7 +44,7 @@ footer {
 @layer components {
   /* layout */
   .screen {
-    @apply h-[calc(100vh-60px)] w-screen;
+    @apply h-[calc(100vh-55px)] w-screen xl:h-[calc(100vh-60px)];
   }
   .layout {
     @apply mx-auto w-layout;
@@ -60,7 +60,7 @@ footer {
   }
   /* common */
   .basic-button {
-    @apply cursor-pointer bg-sub text-main;
+    @apply cursor-pointer bg-black text-main;
   }
   .close-button {
     > span {

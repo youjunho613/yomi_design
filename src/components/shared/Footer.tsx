@@ -1,8 +1,14 @@
+"use client";
+
 import { COMPANY, FOOTER_CONTENT } from "@/app/company-info";
+import { usePathname } from "next/navigation";
 
 const FULL_ADDRESS = `(${COMPANY.addressPostcode}) ${COMPANY.address} ${COMPANY.addressDetail}`;
 
-function Footer() {
+export default function Footer() {
+  const pathname = usePathname();
+  if (pathname === "/linktree") return;
+
   return (
     <footer>
       <ul>
@@ -18,5 +24,3 @@ function Footer() {
     </footer>
   );
 }
-
-export default Footer;

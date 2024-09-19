@@ -19,7 +19,7 @@ export default function MainPostList() {
   return (
     <div className="contents-center layout">
       <div className="w-full overflow-hidden">
-        <ul className="animate-infiniteSlide flex w-fit gap-3 pr-3 xl:gap-6 xl:pr-6">
+        <ul className="flex w-fit animate-infiniteSlide gap-3 pr-3 xl:gap-6 xl:pr-6">
           {slidePosts.map((post, index) => {
             const path = `/portfolio/${post.board?.type}/${post.board?.category?.eng_name}/${post.board?.id}`;
             const sourcePath = `${STORAGE_URL}/post/${post.board?.photoUrl[0]}`;
