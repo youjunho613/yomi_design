@@ -25,7 +25,6 @@ export const ABOUT_CONTENT = [
   {
     index: "02",
     label: "expertise",
-    // label: "professional",
     content:
       "고객님의 브랜드를 위해 저희는 시각디자인 전문 디자이너가 디자인하며, 본사 소속 전문 시공팀이 직접 제작하고 시공해드립니다.",
     image: [

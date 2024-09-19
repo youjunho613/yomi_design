@@ -4,7 +4,6 @@ interface IProps {
   category: string | null;
 }
 
-// @TODO await 훅 변환
 export default async function CategoryKor(category: string | null) {
   if (!category) return "";
   const { data } = await supabase.from("category").select("*");

@@ -28,12 +28,6 @@ export default function usePost() {
     enabled: !category,
   });
 
-  // const fetchFilteredPosts = useQuery({
-  //   queryKey: [...queryKey, category],
-  //   queryFn: () => getPostListByCategory({ changCategory, category }),
-  //   enabled: !!category,
-  // });
-
   const fetchSignagePosts = useQuery({ queryKey: [...queryKey, "signage"], queryFn: getSignagePostList });
 
   const fetchBrandingPosts = useQuery({ queryKey: [...queryKey, "branding"], queryFn: getBrandPostList });
