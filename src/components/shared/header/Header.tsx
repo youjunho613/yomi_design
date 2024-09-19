@@ -14,9 +14,6 @@ import SocialIconBox from "./SocialIconBox";
 const DynamicModal = dynamic(() => import("../../modal/Modal"), { ssr: false });
 
 export default function Header() {
-  const pathname = usePathname();
-  if (pathname === "/linktree") return;
-
   const [isOpen, setIsOpen] = useState(false);
   const { fetchUser } = useAuth();
   const { data } = fetchUser;
@@ -37,6 +34,8 @@ export default function Header() {
     return currentItem.some((string) => string === item);
   };
 
+  const pathname = usePathname();
+  if (pathname === "/linktree") return;
   return (
     <header className="sticky top-0 z-30 h-[55px] w-full bg-gray001 text-black shadow-md xl:h-[60px]">
       <div className="layout flex h-full items-center justify-between">
