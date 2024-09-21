@@ -6,7 +6,9 @@ interface ILogin {
 }
 
 export const checkUser = async () => {
-  const { data } = await supabaseAuth.getUser();
+  const { data, error } = await supabaseAuth.getUser();
+
+  if (error) throw new Error(`${error.message}`);
 
   return data;
 };

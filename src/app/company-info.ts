@@ -16,6 +16,10 @@ const address = {
   address: "서울 강서구 마곡중앙4로 22",
   addressDetail: "파인스퀘어 B동 204호",
   address_en: "22, Magokjungang 4-ro, Gangseo-gu, Seoul, Republic of Korea",
+  futureAddressPostcode: "07626",
+  futureAddress: "서울 강서구 공항동 692-8",
+  futureAddressDetail: "1층",
+  futureAddress_en: "14-3, Songjeong-ro, Gangseo-gu, Seoul, Republic of Korea",
 };
 
 export const COMPANY = {
