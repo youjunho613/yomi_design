@@ -17,6 +17,17 @@ export const getPostList = async () => {
   return board;
 };
 
+export const getPostListAll = async () => {
+  const { data: board, error } = await supabase
+    .from("board")
+    .select("*,category (*),signType(*)")
+    .order("created_at", { ascending: false });
+
+  console.log("board :", board);
+  if (error) console.error("getPost : ", error);
+  return board;
+};
+
 export const getMainPostList = async () => {
   const { data, error } = await supabase
     .from("mainPosts")

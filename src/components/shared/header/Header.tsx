@@ -36,6 +36,7 @@ export default function Header() {
 
   const pathname = usePathname();
   if (pathname === "/linktree") return;
+
   return (
     <header className="sticky top-0 z-30 h-[55px] w-full bg-gray001 text-black shadow-md xl:h-[60px]">
       <div className="layout flex h-full items-center justify-between">

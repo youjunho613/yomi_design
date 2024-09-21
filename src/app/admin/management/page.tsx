@@ -1,7 +1,7 @@
 "use client";
 
 import FixListManage from "@/components/admin/management/FixListManage";
-import PostManage from "@/components/admin/management/PostManage";
+// import PostManage from "@/components/admin/management/PostManage";
 import Error from "@/components/shared/Error";
 import Loading from "@/components/shared/loading/Loading";
 import usePost from "@/service/post/mutations";
@@ -19,11 +19,11 @@ export default function Page() {
     <Fragment>
       <h1 className="my-5 w-full text-center text-2xl font-bold">게시물 관리</h1>
       <FixListManage />
-      <ul className="flex w-full flex-wrap items-center gap-2.5 sm:gap-6">
+      {/* <ul className="flex w-full flex-wrap items-center gap-2.5 sm:gap-6">
         {data.map((post) => (
           <PostManage key={post.id} post={post} />
         ))}
-      </ul>
+      </ul> */}
     </Fragment>
   );
 }

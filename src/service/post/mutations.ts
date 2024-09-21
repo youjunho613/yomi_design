@@ -11,6 +11,7 @@ import {
   getMainPostList,
   getPost,
   getPostList,
+  getPostListAll,
   getSignagePostList,
   modifyPost,
 } from "./postService";
@@ -21,6 +22,8 @@ export default function usePost() {
   const { category, id: postId }: { category: string; id: string } = useParams();
 
   const fetchPosts = useQuery({ queryKey, queryFn: getPostList });
+
+  const fetchPostListAll = useQuery({ queryKey, queryFn: getPostListAll });
 
   const fetchMainPost = useQuery({
     queryKey: [...queryKey, "main"],
@@ -68,6 +71,7 @@ export default function usePost() {
 
   return {
     fetchPosts,
+    fetchPostListAll,
     fetchMainPost,
     fetchSignagePosts,
     fetchBrandingPosts,
