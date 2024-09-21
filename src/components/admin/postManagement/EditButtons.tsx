@@ -34,6 +34,7 @@ export default function EditButtons(props: IProps) {
 
   const deletePostHandler = async () => {
     deletePostMutation.mutate({ id: postId, fileList: postPhotoUrl });
+    openPostHandler({ target: "init" });
   };
 
   const initHandler = () => {
