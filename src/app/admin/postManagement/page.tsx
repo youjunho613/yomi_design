@@ -42,7 +42,6 @@ export default function Page() {
   const [openPost, setOpenPost] = useState<IPost>(initialPost);
 
   const [modifyPost, setModifyPost] = useState<TablesUpdate<"board"> | null>(null);
-  console.log("modifyPost :", modifyPost);
 
   const onChangeTextHandler = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.name === "title") {

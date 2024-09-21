@@ -23,7 +23,6 @@ export const getPostListAll = async () => {
     .select("*,category (*),signType(*)")
     .order("created_at", { ascending: false });
 
-  console.log("board :", board);
   if (error) console.error("getPost : ", error);
   return board;
 };

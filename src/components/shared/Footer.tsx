@@ -10,8 +10,6 @@ const FULL_ADDRESS =
     : `(${COMPANY.addressPostcode}) ${COMPANY.address} ${COMPANY.addressDetail}`;
 
 export default function Footer() {
-  console.log();
-
   const pathname = usePathname();
   if (pathname === "/linktree") return;
   if (pathname.includes("/admin")) return;
