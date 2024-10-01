@@ -27,7 +27,7 @@ export default function Header() {
   if (pathname === "/linktree") return;
 
   return (
-    <header className="sticky top-0 z-30 h-mobile-header w-full bg-gray001 text-black shadow-md xl:h-header">
+    <header className="sticky top-0 z-30 h-[55px] w-full bg-gray001 text-black shadow-md xl:h-[60px]">
       <div className="layout flex h-full items-center justify-between">
         <Link href="/" className="relative aspect-[93/40] min-w-[70px]">
           <Image src="/header-logo.svg" priority alt="요미디자인" fill className="object-contain" />
