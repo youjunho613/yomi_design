@@ -73,8 +73,11 @@ export default function Table({ categoryList }: IProps) {
 
       <tbody>
         {categoryList?.map((item) => (
-          <div className="flex flex-col gap-2 border-b border-slate-400 px-4 py-2 text-center hover:bg-slate-400 xl:flex-row">
-            <tr key={item.id} className="flex w-full items-center">
+          <div
+            key={item.id}
+            className="flex flex-col gap-2 border-b border-slate-400 px-4 py-2 text-center hover:bg-slate-400 xl:flex-row"
+          >
+            <tr className="flex w-full items-center">
               <td className="w-2/12">{item.index}</td>
               <td className="flex-1">
                 {isOpen.modify === item.id ? (
