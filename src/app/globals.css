@@ -76,9 +76,9 @@ footer {
   }
   .click-button {
     @apply my-1 translate-x-0 rounded-lg border px-2 py-1 shadow-button;
-    @apply hover:mb-[2px] hover:mt-[6px] hover:shadow-none;
+    @apply active:mb-[2px] active:mt-[6px] active:shadow-none;
     @apply disabled:border-gray-400 disabled:text-gray-400 disabled:shadow-gray-400;
-    @apply disabled:hover:my-1 disabled:hover:shadow-button disabled:hover:shadow-gray-200;
+    @apply disabled:active:my-1 disabled:active:shadow-button disabled:active:shadow-gray-200;
   }
   .post-border {
     @apply border-[3px] border-black002 bg-white;
@@ -90,6 +90,16 @@ footer {
     :not(:last-child) {
       @apply after:content-["|"];
     }
+  }
+  .modal-overlay {
+    @apply fixed inset-0 z-40 max-h-screen overflow-y-auto overflow-x-hidden overscroll-contain;
+  }
+  .modal-inner {
+    @apply fixed right-0 top-0 z-40;
+    @apply bg-gray001 text-black;
+    @apply overflow-y-auto overflow-x-hidden overscroll-contain rounded-es-3xl p-10 shadow-md;
+    @apply mt-[55px] h-[calc(100%-55px)] w-2/3 xl:mt-[60px] xl:h-[calc(100%-60px)];
+    @apply transform transition-transform duration-700 ease-in-out;
   }
 
   .divider-pattern {

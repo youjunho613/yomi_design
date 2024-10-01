@@ -8,8 +8,8 @@ interface IProps {
 
 export default function PostItem({ post }: IProps) {
   return (
-    <div className="contents-center w-[20vw] flex-col border-b border-black xl:w-[15vw]">
-      <div className="relative aspect-square w-[20vw] border border-t-0 border-black xl:w-[15vw]">
+    <div className="contents-center w-full flex-col border-b border-black xl:w-[15vw]">
+      <div className="relative aspect-square w-full border border-t-0 border-black xl:w-[15vw]">
         <Image src={`${STORAGE_URL}/post/${post.photoUrl[0]}`} alt={post.title} fill sizes="20vw" />
       </div>
       <table className="flex w-full justify-between px-3 py-2 text-xs xl:text-base">

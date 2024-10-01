@@ -145,7 +145,7 @@ export default function Page() {
           </div>
         ) : (
           filteredData.map((post) => (
-            <li key={post.id} className="flex w-[20vw] flex-col border border-black xl:w-[15vw]">
+            <li key={post.id} className="flex w-full flex-col border border-black xl:w-[15vw]">
               {openPost.modifyId === post.id ? (
                 <PostItemModify
                   post={post}

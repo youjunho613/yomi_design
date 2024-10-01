@@ -22,3 +22,17 @@ export const createCategory = async (data: TablesInsert<"category">) => {
 
   if (error) console.error("createCategory : ", error);
 };
+
+export const modifyCategory = async (data: TablesInsert<"category">) => {
+  if (!data.id) return;
+
+  const { error } = await supabase.from("category").update(data).eq("id", data.id);
+
+  if (error) console.error("modifyCategory : ", error);
+};
+
+export const deleteCategory = async (id: number) => {
+  const { error } = await supabase.from("category").delete().eq("id", id);
+
+  if (error) console.error("deleteCategory : ", error);
+};

@@ -57,7 +57,7 @@ export default function EditButtons(props: IProps) {
           className="click-button border-black bg-white"
           onClick={() => openPostHandler({ target: "modifyId", postId })}
         >
-          수정
+          글 수정
         </button>
       )}
       {postId === openPost.modifyId ? (
@@ -73,7 +73,7 @@ export default function EditButtons(props: IProps) {
           className="click-button border-black bg-white"
           onClick={() => openPostHandler({ target: "deleteId", postId })}
         >
-          삭제
+          글 삭제
         </button>
       )}
     </div>

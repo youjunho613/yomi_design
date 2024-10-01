@@ -1,7 +1,8 @@
 import { IFileList } from "@/app/admin/postManagement/page";
 import usePost from "@/service/post/mutations";
-import { fileToUrls } from "@/supabase/supabase";
-import { ChangeEvent } from "react";
+import { STORAGE_URL, deleteStorage, fileToUrls } from "@/supabase/supabase";
+import Image from "next/image";
+import { ChangeEvent, useState } from "react";
 import { toast } from "react-toastify";
 
 interface IProps {
@@ -15,6 +16,22 @@ interface IProps {
 export default function AddImage(props: IProps) {
   const { postId, postPhotoUrl, fileList, onChangeFileHandler, initialFileListHandler } = props;
   const { modifyPostMutation } = usePost();
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedPhotoUrl, setSelectedPhotoUrl] = useState<string[]>([]);
+
+  const onChangeCheckboxHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    const { checked, id } = e.target;
+    if (checked) {
+      setSelectedPhotoUrl([...selectedPhotoUrl, id]);
+    } else {
+      setSelectedPhotoUrl(selectedPhotoUrl.filter((url) => url !== id));
+    }
+  };
+
+  const onChangeIsOpen = () => {
+    setIsOpen(!isOpen);
+    setSelectedPhotoUrl([]);
+  };
 
   const addImage = async (postId: number, beforePhotoUrl: string[]) => {
     const bucket = "post";
@@ -30,9 +47,22 @@ export default function AddImage(props: IProps) {
     initialFileListHandler();
   };
 
+  const deleteImage = async (postId: number, deletePhotoUrl: string[]) => {
+    const bucket = "post";
+    const promiseText = { pending: "삭제 중 🚀", success: "삭제 성공 👌", error: "삭제 실패 🤯" };
+
+    try {
+      await toast.promise(deleteStorage({ bucket, fileList: deletePhotoUrl }), promiseText);
+      const photoUrl = postPhotoUrl.filter((url) => !deletePhotoUrl.includes(url));
+      modifyPostMutation.mutate({ id: postId, request: { photoUrl } });
+    } catch (error) {
+      toast.error("삭제 실패");
+    }
+  };
+
   return (
     <>
-      <div className="contents-center">
+      <div className="contents-between px-3">
         <label htmlFor={`fileAdd${postId}`} className="click-button cursor-pointer border-black bg-white">
           이미지 추가
           <input
@@ -47,6 +77,9 @@ export default function AddImage(props: IProps) {
             }}
           />
         </label>
+        <button className="click-button cursor-pointer border-black bg-white" onClick={onChangeIsOpen}>
+          이미지 삭제
+        </button>
       </div>
       {fileList.id === postId && fileList.fileList && (
         <>
@@ -73,6 +106,29 @@ export default function AddImage(props: IProps) {
             </label>
           </div>
         </>
+      )}
+      {isOpen && (
+        <ul className="flex w-full flex-col justify-center">
+          {postPhotoUrl.map((url, index) => (
+            <li key={index} className="flex w-full">
+              <label htmlFor={url} className="relative mx-auto aspect-square w-4/5">
+                <Image src={`${STORAGE_URL}/post/${url}`} alt={`${index}번째 사진 - ${url}`} fill sizes="20%" />
+                <div className="absolute right-[1%] top-[1%] z-30 flex aspect-square rounded-full bg-white">
+                  <input
+                    type="checkbox"
+                    name="photo"
+                    id={url}
+                    className="w-10"
+                    onChange={(e) => onChangeCheckboxHandler(e)}
+                  />
+                </div>
+              </label>
+            </li>
+          ))}
+          <button className="click-button mx-auto" onClick={() => deleteImage(postId, selectedPhotoUrl)}>
+            선택 항목 삭제
+          </button>
+        </ul>
       )}
     </>
   );

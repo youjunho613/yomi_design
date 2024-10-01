@@ -32,9 +32,9 @@ export default function AdminLayout({ children }: IProps) {
   else
     return (
       !!user && (
-        <div className="flex h-full w-full px-1 xl:px-10">
+        <div className="flex h-full w-full pr-1 xl:pr-10">
           <Navbar user={user} logoutHandler={logoutHandler} />
-          <div className="w-full px-2 xl:px-10">{children}</div>
+          <div className="h-full w-full pl-[74px] pr-2 xl:ml-[70px] xl:px-10">{children}</div>
         </div>
       )
     );

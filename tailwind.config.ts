@@ -14,6 +14,7 @@ const config: Config = {
       },
       boxShadow: {
         button: "1px 3px 0px 0px #000",
+        menu: "0px 4px 16px 0px rgba(0, 0, 0, 6%)",
       },
       colors: {
         black: "#000000",
@@ -25,6 +26,7 @@ const config: Config = {
         main: "#fef4e8",
         sub: "#ea5456",
         subsoft: "#f28183",
+        primary: "#f7f7f7",
       },
       borderWidth: {
         "3": "3px",
