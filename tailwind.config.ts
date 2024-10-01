@@ -14,6 +14,7 @@ const config: Config = {
       },
       boxShadow: {
         button: "1px 3px 0px 0px #000",
+        "active-button": "1px 1px 0px 0px #000",
         menu: "0px 4px 16px 0px rgba(0, 0, 0, 6%)",
       },
       colors: {

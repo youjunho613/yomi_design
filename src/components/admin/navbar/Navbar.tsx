@@ -1,13 +1,13 @@
 import { User } from "@supabase/supabase-js";
 import Link from "next/link";
-import { AiFillPlusCircle, AiOutlineUnorderedList } from "react-icons/ai";
+import { AiFillCustomerService, AiFillPlusCircle, AiOutlineUnorderedList } from "react-icons/ai";
 import { MdCategory } from "react-icons/md";
 
 const menuItems = [
   { name: "게시물 추가", path: "/admin/create", icon: <AiFillPlusCircle /> },
   { name: "게시물 관리", path: "/admin/postManagement", icon: <AiOutlineUnorderedList /> },
   { name: "카테고리 관리", path: "/admin/category", icon: <MdCategory /> },
-  // { name: "문의 목록", path: "/admin/estimateList", icon: <AiFillCustomerService /> },
+  { name: "문의 목록", path: "/admin/estimateList", icon: <AiFillCustomerService /> },
 ];
 
 interface IProps {
