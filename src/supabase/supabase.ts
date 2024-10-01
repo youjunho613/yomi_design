@@ -44,3 +44,9 @@ export const fileToUrls = async ({ bucket, fileList }: IFileToUrls) => {
 
   return fileUrls;
 };
+
+export const deleteStorage = async ({ bucket, fileList }: { bucket: TBucket; fileList: string[] }) => {
+  const { error } = await supabase.storage.from(bucket).remove(fileList);
+
+  if (error) console.error("deleteStorage : ", error);
+};

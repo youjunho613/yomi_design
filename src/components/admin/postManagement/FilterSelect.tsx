@@ -8,8 +8,11 @@ interface IProps {
 export default function FilterSelect({ onChangeFilter, filterOption }: IProps) {
   const { fetchSignType } = useSignType();
   return (
-    <div className="flex gap-10">
-      <label htmlFor="postType" className="contents-center m-2 gap-2 rounded-full border border-black p-2">
+    <div className="flex w-full gap-10 text-sm xl:text-base">
+      <label
+        htmlFor="postType"
+        className="contents-center m-1 flex-col gap-2 border border-black p-1 xl:m-2 xl:rounded-full xl:p-2"
+      >
         게시글 타입
         <select name="postType" id="postType" onChange={(e) => onChangeFilter(e)}>
           <option value="all" defaultValue={filterOption.category}>
@@ -19,7 +22,10 @@ export default function FilterSelect({ onChangeFilter, filterOption }: IProps) {
           <option value="branding">BRANDING</option>
         </select>
       </label>
-      <label htmlFor="signType" className="contents-center m-2 gap-2 rounded-full border border-black p-2">
+      <label
+        htmlFor="signType"
+        className="contents-center m-1 flex-col gap-2 border border-black p-1 xl:m-2 xl:rounded-full xl:p-2"
+      >
         간판 종류
         <select name="signType" id="signType" onChange={(e) => onChangeFilter(e)}>
           <option value="all" defaultValue={filterOption.signType}>

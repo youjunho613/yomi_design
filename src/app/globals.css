@@ -98,7 +98,7 @@ footer {
     @apply fixed right-0 top-0 z-40;
     @apply bg-gray001 text-black;
     @apply overflow-y-auto overflow-x-hidden overscroll-contain rounded-es-3xl p-10 shadow-md;
-    @apply mt-mobile-header h-exclude-mobile-header w-2/3 xl:mt-header xl:h-exclude-header;
+    @apply mt-[55px] h-[calc(100%-55px)] w-2/3 xl:mt-[60px] xl:h-[calc(100%-60px)];
     @apply transform transition-transform duration-700 ease-in-out;
   }
 
