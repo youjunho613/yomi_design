@@ -8,8 +8,6 @@ import useCategory from "@/service/category/mutations";
 import { TablesUpdate } from "@/supabase/type";
 import { useState } from "react";
 
-// @TODO CRUD
-
 export interface IIsOpen {
   create: boolean;
   indexModify: boolean;

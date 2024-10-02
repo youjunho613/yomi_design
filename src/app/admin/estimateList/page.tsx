@@ -17,11 +17,14 @@ export interface IEstimateStatusItem {
 
 export default function Page() {
   const [toggleStatus, setToggleStatus] = useState<TEstimateStatusUpdate | undefined>(undefined);
-  const { fetchEstimate, fetchFilteredEstimate } = useEstimate({ status: toggleStatus });
+  const { fetchEstimate } = useEstimate({ status: toggleStatus });
+  const { data, isLoading, isError, error } = fetchEstimate;
 
-  const isLoading = fetchEstimate.isLoading || fetchFilteredEstimate.isLoading;
-  const isError = fetchEstimate.isError || fetchFilteredEstimate.isError;
-  const error = !toggleStatus ? fetchEstimate.error : fetchFilteredEstimate.error;
+  const dataNotHidden = data?.filter((item) => item.status !== "hidden");
+  const unconfirmedData = fetchEstimate.data?.filter((item) => item.status === "unconfirmed");
+  const confirmedData = fetchEstimate.data?.filter((item) => item.status === "confirm");
+  const doneData = fetchEstimate.data?.filter((item) => item.status === "done");
+  const hiddenData = fetchEstimate.data?.filter((item) => item.status === "hidden");
 
   const onChangeStatus = (status: TEstimateStatusUpdate | undefined) => {
     setToggleStatus(status);
@@ -35,8 +38,11 @@ export default function Page() {
       <h1 className="my-5 w-full text-center text-2xl font-bold">문의글 관리</h1>
       <div>
         <EstimateTab toggleStatus={toggleStatus} onChangeStatus={onChangeStatus} />
-        {!toggleStatus && <EstimateList data={fetchEstimate.data} />}
-        {!!toggleStatus && <EstimateList data={fetchFilteredEstimate.data} />}
+        {!toggleStatus && <EstimateList data={dataNotHidden} />}
+        {toggleStatus === "unconfirmed" && <EstimateList data={unconfirmedData} />}
+        {toggleStatus === "confirm" && <EstimateList data={confirmedData} />}
+        {toggleStatus === "done" && <EstimateList data={doneData} />}
+        {toggleStatus === "hidden" && <EstimateList data={hiddenData} />}
       </div>
     </Fragment>
   );

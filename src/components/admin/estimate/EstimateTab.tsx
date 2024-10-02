@@ -20,11 +20,11 @@ export default function EstimateTab(props: IProps) {
   const statusColorStyle = (status: TEstimateStatusUpdate | undefined) => toggleStatus === status && toggleStyle;
 
   return (
-    <div className="flex justify-around gap-10">
+    <div className="flex flex-wrap justify-around gap-2 text-nowrap lg:gap-10">
       {statusArray.map((item) => (
         <button
           key={item.status}
-          className={`${statusColorStyle(item.status)} click-button w-full rounded-md border border-black bg-white px-3 py-2`}
+          className={`${statusColorStyle(item.status)} click-button w-full flex-1 rounded-md border border-black bg-white px-3 py-2`}
           onClick={() => {
             onChangeStatus(item.status);
           }}
@@ -33,7 +33,7 @@ export default function EstimateTab(props: IProps) {
         </button>
       ))}
       <button
-        className={`${toggleStatus === undefined && toggleStyle} click-button w-full rounded-md border-black px-3 py-2`}
+        className={`${toggleStatus === undefined && toggleStyle} click-button w-full flex-1 rounded-md border-black px-3 py-2`}
         onClick={() => {
           onChangeStatus(undefined);
         }}

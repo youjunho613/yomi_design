@@ -59,54 +59,50 @@ export default function Table({ categoryList }: IProps) {
   };
 
   return (
-    <table className="flex w-full flex-col p-2 xl:p-5">
+    <table className="flex w-full flex-col text-nowrap p-2 text-center xl:p-5">
       <thead>
-        <div className="flex flex-col gap-2 border-b border-slate-200 px-4 py-2 text-center hover:bg-slate-200 xl:flex-row">
-          <tr className="flex w-full items-center">
-            <th className="w-2/12">순서</th>
-            <th className="flex-1">한글명</th>
-            <th className="flex-1">영문명</th>
-          </tr>
-          <div className="flex justify-around text-nowrap px-[15px] font-bold">수정·삭제</div>
-        </div>
+        <tr className="flex w-full flex-wrap items-center border-b border-slate-200 px-4 py-2 hover:bg-slate-200">
+          <th className="w-2/12">순서</th>
+          <th className="min-w-20 flex-1">한글명</th>
+          <th className="min-w-20 flex-1">영문명</th>
+          <th className="min-w-20 flex-1">수정·삭제</th>
+        </tr>
       </thead>
 
       <tbody>
         {categoryList?.map((item) => (
-          <div
+          <tr
             key={item.id}
-            className="flex flex-col gap-2 border-b border-slate-400 px-4 py-2 text-center hover:bg-slate-400 xl:flex-row"
+            className="flex w-full flex-wrap items-center border-b border-slate-400 px-4 py-2 hover:bg-slate-400"
           >
-            <tr className="flex w-full items-center">
-              <td className="w-2/12">{item.index}</td>
-              <td className="flex-1">
-                {isOpen.modify === item.id ? (
-                  <input
-                    type="text"
-                    className="w-full bg-slate-200 px-2 text-center xl:w-1/2"
-                    name="kor_name"
-                    placeholder={item.kor_name ?? ""}
-                    onChange={(e) => onChangeHandler(e)}
-                  />
-                ) : (
-                  item.kor_name
-                )}
-              </td>
-              <td className="flex-1">
-                {isOpen.modify === item.id ? (
-                  <input
-                    type="text"
-                    className="w-full bg-slate-200 px-2 text-center xl:w-1/2"
-                    name="eng_name"
-                    placeholder={item.eng_name ?? ""}
-                    onChange={(e) => onChangeHandler(e)}
-                  />
-                ) : (
-                  item.eng_name
-                )}
-              </td>
-            </tr>
-            <div className="flex justify-around gap-2">
+            <td className="w-2/12">{item.index}</td>
+            <td className="min-w-20 flex-1">
+              {isOpen.modify === item.id ? (
+                <input
+                  type="text"
+                  className="w-full bg-slate-200 px-2 text-center xl:w-1/2"
+                  name="kor_name"
+                  placeholder={item.kor_name ?? ""}
+                  onChange={(e) => onChangeHandler(e)}
+                />
+              ) : (
+                item.kor_name
+              )}
+            </td>
+            <td className="min-w-20 flex-1">
+              {isOpen.modify === item.id ? (
+                <input
+                  type="text"
+                  className="w-full bg-slate-200 px-2 text-center xl:w-1/2"
+                  name="eng_name"
+                  placeholder={item.eng_name ?? ""}
+                  onChange={(e) => onChangeHandler(e)}
+                />
+              ) : (
+                item.eng_name
+              )}
+            </td>
+            <td className="flex min-w-20 flex-1 justify-center gap-2 lg:gap-10">
               {isOpen.modify === item.id ? (
                 <input
                   type="button"
@@ -151,8 +147,8 @@ export default function Table({ categoryList }: IProps) {
                   onClick={() => handleModify(item.id, "delete")}
                 />
               )}
-            </div>
-          </div>
+            </td>
+          </tr>
         ))}
       </tbody>
     </table>
