@@ -8,9 +8,9 @@ interface IProps {
 }
 
 export default function StatusButton({ id, dataStatus }: IProps) {
-  const { modifyEstimateMutation, deleteEstimateMutation } = useEstimate({});
+  const { modifyEstimateMutation, deleteEstimateMutation } = useEstimate();
 
-  const modifyHandler = (status: TEstimateStatusUpdate | undefined) => {
+  const modifyHandler = async (status: TEstimateStatusUpdate | undefined) => {
     modifyEstimateMutation.mutate({ id, status });
   };
 

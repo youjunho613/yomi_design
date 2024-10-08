@@ -24,12 +24,12 @@ export default function Estimate({ estimate }: Props) {
   return (
     <li className="flex flex-col gap-4 rounded-lg bg-white px-5 py-10 text-xs lg:text-base">
       <EstimateInfo estimate={estimate} />
-      <p className="flex w-full justify-between gap-2 border-b border-black">
+      <div className="flex w-full justify-between gap-2 border-b border-black">
         <span className="text-nowrap">문의사항 : </span>
         <pre className="max-h-40 w-full overflow-y-scroll whitespace-pre-wrap break-words font-pretendard">
           {estimate.inquiryContent}
         </pre>
-      </p>
+      </div>
       <EstimatePhoto imageUrl={imageUrl} isPhoto={isPhoto} />
       <div className="flex flex-wrap justify-between gap-5 text-nowrap">
         <StatusButton id={estimate.id} dataStatus={estimate.status} />

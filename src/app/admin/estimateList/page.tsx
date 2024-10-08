@@ -17,7 +17,7 @@ export interface IEstimateStatusItem {
 
 export default function Page() {
   const [toggleStatus, setToggleStatus] = useState<TEstimateStatusUpdate | undefined>(undefined);
-  const { fetchEstimate } = useEstimate({ status: toggleStatus });
+  const { fetchEstimate } = useEstimate();
   const { data, isLoading, isError, error } = fetchEstimate;
 
   const dataNotHidden = data?.filter((item) => item.status !== "hidden");

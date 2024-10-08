@@ -38,7 +38,7 @@ const EMAIL_JS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAIL_JS_PUBLIC_KEY ?? "";
 
 export default function EstimateForm() {
   const { register, handleSubmit, reset, watch } = useForm<EstimateInput>();
-  const { createEstimateMutation } = useEstimate({});
+  const { createEstimateMutation } = useEstimate();
   const estimateForm = useRef<HTMLFormElement>(null);
 
   const conceptFile = watch("conceptFile");
@@ -50,6 +50,7 @@ export default function EstimateForm() {
     const primaryInfo = { storeName, storeCategory, phone, address };
     const optionInfo = { isLogoDesign, workDate, openDate, inquiryContent };
 
+    if (isLogoDesign === "none") return toast.error("로고 디자인 여부를 선택해주세요");
     if (!estimateForm.current) return;
     if (!primaryInfo.storeName) return toast.error("브랜드명을 입력해주세요");
     if (!primaryInfo.storeCategory) return toast.error("업종을 입력해주세요");
@@ -99,9 +100,12 @@ export default function EstimateForm() {
       ))}
 
       <label className="estimate-label" htmlFor="isLogoDesign">
-        <span className="estimate-span">로고 디자인 여부</span>
-        <select className="estimate-input xl:h-8" id="isLogoDesign" {...register("isLogoDesign")}>
-          <option value="none" disabled selected>
+        <span className="estimate-span">
+          로고 디자인 여부
+          <span className="text-red-500">*</span>
+        </span>
+        <select className="estimate-input xl:h-8" id="isLogoDesign" {...register("isLogoDesign")} defaultValue={"none"}>
+          <option value="none" disabled>
             선택해주세요.
           </option>
           <option value="has">로고 보유</option>

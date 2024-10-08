@@ -17,7 +17,7 @@ interface IProps {
 
 export default function Navbar({ user, logoutHandler }: IProps) {
   return (
-    <nav className="group fixed bottom-0 top-header z-50 flex h-full w-[70px] flex-col gap-4 bg-primary px-4 py-6 duration-500 hover:w-[65vw] xl:hover:w-[15vw]">
+    <nav className="group fixed bottom-0 top-[55px] z-10 flex h-full w-[70px] flex-col gap-4 bg-primary px-4 py-6 duration-500 hover:w-[65vw] xl:top-[60px] xl:hover:w-[15vw]">
       <div className="relative">
         <button className="absolute left-1/2 top-0 flex -translate-x-1/2 flex-col gap-1 duration-500 group-hover:opacity-0">
           <span className="h-0.5 w-4 rounded-full bg-black" />

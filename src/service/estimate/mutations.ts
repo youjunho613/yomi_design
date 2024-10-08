@@ -1,34 +1,14 @@
 "use client";
 
-import { queryClient } from "@/hook/useReactQuery";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { QueryClient, useMutation, useQuery } from "@tanstack/react-query";
 import { toast } from "react-toastify";
-import {
-  createEstimate,
-  deleteEstimate,
-  getEstimateList,
-  getFilteredEstimateList,
-  modifyEstimateStatus,
-} from "./estimateService";
+import { createEstimate, deleteEstimate, getEstimateList, modifyEstimateStatus } from "./estimateService";
 
-import type { TEstimateStatusUpdate } from "@/app/admin/estimateList/page";
-
-interface IProps {
-  status?: TEstimateStatusUpdate;
-}
-
-export default function useEstimate({ status }: IProps) {
-  const queryKey = ["estimate"] as const;
+export default function useEstimate() {
+  const queryClient = new QueryClient();
+  const queryKey = ["estimate"];
 
   const fetchEstimate = useQuery({ queryKey, queryFn: getEstimateList });
-
-  const fetchFilteredEstimate = useQuery({
-    queryKey,
-    queryFn: () => {
-      if (!status) return null;
-      return getFilteredEstimateList(status);
-    },
-  });
 
   const createEstimateMutation = useMutation({
     mutationFn: createEstimate,
@@ -61,7 +41,6 @@ export default function useEstimate({ status }: IProps) {
 
   return {
     fetchEstimate,
-    fetchFilteredEstimate,
     createEstimateMutation,
     modifyEstimateMutation,
     deleteEstimateMutation,
