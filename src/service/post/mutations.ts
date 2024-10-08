@@ -1,7 +1,6 @@
 "use client";
 
-import { queryClient } from "@/hook/useReactQuery";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { QueryClient, useMutation, useQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
 import {
   changeFixPost,
@@ -17,6 +16,7 @@ import {
 } from "./postService";
 
 export default function usePost() {
+  const queryClient = new QueryClient();
   const queryKey = ["posts"] as const;
 
   const { category, id: postId }: { category: string; id: string } = useParams();

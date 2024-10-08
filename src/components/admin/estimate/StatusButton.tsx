@@ -4,35 +4,56 @@ import { Tables } from "@/supabase/type";
 
 interface IProps {
   id: number;
-  status: TEstimateStatusUpdate;
   dataStatus: Tables<"estimate">["status"];
 }
 
-export default function StatusButton({ id, status, dataStatus }: IProps) {
-  const { modifyEstimateMutation } = useEstimate({});
+export default function StatusButton({ id, dataStatus }: IProps) {
+  const { modifyEstimateMutation, deleteEstimateMutation } = useEstimate();
 
-  const modifyHandler = () => {
+  const modifyHandler = async (status: TEstimateStatusUpdate | undefined) => {
     modifyEstimateMutation.mutate({ id, status });
   };
 
-  const switchStatus = () => {
-    switch (status) {
-      case "unconfirmed":
-        return { text: "미확인", className: "bg-red-500 text-black" };
-      case "confirm":
-        return { text: "진행", className: "bg-yellow-500 text-black" };
-      case "done":
-        return { text: "완료", className: "bg-green-500 text-black" };
-      case "hidden":
-        return { text: "숨김", className: "bg-black text-white" };
-    }
+  const deleteHandler = () => {
+    deleteEstimateMutation.mutate(id);
   };
 
-  if (status === dataStatus) return <></>;
-
   return (
-    <button className={`${switchStatus().className} rounded-md px-3 py-2`} onClick={modifyHandler}>
-      {switchStatus().text}
-    </button>
+    <>
+      <button
+        className="click-button flex-1 rounded-md border-pink-500 bg-pink-200 shadow-pink-500 lg:px-3 lg:py-2"
+        disabled={dataStatus === "unconfirmed"}
+        onClick={() => modifyHandler("unconfirmed")}
+      >
+        미확인
+      </button>
+      <button
+        className="click-button flex-1 rounded-md border-orange-500 bg-orange-200 shadow-orange-500 lg:px-3 lg:py-2"
+        disabled={dataStatus === "confirm"}
+        onClick={() => modifyHandler("confirm")}
+      >
+        진행
+      </button>
+      <button
+        className="click-button flex-1 rounded-md border-green-500 bg-green-200 shadow-green-500 lg:px-3 lg:py-2"
+        disabled={dataStatus === "done"}
+        onClick={() => modifyHandler("done")}
+      >
+        완료
+      </button>
+      <button
+        className="click-button flex-1 rounded-md border-purple-500 bg-purple-200 shadow-purple-500 lg:px-3 lg:py-2"
+        disabled={dataStatus === "hidden"}
+        onClick={() => modifyHandler("hidden")}
+      >
+        숨김
+      </button>
+      <button
+        className="click-button flex-1 rounded-md border-red-500 bg-red-200 shadow-red-500 lg:px-3 lg:py-2"
+        onClick={deleteHandler}
+      >
+        삭제
+      </button>
+    </>
   );
 }

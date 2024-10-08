@@ -1,13 +1,13 @@
 import { User } from "@supabase/supabase-js";
 import Link from "next/link";
-import { AiFillPlusCircle, AiOutlineUnorderedList } from "react-icons/ai";
+import { AiFillCustomerService, AiFillPlusCircle, AiOutlineUnorderedList } from "react-icons/ai";
 import { MdCategory } from "react-icons/md";
 
 const menuItems = [
   { name: "게시물 추가", path: "/admin/create", icon: <AiFillPlusCircle /> },
   { name: "게시물 관리", path: "/admin/postManagement", icon: <AiOutlineUnorderedList /> },
   { name: "카테고리 관리", path: "/admin/category", icon: <MdCategory /> },
-  // { name: "문의 목록", path: "/admin/estimateList", icon: <AiFillCustomerService /> },
+  { name: "문의 목록", path: "/admin/estimateList", icon: <AiFillCustomerService /> },
 ];
 
 interface IProps {
@@ -17,7 +17,7 @@ interface IProps {
 
 export default function Navbar({ user, logoutHandler }: IProps) {
   return (
-    <nav className="group fixed bottom-0 top-header z-50 flex h-full w-[70px] flex-col gap-4 bg-primary px-4 py-6 duration-500 hover:w-[65vw] xl:hover:w-[15vw]">
+    <nav className="group fixed bottom-0 top-[55px] z-10 flex h-full w-[70px] flex-col gap-4 bg-primary px-4 py-6 duration-500 hover:w-[65vw] xl:top-[60px] xl:hover:w-[15vw]">
       <div className="relative">
         <button className="absolute left-1/2 top-0 flex -translate-x-1/2 flex-col gap-1 duration-500 group-hover:opacity-0">
           <span className="h-0.5 w-4 rounded-full bg-black" />
