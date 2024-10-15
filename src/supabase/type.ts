@@ -183,6 +183,74 @@ export type Database = {
         }
         Relationships: []
       }
+      inventory: {
+        Row: {
+          created_at: string
+          id: number
+          maker: string | null
+          name: string
+          quantity: number
+          spec: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: number
+          maker?: string | null
+          name: string
+          quantity: number
+          spec?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: number
+          maker?: string | null
+          name?: string
+          quantity?: number
+          spec?: string | null
+        }
+        Relationships: []
+      }
+      "inventory-in-out-list": {
+        Row: {
+          created_at: string
+          date: string
+          id: number
+          inventoryId: number
+          location: Database["public"]["Enums"]["inventory-location"]
+          memo: string | null
+          price: number | null
+          quantity: number
+        }
+        Insert: {
+          created_at?: string
+          date?: string
+          id?: number
+          inventoryId: number
+          location: Database["public"]["Enums"]["inventory-location"]
+          memo?: string | null
+          price?: number | null
+          quantity: number
+        }
+        Update: {
+          created_at?: string
+          date?: string
+          id?: number
+          inventoryId?: number
+          location?: Database["public"]["Enums"]["inventory-location"]
+          memo?: string | null
+          price?: number | null
+          quantity?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "inventory-in-out-list_inventoryId_fkey"
+            columns: ["inventoryId"]
+            isOneToOne: false
+            referencedRelation: "inventory"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       mainPosts: {
         Row: {
           created_at: string
@@ -242,6 +310,7 @@ export type Database = {
     }
     Enums: {
       estimateStatus: "confirm" | "done" | "hidden" | "unconfirmed"
+      "inventory-location": "사무실" | "포터"
       postType: "signage" | "branding"
     }
     CompositeTypes: {

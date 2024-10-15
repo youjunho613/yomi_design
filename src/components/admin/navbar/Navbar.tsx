@@ -1,14 +1,6 @@
 import { User } from "@supabase/supabase-js";
 import Link from "next/link";
-import { AiFillCustomerService, AiFillPlusCircle, AiOutlineUnorderedList } from "react-icons/ai";
-import { MdCategory } from "react-icons/md";
-
-const menuItems = [
-  { name: "게시물 추가", path: "/admin/create", icon: <AiFillPlusCircle /> },
-  { name: "게시물 관리", path: "/admin/postManagement", icon: <AiOutlineUnorderedList /> },
-  { name: "카테고리 관리", path: "/admin/category", icon: <MdCategory /> },
-  { name: "문의 목록", path: "/admin/estimateList", icon: <AiFillCustomerService /> },
-];
+import { menuItems } from "./menu.contant";
 
 interface IProps {
   user: User;
@@ -40,19 +32,23 @@ export default function Navbar({ user, logoutHandler }: IProps) {
           </button>
         </div>
       </div>
-      <ul className="h-full overflow-hidden">
-        {menuItems.map((item) => (
-          <li key={item.name} className="flex font-bold">
-            <Link
-              href={item.path}
-              className="flex w-full items-center gap-2.5 text-nowrap rounded-[11px] py-2 pl-2 text-center hover:bg-white hover:text-[#007AFF] hover:shadow-menu group-hover:p-2"
-            >
-              <div>{item.icon}</div>
-              <p className="w-0 text-left opacity-0 group-hover:w-full group-hover:opacity-100">{item.name}</p>
-            </Link>
-          </li>
+      <div className="flex h-full flex-col gap-8 overflow-hidden">
+        {menuItems.map((list, index) => (
+          <ul key={index} className="rounded-[11px] bg-white">
+            {list.map((item, index) => (
+              <li
+                key={item.name}
+                className="flex font-bold first:rounded-t-[11px] last:rounded-b-[11px] hover:bg-gray-300"
+              >
+                <Link href={item.path} className="flex w-full items-center gap-2.5 text-nowrap py-2 pl-2 text-center">
+                  <div className={`${item.iconBackground} rounded-[4px] p-0.5 text-white`}>{item.icon}</div>
+                  <p className="w-0 text-left opacity-0 group-hover:w-full group-hover:opacity-100">{item.name}</p>
+                </Link>
+              </li>
+            ))}
+          </ul>
         ))}
-      </ul>
+      </div>
     </nav>
   );
 }

@@ -1,8 +1,8 @@
-import { QueryClient, useMutation, useQuery } from "@tanstack/react-query";
+import { queryClient } from "@/hook/useReactQuery";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { createCategory, deleteCategory, getCategory, modifyCategory } from "./categoryService";
 
 export default function useCategory() {
-  const queryClient = new QueryClient();
   const queryKey = ["category"];
   const fetchCategory = useQuery({ queryKey, queryFn: getCategory });
 
@@ -27,5 +27,10 @@ export default function useCategory() {
     },
   });
 
-  return { fetchCategory, createCategoryMutation, modifyCategoryMutation, deleteCategoryMutation };
+  return {
+    fetchCategory,
+    createCategoryMutation,
+    modifyCategoryMutation,
+    deleteCategoryMutation,
+  };
 }
