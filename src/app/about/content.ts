@@ -45,7 +45,7 @@ export const ABOUT_CONTENT = [
   {
     index: "04",
     label: "review",
-    content: "리뷰가 인증하는 간판 맛집",
+    content: "클라이언트 분들의 높은 만족도로 소개까지 이어지는 간판전문업체 요미디자인입니다.",
     image: [
       { src: "/about/review-001.svg", alt: "04-1", width: 500, height: 500 },
       { src: "/about/review-002.svg", alt: "04-2", width: 500, height: 500 },
