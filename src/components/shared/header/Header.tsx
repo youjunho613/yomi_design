@@ -36,13 +36,13 @@ export default function Header() {
         <div className="flex gap-10">
           <SocialIconBox className="hidden gap-4 md:flex" />
           <HamburgerButton className="z-50 md:hidden" isOpen={isOpen} openToggle={openToggle} />
-          <DynamicModal isOpen={isOpen} openToggle={openToggle}>
-            <MobileNav onClose={onClose} />
-            <div className="absolute bottom-1/4 left-10 translate-y-1/2">
-              <SocialIconBox className="flex gap-2" />
-            </div>
-          </DynamicModal>
         </div>
+        <DynamicModal isOpen={isOpen} openToggle={openToggle}>
+          <MobileNav onClose={onClose} />
+          <div className="absolute bottom-1/4 left-10 translate-y-1/2">
+            <SocialIconBox className="flex gap-2" />
+          </div>
+        </DynamicModal>
       </div>
     </header>
   );
