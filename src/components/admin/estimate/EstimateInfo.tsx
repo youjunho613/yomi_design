@@ -22,7 +22,7 @@ export default function EstimateInfo({ estimate }: IProps) {
   };
 
   return (
-    <div className="flex min-w-fit max-w-min flex-col">
+    <div className="flex flex-col">
       <p className="flex w-full justify-between gap-2 border-b border-black">
         <span className="text-nowrap">문의글 ID : </span>
         {estimate.id}

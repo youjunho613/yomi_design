@@ -59,6 +59,17 @@ export const getBrandPostList = async () => {
   return data;
 };
 
+export const getPrintPostList = async () => {
+  const { data, error } = await supabase
+    .from("board")
+    .select("*,category (*)")
+    .eq("type", "print")
+    .order("created_at", { ascending: false });
+
+  if (error) console.error("getPost : ", error);
+  return data;
+};
+
 export const changeFixPost = async ({ postId, position }: { postId: number; position: number }) => {
   const { error } = await supabase.from("mainPosts").update({ postId }).eq("position", position);
 

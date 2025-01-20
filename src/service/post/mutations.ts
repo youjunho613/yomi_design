@@ -11,6 +11,7 @@ import {
   getPost,
   getPostList,
   getPostListAll,
+  getPrintPostList,
   getSignagePostList,
   modifyPost,
 } from "./postService";
@@ -34,6 +35,8 @@ export default function usePost() {
   const fetchSignagePosts = useQuery({ queryKey: [...queryKey, "signage"], queryFn: getSignagePostList });
 
   const fetchBrandingPosts = useQuery({ queryKey: [...queryKey, "branding"], queryFn: getBrandPostList });
+
+  const fetchPrintPosts = useQuery({ queryKey: [...queryKey, "print"], queryFn: getPrintPostList });
 
   const fetchPost = useQuery({
     queryKey: [...queryKey, postId],
@@ -75,6 +78,7 @@ export default function usePost() {
     fetchMainPost,
     fetchSignagePosts,
     fetchBrandingPosts,
+    fetchPrintPosts,
     fetchPost,
     createPostMutation,
     modifyPostMutation,

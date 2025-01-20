@@ -8,6 +8,7 @@ import { byteConverter } from "@/utils/byteConverter";
 import { Fragment } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
+import { SIGN_CONTENT } from "./sign_cotent";
 
 export interface PostFormInput {
   title: string;
@@ -32,10 +33,8 @@ export default function Page() {
     const request = { title, subTitle, address, type, signTypeId, categoryId };
     if (!title) return toast.error("제목을 입력해주세요.");
     if (!subTitle) return toast.error("부제목을 입력해주세요.");
-    if (!address) return toast.error("주소를 입력해주세요.");
     if (!type) return toast.error("게시글 타입을 선택해주세요.");
     if (!categoryId) return toast.error("업종을 선택해주세요.");
-    if (!signTypeId) return toast.error("간판 종류를 선택해주세요.");
     if (data.imageFile.length === 0) return toast.error("사진을 선택해주세요.");
 
     const promiseText = { pending: "업로드 중 🚀", success: "업로드 성공 👌", error: "업로드 실패 🤯" };
@@ -71,6 +70,7 @@ export default function Page() {
             </option>
             <option value="signage">signage</option>
             <option value="branding">branding</option>
+            <option value="print">print</option>
           </select>
         </label>
         <label htmlFor="categoryId" className="flex w-full flex-col flex-nowrap gap-1 text-nowrap">
@@ -86,7 +86,22 @@ export default function Page() {
             ))}
           </select>
         </label>
-        <label htmlFor="signTypeId" className="flex w-full flex-col flex-nowrap gap-1 text-nowrap">
+
+        <fieldset className="hidden w-full flex-col gap-2 text-nowrap">
+          <legend>간판 종류</legend>
+          {SIGN_CONTENT.map((category) => (
+            <div className="flex gap-2">
+              {category.map((item) => (
+                <label htmlFor={item.id}>
+                  <input type="checkbox" name="signType" id={item.id} value={item.label} />
+                  {item.label}
+                </label>
+              ))}
+            </div>
+          ))}
+        </fieldset>
+
+        <label htmlFor="signTypeId" className="hidden w-full flex-col flex-nowrap gap-1 text-nowrap">
           간판 종류
           <select id="signTypeId" className="w-full border text-center" {...register("signTypeId")}>
             <option value="none" disabled>

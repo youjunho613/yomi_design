@@ -7,7 +7,7 @@ interface IProps {
 
 export default function ImageList({ imageUrl }: IProps) {
   return (
-    <ul>
+    <ul className="flex flex-wrap gap-2">
       {imageUrl?.map((url) => (
         <li key={url}>
           <Image src={`${STORAGE_URL}/estimate/${url}`} width={500} height={500} alt="컨셉사진" />

@@ -12,7 +12,7 @@ export default function Nav({}: IProps) {
   const { fetchCategory } = useCategory();
   const { data: categoryList } = fetchCategory;
 
-  const visualNav = (item: string) => {
+  const visualDropdownNav = (item: string) => {
     const currentItem = ["signage", "branding"];
     return currentItem.some((string) => string === item);
   };
@@ -24,7 +24,7 @@ export default function Nav({}: IProps) {
           <Link href={item.href} className="w-full rounded-full px-2 duration-700 group-hover:bg-white">
             {item.id}
           </Link>
-          {!!categoryList && visualNav(item.id) && (
+          {!!categoryList && visualDropdownNav(item.id) && (
             <ul className="absolute left-1/2 top-[45px] hidden -translate-x-1/2 translate-y-2 gap-4 rounded-full bg-black px-6 text-white shadow-md group-hover:flex">
               {categoryList.map((category) => (
                 <li key={category.id} className="py-2">

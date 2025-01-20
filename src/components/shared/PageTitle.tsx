@@ -2,7 +2,7 @@ import Image from "next/image";
 import DividerDot from "./DividerDot";
 
 interface IProps {
-  title: "about" | "signage" | "branding" | "contact" | "print";
+  title: "about" | "signage" | "branding" | "print" | "contact";
 }
 
 const titleContent = {
@@ -21,14 +21,14 @@ const titleContent = {
       <Image src={"/title/branding.svg"} alt={"branding"} fill className="object-contain" />
     </div>
   ),
-  contact: (
-    <div className="relative aspect-[630/180] w-[49vw]">
-      <Image src={"/title/contact.svg"} alt={"contact"} fill className="object-contain" />
-    </div>
-  ),
   print: (
     <div className="relative aspect-[630/180] w-[49vw]">
       <Image src={"/title/print.svg"} alt={"print"} fill className="object-contain" />
+    </div>
+  ),
+  contact: (
+    <div className="relative aspect-[630/180] w-[49vw]">
+      <Image src={"/title/contact.svg"} alt={"contact"} fill className="object-contain" />
     </div>
   ),
 };
